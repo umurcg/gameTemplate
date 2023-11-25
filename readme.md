@@ -24,7 +24,7 @@ This Unity Mobile Game Template is designed for rapid prototyping of hypercasual
 You can easily add this template to any Unity project using the Package Manager:
 1. Go to **Unity Package Manager**.
 2. Select **Add package by name**.
-3. Enter the following URL: `https://github.com/umurcg/mobileGameTamplate`
+3. Enter the following URL: `https://github.com/umurcg/gameTemplate`
 
 ## How to Use
 After installing the template, you can start integrating it into your Unity project. Here's a quick guide to get you started:
