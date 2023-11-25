@@ -1,0 +1,122 @@
+{
+  "name": "com.reboot.core",
+  "version": "0.0.115",
+  "displayName": "Core",
+  "description": "Core package of the template",
+  "unity": "2021.3",
+  "unityRelease": "1f1",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
+  "dependencies": {
+    "com.unity.burst": "1.7.4",
+    "com.unity.2d.animation": "7.0.7",
+    "com.unity.2d.sprite": "1.0.0",
+    "com.unity.2d.spriteshape": "7.0.6",
+    "com.unity.2d.tilemap": "1.0.0",
+    "com.unity.analytics": "3.6.12",
+    "com.unity.cinemachine": "2.8.6",
+    "com.unity.collab-proxy": "1.17.2",
+    "com.unity.ext.nunit": "1.0.6",
+    "com.unity.ide.rider": "3.0.15",
+    "com.unity.ide.visualstudio": "2.0.16",
+    "com.unity.ide.vscode": "1.2.5",
+    "com.unity.mobile.android-logcat": "1.2.3",
+    "com.unity.postprocessing": "3.2.2",
+    "com.unity.probuilder": "5.0.6",
+    "com.unity.progrids": "3.0.3-preview.6",
+    "com.unity.purchasing": "4.1.3",
+    "com.unity.recorder": "3.0.3",
+    "com.unity.test-framework": "1.1.33",
+    "com.unity.textmeshpro": "3.0.6",
+    "com.unity.timeline": "1.6.4",
+    "com.unity.ugui": "1.0.0",
+    "com.unity.modules.ai": "1.0.0",
+    "com.unity.modules.androidjni": "1.0.0",
+    "com.unity.modules.animation": "1.0.0",
+    "com.unity.modules.assetbundle": "1.0.0",
+    "com.unity.modules.audio": "1.0.0",
+    "com.unity.modules.cloth": "1.0.0",
+    "com.unity.modules.director": "1.0.0",
+    "com.unity.modules.imageconversion": "1.0.0",
+    "com.unity.modules.imgui": "1.0.0",
+    "com.unity.modules.jsonserialize": "1.0.0",
+    "com.unity.modules.particlesystem": "1.0.0",
+    "com.unity.modules.physics": "1.0.0",
+    "com.unity.modules.physics2d": "1.0.0",
+    "com.unity.modules.screencapture": "1.0.0",
+    "com.unity.modules.terrain": "1.0.0",
+    "com.unity.modules.terrainphysics": "1.0.0",
+    "com.unity.modules.tilemap": "1.0.0",
+    "com.unity.modules.ui": "1.0.0",
+    "com.unity.modules.uielements": "1.0.0",
+    "com.unity.modules.umbra": "1.0.0",
+    "com.unity.modules.unityanalytics": "1.0.0",
+    "com.unity.modules.unitywebrequest": "1.0.0",
+    "com.unity.modules.unitywebrequestassetbundle": "1.0.0",
+    "com.unity.modules.unitywebrequestaudio": "1.0.0",
+    "com.unity.modules.unitywebrequesttexture": "1.0.0",
+    "com.unity.modules.unitywebrequestwww": "1.0.0",
+    "com.unity.modules.vehicles": "1.0.0",
+    "com.unity.modules.video": "1.0.0",
+    "com.unity.modules.vr": "1.0.0",
+    "com.unity.modules.wind": "1.0.0",
+    "com.unity.remote-config": "3.3.2",
+    "com.unity.services.authentication": "2.6.1",  
+    "com.unity.splines": "2.1.0",
+    "com.unity.render-pipelines.core" : "12.1.8",
+    "com.unity.ai.navigation": "1.0.0-exp.4"
+  },
+  "keywords": [
+    "reboot",
+    "core",
+    "hypercasual"
+  ],
+  "samples": [
+    {
+      "displayName": "Core Demo",
+      "description": "Contains sample scenes that can be used for initial development of the game.",
+      "path": "Samples/CoreDemo"
+    },
+    {
+      "displayName": "Shaders",
+      "description": "Contains basic custom shaders of core template.",
+      "path": "Samples/Shaders"
+    },
+    {
+      "displayName": "Stick Man Pack",
+      "description": "Contains assets that can be used for stickman type of games.",
+      "path": "Samples/StickmanPack"
+    },
+    {
+      "displayName": "JoystickUI",
+        "description": "Contains assets that can be used for joystick UI.",
+        "path": "Samples/JoystickUI"
+    },
+    {
+      "displayName": "Fonts",
+        "description": "Contains fonts that can be used for the game.",
+        "path": "Samples/Fonts"
+    },
+    {
+      "displayName": "AutoQualitySetter",
+        "description": "Contains assets that can be used for auto quality setter.",
+        "path": "Samples/AutoQualitySetter"
+    },
+    {
+      "displayName": "Rank System",
+        "description": "Contains assets that can be used for rank system.",
+        "path": "Samples/RankSystem"
+    },
+    {
+      "displayName": "Button3D",
+        "description": "Contains assets that can be used for 3D buttons.",
+        "path": "Samples/Button3D"
+    }
+  ],
+  "author": {
+    "name": "Reboot",
+    "email": "admin@reboot.ist",
+    "url": "https://www.reboot.ist"
+  }
+}

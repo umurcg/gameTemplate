@@ -1,0 +1,1865 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58719f53087f4fd6b8cd9018e1fc1f21, type: 3}
+  m_Name: Geekbench
+  m_EditorClassIdentifier: 
+  devices:
+  - name: Samsung Galaxy Note 5
+    description: Samsung Exynos 7420 @ 1.5 GHz
+    family: Samsung
+    score: 264
+  - name: Samsung Galaxy S6 edge+
+    description: Samsung Exynos 7420 @ 1.5 GHz
+    family: Samsung
+    score: 260
+  - name: Samsung Galaxy S7 edge
+    description: Samsung Exynos 8890 @ 1.6 GHz
+    family: Samsung
+    score: 327
+  - name: Samsung Galaxy S7
+    description: Samsung Exynos 8890 @ 1.6 GHz
+    family: Samsung
+    score: 347
+  - name: HTC 10
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: HTC
+    score: 318
+  - name: Samsung Galaxy S7
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: Samsung
+    score: 281
+  - name: OnePlus 3
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: OnePlus
+    score: 332
+  - name: Samsung Galaxy S7 edge
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: Samsung
+    score: 257
+  - name: LG G5
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: LG
+    score: 324
+  - name: Google Pixel XL
+    description: Qualcomm MSM8996 Pro-AB Snapdragon 821 @ 1.6 GHz
+    family: Google
+    score: 331
+  - name: Google Pixel
+    description: Qualcomm MSM8996 Pro-AB Snapdragon 821 @ 1.6 GHz
+    family: Google
+    score: 317
+  - name: Huawei Honor 8
+    description: HiSilicon Kirin 950 @ 1.8 GHz
+    family: Huawei
+    score: 359
+  - name: Xiaomi MI 5s
+    description: Qualcomm MSM8996 Pro-AB Snapdragon 821 @ 2.0 GHz
+    family: Xiaomi
+    score: 350
+  - name: Lenovo ZUK Z2
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: Lenovo
+    score: 326
+  - name: Huawei Mate 9
+    description: Hisilicon Kirin 960 @ 1.8 GHz
+    family: Huawei
+    score: 385
+  - name: Xiaomi MI 5s Plus
+    description: Qualcomm MSM8996 Pro-AB Snapdragon 821 @ 2.2 GHz
+    family: Xiaomi
+    score: 345
+  - name: Motorola Moto Z
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: Motorola
+    score: 298
+  - name: LeEco Le Max 2
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: LeEco
+    score: 339
+  - name: Huawei Mate 8
+    description: HiSilicon Kirin 950 @ 1.8 GHz
+    family: Huawei
+    score: 365
+  - name: Samsung Galaxy S8+
+    description: Samsung Exynos 8895 Octa @ 1.7 GHz
+    family: Samsung
+    score: 394
+  - name: Samsung Galaxy S8
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Samsung
+    score: 357
+  - name: Xiaomi Mi Mix
+    description: Qualcomm MSM8996 Pro-AB Snapdragon 821 @ 2.2 GHz
+    family: Xiaomi
+    score: 365
+  - name: Huawei P10 Plus
+    description: Hisilicon Kirin 960 @ 1.8 GHz
+    family: Huawei
+    score: 397
+  - name: Huawei P10
+    description: Hisilicon Kirin 960 @ 1.8 GHz
+    family: Huawei
+    score: 393
+  - name: LG V20
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: LG
+    score: 312
+  - name: Huawei Mate 9 Pro
+    description: Hisilicon Kirin 960 @ 1.8 GHz
+    family: Huawei
+    score: 361
+  - name: Asus Zenfone 3
+    description: Qualcomm Snapdragon 625 @ 2.0 GHz
+    family: Asus
+    score: 189
+  - name: Xiaomi Mi Note 2
+    description: Qualcomm MSM8996 Pro-AB Snapdragon 821 @ 2.2 GHz
+    family: Xiaomi
+    score: 316
+  - name: Google Pixel C
+    description: NVIDIA Tegra X1 @ 1.9 GHz
+    family: Google
+    score: 254
+  - name: Xiaomi MI 6
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Xiaomi
+    score: 393
+  - name: Huawei MediaPad M3 8.4
+    description: HiSilicon Kirin 950 @ 1.8 GHz
+    family: Huawei
+    score: 367
+  - name: Lenovo P2
+    description: Qualcomm Snapdragon 625 @ 2.0 GHz
+    family: Lenovo
+    score: 194
+  - name: Samsung Galaxy S8+
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Samsung
+    score: 365
+  - name: Samsung Galaxy S8
+    description: Samsung Exynos 8895 Octa @ 1.7 GHz
+    family: Samsung
+    score: 394
+  - name: Samsung Galaxy A5 (2017)
+    description: Samsung Exynos 7880 @ 1.9 GHz
+    family: Samsung
+    score: 165
+  - name: Samsung Galaxy Note 8
+    description: Samsung Exynos 8895 Octa @ 1.7 GHz
+    family: Samsung
+    score: 401
+  - name: Samsung Galaxy Note 8
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Samsung
+    score: 367
+  - name: Google Pixel 2 XL
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Google
+    score: 378
+  - name: Google Pixel 2
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Google
+    score: 384
+  - name: Samsung Galaxy S9+
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Samsung
+    score: 512
+  - name: Samsung Galaxy S9
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Samsung
+    score: 507
+  - name: LG G6
+    description: Qualcomm MSM8996 Pro-AB Snapdragon 821 @ 2.2 GHz
+    family: LG
+    score: 313
+  - name: Huawei Honor 9
+    description: Hisilicon Kirin 960 @ 1.8 GHz
+    family: Huawei
+    score: 397
+  - name: Huawei Mate 10 Pro
+    description: HiSilicon Kirin 970 @ 1.8 GHz
+    family: Huawei
+    score: 382
+  - name: Sony Xperia XZ Premium
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Sony
+    score: 399
+  - name: HTC U11
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: HTC
+    score: 404
+  - name: OnePlus 5T
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: OnePlus
+    score: 411
+  - name: Xiaomi Mi A1
+    description: Qualcomm Snapdragon 625 @ 2.0 GHz
+    family: Xiaomi
+    score: 191
+  - name: OnePlus 3T
+    description: Qualcomm Snapdragon 821 @ 2.2 GHz
+    family: OnePlus
+    score: 358
+  - name: OnePlus 6
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: OnePlus
+    score: 532
+  - name: Xiaomi Mi Max 2
+    description: Qualcomm Snapdragon 625 @ 2.0 GHz
+    family: Xiaomi
+    score: 192
+  - name: Essential PH-1
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Essential
+    score: 401
+  - name: Xiaomi Mi Mix 2
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Xiaomi
+    score: 401
+  - name: Xiaomi Mi Note 3
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Xiaomi
+    score: 348
+  - name: Xiaomi Mix 2S
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Xiaomi
+    score: 511
+  - name: Huawei Mate 10 Lite
+    description: HiSilicon Kirin 659 @ 1.7 GHz
+    family: Huawei
+    score: 209
+  - name: Huawei P10 Lite
+    description: HiSilicon Kirin 658 @ 1.7 GHz
+    family: Huawei
+    score: 207
+  - name: Xiaomi Mi 8
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Xiaomi
+    score: 499
+  - name: Xiaomi Redmi Note 5 Pro
+    description: Qualcomm Snapdragon 636 @ 1.6 GHz
+    family: Xiaomi
+    score: 288
+  - name: Samsung Galaxy A8 (2018)
+    description: Samsung Exynos 7885 Octa @ 1.6 GHz
+    family: Samsung
+    score: 318
+  - name: Huawei P20 Pro
+    description: HiSilicon Kirin 970 @ 1.8 GHz
+    family: Huawei
+    score: 366
+  - name: Samsung Galaxy Tab S3
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: Samsung
+    score: 286
+  - name: LG V30
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: LG
+    score: 402
+  - name: Huawei Honor View 10
+    description: HiSilicon Kirin 970 @ 1.8 GHz
+    family: Huawei
+    score: 370
+  - name: Motorola Moto X4
+    description: Qualcomm Snapdragon 630 @ 2.2 GHz
+    family: Motorola
+    score: 194
+  - name: Huawei Mate 10
+    description: HiSilicon Kirin 970 @ 1.8 GHz
+    family: Huawei
+    score: 382
+  - name: Nokia 7 Plus
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Nokia
+    score: 347
+  - name: Sony Xperia XZ1 Compact
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Sony
+    score: 411
+  - name: HTC U Ultra
+    description: Qualcomm Snapdragon 821 @ 2.0 GHz
+    family: HTC
+    score: 346
+  - name: Huawei P20 Lite
+    description: HiSilicon Kirin 659 @ 1.7 GHz
+    family: Huawei
+    score: 209
+  - name: Nokia 8
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Nokia
+    score: 399
+  - name: Oppo F7
+    description: Mediatek MT6771 Helio P60 @ 2.0 GHz
+    family: Oppo
+    score: 312
+  - name: Samsung Galaxy C9 Pro
+    description: Qualcomm Snapdragon 653 @ 1.4 GHz
+    family: Samsung
+    score: 232
+  - name: Sony Xperia XZ1
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Sony
+    score: 402
+  - name: Samsung Galaxy A8+ (2018)
+    description: Samsung Exynos 7885 Octa @ 1.6 GHz
+    family: Samsung
+    score: 312
+  - name: Huawei Honor 7X
+    description: HiSilicon Kirin 659 @ 1.7 GHz
+    family: Huawei
+    score: 211
+  - name: OPPO R11
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: OPPO
+    score: 353
+  - name: Asus Zenfone Max Pro (M1)
+    description: Qualcomm Snapdragon 636 @ 1.6 GHz
+    family: Asus
+    score: 288
+  - name: Huawei Honor 10
+    description: HiSilicon Kirin 970 @ 1.8 GHz
+    family: Huawei
+    score: 331
+  - name: Sony Xperia XZs
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: Sony
+    score: 290
+  - name: Vivo Xplay 6
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: Vivo
+    score: 362
+  - name: Huawei P20
+    description: HiSilicon Kirin 970 @ 1.8 GHz
+    family: Huawei
+    score: 374
+  - name: Asus Zenfone 5 Max
+    description: Qualcomm Snapdragon 660 @ 1.6 GHz
+    family: Asus
+    score: 295
+  - name: Qihoo 360 N6 Pro
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Qihoo
+    score: 347
+  - name: Nokia 6.1
+    description: Qualcomm Snapdragon 630 @ 2.2 GHz
+    family: Nokia
+    score: 190
+  - name: Motorola Moto Z2 Force
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Motorola
+    score: 399
+  - name: Xiaomi Mi A2
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Xiaomi
+    score: 357
+  - name: LG G7 ThinQ
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: LG
+    score: 512
+  - name: Xiaomi Black Shark
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Xiaomi
+    score: 410
+  - name: Oppo Realme 1
+    description: Mediatek MT6771 Helio P60 @ 2.0 GHz
+    family: Oppo
+    score: 296
+  - name: Asus Zenfone 4
+    description: Qualcomm Snapdragon 630 @ 2.2 GHz
+    family: Asus
+    score: 193
+  - name: Xiaomi Mi 8 SE
+    description: Qualcomm Snapdragon 710 @ 1.7 GHz
+    family: Xiaomi
+    score: 417
+  - name: Lenovo Yogabook YB1-X90F
+    description: Intel Atom x5-Z8550 @ 2.4 GHz
+    family: Lenovo
+    score: 200
+  - name: Sony Xperia XA1 Ultra
+    description: Mediatek Helio P20 MT6757 @ 1.6 GHz
+    family: Sony
+    score: 183
+  - name: Sony Xperia XZ2
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Sony
+    score: 547
+  - name: Sony Xperia XZ2 Compact
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Sony
+    score: 550
+  - name: HTC U11+
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: HTC
+    score: 415
+  - name: HTC U12+
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: HTC
+    score: 549
+  - name: Asus Zenfone 5z
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Asus
+    score: 552
+  - name: Google Pixel 3 XL
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Google
+    score: 519
+  - name: Google Pixel 3
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Google
+    score: 499
+  - name: Samsung Galaxy Note 9
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Samsung
+    score: 519
+  - name: Huawei Mate 20 Pro
+    description: HiSilicon Kirin 980 @ 1.8 GHz
+    family: Huawei
+    score: 773
+  - name: OnePlus 6T
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: OnePlus
+    score: 521
+  - name: Huawei Honor Play
+    description: HiSilicon Kirin 970 @ 1.8 GHz
+    family: Huawei
+    score: 379
+  - name: Xiaomi Redmi Note 5 AI
+    description: Qualcomm Snapdragon 636 @ 1.6 GHz
+    family: Xiaomi
+    score: 290
+  - name: Xiaomi Pocophone F1
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Xiaomi
+    score: 487
+  - name: Xiaomi Poco F1
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Xiaomi
+    score: 467
+  - name: Samsung Galaxy S10
+    description: Samsung Exynos 9820 @ 2.0 GHz
+    family: Samsung
+    score: 842
+  - name: Samsung Galaxy S10
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Samsung
+    score: 901
+  - name: Samsung Galaxy S10+
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Samsung
+    score: 889
+  - name: Samsung Galaxy S10e
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Samsung
+    score: 895
+  - name: Huawei Mate 20 lite
+    description: HiSilicon Kirin 710 @ 1.7 GHz
+    family: Huawei
+    score: 321
+  - name: Huawei Mate 20
+    description: HiSilicon Kirin 980 @ 1.8 GHz
+    family: Huawei
+    score: 746
+  - name: Huawei Honor 8X
+    description: HiSilicon Kirin 710 @ 1.7 GHz
+    family: Huawei
+    score: 334
+  - name: Google Pixel 3a
+    description: Qualcomm Snapdragon 670 @ 1.7 GHz
+    family: Google
+    score: 364
+  - name: Google Pixel 3a XL
+    description: Qualcomm Snapdragon 670 @ 1.7 GHz
+    family: Google
+    score: 367
+  - name: Xiaomi Black Shark 2
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Xiaomi
+    score: 780
+  - name: Samsung Galaxy A50
+    description: Samsung Exynos 9610 @ 1.7 GHz
+    family: Samsung
+    score: 349
+  - name: OnePlus 7 Pro
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: OnePlus
+    score: 937
+  - name: Razer Phone 2
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Razer
+    score: 542
+  - name: LG G8 ThinQ
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: LG
+    score: 882
+  - name: LG V40 ThinQ
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: LG
+    score: 481
+  - name: Xiaomi Mi A2
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Xiaomi
+    score: 352
+  - name: Xiaomi Mi 9
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Xiaomi
+    score: 876
+  - name: Asus ROG Phone
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Asus
+    score: 609
+  - name: Asus ZenFone Max Pro (M1)
+    description: Qualcomm Snapdragon 636 @ 1.6 GHz
+    family: Asus
+    score: 285
+  - name: Samsung Galaxy S10 5G
+    description: Samsung Exynos 9820 @ 2.0 GHz
+    family: Samsung
+    score: 814
+  - name: Samsung Galaxy Note10+
+    description: Samsung Exynos 9825 @ 2.0 GHz
+    family: Samsung
+    score: 637
+  - name: Samsung Galaxy Note10+ 5G
+    description: Samsung Exynos 9825 @ 2.0 GHz
+    family: Samsung
+    score: 811
+  - name: Samsung Galaxy Note10+
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Samsung
+    score: 843
+  - name: Samsung Galaxy Note10
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Samsung
+    score: 883
+  - name: Google Pixel 4 XL
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Google
+    score: 871
+  - name: Google Pixel 4
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Google
+    score: 883
+  - name: OnePlus 7
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: OnePlus
+    score: 939
+  - name: Samsung Galaxy A70
+    description: Qualcomm Snapdragon 675 @ 1.7 GHz
+    family: Samsung
+    score: 608
+  - name: Xiaomi Mi 9T Pro
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Xiaomi
+    score: 867
+  - name: Huawei P30 Pro
+    description: HiSilicon Kirin 980 @ 1.8 GHz
+    family: Huawei
+    score: 749
+  - name: LG G8S ThinQ
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: LG
+    score: 886
+  - name: Samsung Galaxy A7
+    description: Samsung Exynos 7885 Octa @ 1.6 GHz
+    family: Samsung
+    score: 318
+  - name: Samsung Galaxy Note10 5G
+    description: Samsung Exynos 9825 @ 2.0 GHz
+    family: Samsung
+    score: 834
+  - name: Samsung Galaxy M30s
+    description: Samsung Exynos 9611 @ 1.7 GHz
+    family: Samsung
+    score: 321
+  - name: Samsung Galaxy Tab S6
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Samsung
+    score: 892
+  - name: Samsung Galaxy A30
+    description: Samsung Exynos 7904 @ 1.6 GHz
+    family: Samsung
+    score: 260
+  - name: Samsung Galaxy A40
+    description: Samsung Exynos 7904 @ 1.6 GHz
+    family: Samsung
+    score: 274
+  - name: Samsung Galaxy Tab S5e
+    description: Qualcomm Snapdragon 670 @ 1.7 GHz
+    family: Samsung
+    score: 364
+  - name: Samsung Galaxy A50s
+    description: Samsung Exynos 9611 @ 1.7 GHz
+    family: Samsung
+    score: 328
+  - name: Xiaomi Redmi K20 Pro
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Xiaomi
+    score: 865
+  - name: Huawei Honor 20
+    description: HiSilicon Kirin 980 @ 1.8 GHz
+    family: Huawei
+    score: 816
+  - name: Huawei P30
+    description: HiSilicon Kirin 980 @ 1.8 GHz
+    family: Huawei
+    score: 779
+  - name: OnePlus 7T
+    description: Qualcomm Snapdragon 855+ @ 1.8 GHz
+    family: OnePlus
+    score: 960
+  - name: OnePlus 7T Pro
+    description: Qualcomm Snapdragon 855+ @ 1.8 GHz
+    family: OnePlus
+    score: 969
+  - name: Xiaomi Redmi Note 7
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Xiaomi
+    score: 350
+  - name: Xiaomi Redmi Note 8 Pro
+    description: Mediatek Helio G90T @ 2.0 GHz
+    family: Xiaomi
+    score: 616
+  - name: Xiaomi Mi 9T
+    description: Qualcomm Snapdragon 730 @ 1.8 GHz
+    family: Xiaomi
+    score: 681
+  - name: Xiaomi Redmi Note 7 Pro
+    description: Qualcomm Snapdragon 675 @ 1.7 GHz
+    family: Xiaomi
+    score: 631
+  - name: Xiaomi Mi A3
+    description: Qualcomm Snapdragon 665 @ 1.8 GHz
+    family: Xiaomi
+    score: 328
+  - name: Realme 3 Pro
+    description: Qualcomm Snapdragon 710 @ 1.7 GHz
+    family: Realme
+    score: 426
+  - name: Realme 5 Pro
+    description: Qualcomm Snapdragon 712 @ 1.7 GHz
+    family: Realme
+    score: 446
+  - name: Xiaomi Mi 8 Lite
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Xiaomi
+    score: 349
+  - name: Xiaomi Mi 9 SE
+    description: Qualcomm Snapdragon 712 @ 1.7 GHz
+    family: Xiaomi
+    score: 439
+  - name: Xiaomi Redmi Note 8
+    description: Qualcomm Snapdragon 665 @ 1.8 GHz
+    family: Xiaomi
+    score: 322
+  - name: Xiaomi Redmi Note 6 Pro
+    description: Qualcomm Snapdragon 636 @ 1.6 GHz
+    family: Xiaomi
+    score: 287
+  - name: Realme XT
+    description: Qualcomm Snapdragon 712 @ 1.7 GHz
+    family: Realme
+    score: 444
+  - name: Huawei Honor View 20
+    description: HiSilicon Kirin 980 @ 1.8 GHz
+    family: Huawei
+    score: 848
+  - name: Huawei Honor 20 Pro
+    description: HiSilicon Kirin 980 @ 1.8 GHz
+    family: Huawei
+    score: 820
+  - name: Asus Zenfone 6 ZS630KL
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Asus
+    score: 906
+  - name: Huawei P30 lite
+    description: HiSilicon Kirin 710 @ 1.7 GHz
+    family: Huawei
+    score: 335
+  - name: Xiaomi Redmi K20
+    description: Qualcomm Snapdragon 730 @ 1.8 GHz
+    family: Xiaomi
+    score: 670
+  - name: Motorola Moto G7 Power
+    description: Qualcomm Snapdragon 632 @ 1.8 GHz
+    family: Motorola
+    score: 286
+  - name: LG V50 ThinQ 5G
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: LG
+    score: 922
+  - name: LG V50S ThinQ 5G
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: LG
+    score: 922
+  - name: Xiaomi Mi 9 Lite
+    description: Qualcomm Snapdragon 710 @ 1.7 GHz
+    family: Xiaomi
+    score: 407
+  - name: Huawei Mate 30 Pro
+    description: HiSilicon Kirin 990 @ 1.9 GHz
+    family: Huawei
+    score: 913
+  - name: Realme 5
+    description: Qualcomm Snapdragon 665 @ 1.8 GHz
+    family: Realme
+    score: 319
+  - name: Huawei Honor 9X
+    description: HiSilicon Kirin 710F @ 1.7 GHz
+    family: Huawei
+    score: 342
+  - name: Huawei P Smart Z
+    description: HiSilicon Kirin 710F @ 1.7 GHz
+    family: Huawei
+    score: 344
+  - name: Huawei Mate 20 X
+    description: HiSilicon Kirin 980 @ 1.8 GHz
+    family: Huawei
+    score: 775
+  - name: Xiaomi Mi Max 3
+    description: Qualcomm Snapdragon 636 @ 1.6 GHz
+    family: Xiaomi
+    score: 292
+  - name: Xiaomi Mi Mix 3
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Xiaomi
+    score: 473
+  - name: Asus ROG Phone II
+    description: Qualcomm Snapdragon 855+ @ 1.8 GHz
+    family: Asus
+    score: 898
+  - name: Samsung Galaxy A9 (2018)
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Samsung
+    score: 318
+  - name: Samsung Galaxy A80
+    description: Qualcomm Snapdragon 730 @ 1.8 GHz
+    family: Samsung
+    score: 681
+  - name: Realme X2 Pro
+    description: Qualcomm Snapdragon 855+ @ 1.8 GHz
+    family: Realme
+    score: 872
+  - name: Xiaomi Redmi K20 Pro Premium Edition
+    description: Qualcomm Snapdragon 855+ @ 1.8 GHz
+    family: Xiaomi
+    score: 904
+  - name: Meizu 16th
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Meizu
+    score: 533
+  - name: Realme X
+    description: Qualcomm Snapdragon 710 @ 1.7 GHz
+    family: Realme
+    score: 427
+  - name: Huawei Y9s
+    description: HiSilicon Kirin 710F @ 1.7 GHz
+    family: Huawei
+    score: 343
+  - name: Huawei Y9 Prime (2019)
+    description: HiSilicon Kirin 710F @ 1.7 GHz
+    family: Huawei
+    score: 344
+  - name: Huawei Mate 30 Pro 5G
+    description: HiSilicon Kirin 990 @ 2.0 GHz
+    family: Huawei
+    score: 941
+  - name: Oppo Reno2
+    description: Qualcomm Snapdragon 730G @ 1.8 GHz
+    family: Oppo
+    score: 697
+  - name: Oppo Reno
+    description: Qualcomm Snapdragon 710 @ 1.7 GHz
+    family: Oppo
+    score: 429
+  - name: Sony Xperia 1
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Sony
+    score: 934
+  - name: Samsung Galaxy A90 5G
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Samsung
+    score: 907
+  - name: Huawei Honor 8X
+    description: HiSilicon Kirin 710 @ 1.7 GHz
+    family: Huawei
+    score: 356
+  - name: Oppo Reno 10x Zoom
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Oppo
+    score: 947
+  - name: Vivo iQOO Pro 5G
+    description: Qualcomm Snapdragon 855+ @ 1.8 GHz
+    family: Vivo
+    score: 977
+  - name: Samsung Galaxy Note10+ 5G
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Samsung
+    score: 883
+  - name: Samsung Galaxy A20s
+    description: Qualcomm Snapdragon 450 @ 1.8 GHz
+    family: Samsung
+    score: 157
+  - name: Huawei nova 3i
+    description: HiSilicon Kirin 710 @ 1.7 GHz
+    family: Huawei
+    score: 351
+  - name: Motorola One Action
+    description: Samsung Exynos 9609 @ 1.6 GHz
+    family: Motorola
+    score: 343
+  - name: Xiaomi Mi Pad 4
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Xiaomi
+    score: 356
+  - name: Vivo S1
+    description: Mediatek MT6768 Helio P65 @ 1.7 GHz
+    family: Vivo
+    score: 402
+  - name: Motorola Moto G7
+    description: Qualcomm Snapdragon 632 @ 1.8 GHz
+    family: Motorola
+    score: 291
+  - name: Huawei Y9 (2019)
+    description: HiSilicon Kirin 710 @ 1.7 GHz
+    family: Huawei
+    score: 348
+  - name: Vivo Z1Pro
+    description: Qualcomm Snapdragon 712 @ 1.7 GHz
+    family: Vivo
+    score: 430
+  - name: Samsung Galaxy Tab S4 10.5
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Samsung
+    score: 382
+  - name: Samsung Galaxy M20
+    description: Samsung Exynos 7904 @ 1.6 GHz
+    family: Samsung
+    score: 281
+  - name: Samsung Galaxy A30s
+    description: Samsung Exynos 7904 @ 1.6 GHz
+    family: Samsung
+    score: 272
+  - name: Xiaomi Mi Note 10
+    description: Qualcomm Snapdragon 730G @ 1.8 GHz
+    family: Xiaomi
+    score: 685
+  - name: Oppo F11 Pro
+    description: Mediatek Helio P70 @ 2.0 GHz
+    family: Oppo
+    score: 326
+  - name: LG V35 ThinQ
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: LG
+    score: 511
+  - name: Samsung Galaxy Fold 5G
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Samsung
+    score: 891
+  - name: Vivo V15 Pro
+    description: Qualcomm Snapdragon 675 @ 1.7 GHz
+    family: Vivo
+    score: 631
+  - name: Sony Xperia 5
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Sony
+    score: 939
+  - name: Samsung Galaxy S20 Ultra
+    description: Samsung Exynos 990 @ 2.0 GHz
+    family: Samsung
+    score: 1034
+  - name: Huawei nova 5T
+    description: HiSilicon Kirin 980 @ 1.8 GHz
+    family: Huawei
+    score: 778
+  - name: Samsung Galaxy S20+
+    description: Samsung Exynos 990 @ 2.0 GHz
+    family: Samsung
+    score: 1005
+  - name: Samsung Galaxy A51
+    description: Samsung Exynos 9611 @ 1.7 GHz
+    family: Samsung
+    score: 327
+  - name: Samsung Galaxy S20+ 5G
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Samsung
+    score: 1079
+  - name: Samsung Galaxy S20
+    description: Samsung Exynos 990 @ 2.0 GHz
+    family: Samsung
+    score: 956
+  - name: Samsung Galaxy S20 Ultra 5G
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Samsung
+    score: 1099
+  - name: Samsung Galaxy S20 5G
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Samsung
+    score: 1090
+  - name: OnePlus 7T Pro 5G
+    description: Qualcomm Snapdragon 855+ @ 1.8 GHz
+    family: OnePlus
+    score: 979
+  - name: Samsung Galaxy A71
+    description: Qualcomm Snapdragon 730 @ 1.8 GHz
+    family: Samsung
+    score: 638
+  - name: Samsung Galaxy S10 Lite
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Samsung
+    score: 892
+  - name: Samsung Galaxy Note10 Lite
+    description: Samsung Exynos 9810 @ 1.8 GHz
+    family: Samsung
+    score: 541
+  - name: Xiaomi Redmi Note 8T
+    description: Qualcomm Snapdragon 665 @ 1.8 GHz
+    family: Xiaomi
+    score: 323
+  - name: Huawei Honor 9X
+    description: HiSilicon Kirin 810 @ 1.9 GHz
+    family: Huawei
+    score: 770
+  - name: OnePlus 8 Pro
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: OnePlus
+    score: 1129
+  - name: OnePlus 8
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: OnePlus
+    score: 1148
+  - name: OnePlus 7 Pro 5G
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: OnePlus
+    score: 954
+  - name: Samsung Galaxy Note20 Ultra
+    description: Samsung Exynos 990 @ 2.0 GHz
+    family: Samsung
+    score: 1002
+  - name: Samsung Galaxy Note20 Ultra 5G
+    description: Qualcomm Snapdragon 865+ @ 1.8 GHz
+    family: Samsung
+    score: 1161
+  - name: ASUS ROG Phone 3
+    description: Qualcomm Snapdragon 865+ @ 1.8 GHz
+    family: ASUS
+    score: 1189
+  - name: OnePlus Nord
+    description: Qualcomm Snapdragon 765G @ 1.8 GHz
+    family: OnePlus
+    score: 778
+  - name: Samsung Galaxy S20 FE 5G
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Samsung
+    score: 984
+  - name: Samsung Galaxy S20 FE
+    description: Samsung Exynos 990 @ 2.0 GHz
+    family: Samsung
+    score: 928
+  - name: Samsung Galaxy M31
+    description: Samsung Exynos 9611 @ 1.7 GHz
+    family: Samsung
+    score: 326
+  - name: Samsung Galaxy M21
+    description: Samsung Exynos 9611 @ 1.7 GHz
+    family: Samsung
+    score: 340
+  - name: Samsung Galaxy M51
+    description: Qualcomm Snapdragon 730G @ 1.8 GHz
+    family: Samsung
+    score: 645
+  - name: Samsung Galaxy Tab S7+
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Samsung
+    score: 1212
+  - name: Samsung Galaxy A21s
+    description: Samsung Exynos 850 @ 2.0 GHz
+    family: Samsung
+    score: 205
+  - name: Samsung Galaxy Tab S7
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Samsung
+    score: 1191
+  - name: Samsung Galaxy Z Fold2 5G
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Samsung
+    score: 1137
+  - name: Samsung Galaxy Tab S6 Lite
+    description: Samsung Exynos 9611 @ 1.7 GHz
+    family: Samsung
+    score: 354
+  - name: Samsung Galaxy M31s
+    description: Samsung Exynos 9611 @ 1.7 GHz
+    family: Samsung
+    score: 333
+  - name: Google Pixel 5
+    description: Qualcomm Snapdragon 765G @ 1.8 GHz
+    family: Google
+    score: 772
+  - name: Google Pixel 4a 5G
+    description: Qualcomm Snapdragon 765G @ 1.8 GHz
+    family: Google
+    score: 770
+  - name: Samsung Galaxy A31
+    description: Mediatek MT6768 Helio P65 @ 1.7 GHz
+    family: Samsung
+    score: 393
+  - name: Samsung Galaxy Note20
+    description: Samsung Exynos 990 @ 2.0 GHz
+    family: Samsung
+    score: 1008
+  - name: OnePlus 8T
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: OnePlus
+    score: 1156
+  - name: OnePlus Nord N10 5G
+    description: Qualcomm Snapdragon 690 5G @ 1.7 GHz
+    family: OnePlus
+    score: 776
+  - name: Sony Xperia 1 II
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Sony
+    score: 1113
+  - name: Samsung Galaxy S21 Ultra 5G
+    description: Samsung Exynos 2100 @ 2.2 GHz
+    family: Samsung
+    score: 1200
+  - name: Samsung Galaxy S21 5G
+    description: Samsung Exynos 2100 @ 2.2 GHz
+    family: Samsung
+    score: 1163
+  - name: Samsung Galaxy S21+ 5G
+    description: Samsung Exynos 2100 @ 2.2 GHz
+    family: Samsung
+    score: 1235
+  - name: Samsung Galaxy Note20 5G
+    description: Qualcomm Snapdragon 865+ @ 1.8 GHz
+    family: Samsung
+    score: 1164
+  - name: Samsung Galaxy S21 5G
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Samsung
+    score: 1233
+  - name: Samsung Galaxy S21+ 5G
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Samsung
+    score: 1307
+  - name: Samsung Galaxy S10 5G
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: Samsung
+    score: 919
+  - name: Samsung Galaxy A41
+    description: Mediatek MT6768 Helio P65 @ 1.7 GHz
+    family: Samsung
+    score: 416
+  - name: Samsung Galaxy A51 5G
+    description: Samsung Exynos 980 @ 1.8 GHz
+    family: Samsung
+    score: 817
+  - name: Sony Xperia 5 II
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Sony
+    score: 1136
+  - name: Sony Xperia XZ3
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Sony
+    score: 545
+  - name: Sony Xperia 10 II
+    description: Qualcomm Snapdragon 665 @ 1.8 GHz
+    family: Sony
+    score: 321
+  - name: Xiaomi Redmi Note 9 Pro
+    description: Qualcomm Snapdragon 720G @ 1.8 GHz
+    family: Xiaomi
+    score: 727
+  - name: Xiaomi Redmi Note 9S
+    description: Qualcomm Snapdragon 720G @ 1.8 GHz
+    family: Xiaomi
+    score: 725
+  - name: Xiaomi Poco X3 NFC
+    description: Qualcomm Snapdragon 732G @ 1.8 GHz
+    family: Xiaomi
+    score: 716
+  - name: Xiaomi Poco F2 Pro
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Xiaomi
+    score: 1077
+  - name: Xiaomi Redmi 10X 4G
+    description: MediaTek Helio G85 @ 1.8 GHz
+    family: Xiaomi
+    score: 406
+  - name: Realme 6
+    description: Mediatek Helio G90T @ 2.0 GHz
+    family: Realme
+    score: 662
+  - name: Xiaomi Redmi 9
+    description: MediaTek Helio G80 @ 1.8 GHz
+    family: Xiaomi
+    score: 407
+  - name: Xiaomi Mi 10T Pro 5G
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Xiaomi
+    score: 1053
+  - name: OnePlus 9 Pro
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: OnePlus
+    score: 1218
+  - name: OnePlus 9R
+    description: Qualcomm Snapdragon 870 @ 1.8 GHz
+    family: OnePlus
+    score: 1253
+  - name: OnePlus Nord N100
+    description: Qualcomm Snapdragon 460 @ 1.8 GHz
+    family: OnePlus
+    score: 267
+  - name: OnePlus 9
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: OnePlus
+    score: 1186
+  - name: Xiaomi Poco X3 Pro
+    description: Qualcomm Snapdragon 860 @ 1.8 GHz
+    family: Xiaomi
+    score: 965
+  - name: Xiaomi Poco F3
+    description: Qualcomm Snapdragon 870 @ 1.8 GHz
+    family: Xiaomi
+    score: 1103
+  - name: Xiaomi Mi 10T 5G
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Xiaomi
+    score: 1061
+  - name: Microsoft Surface Duo 2
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Microsoft
+    score: 1480
+  - name: Google Pixel 6 Pro
+    description: Google Tensor @ 1.8 GHz
+    family: Google
+    score: 1343
+  - name: Google Pixel 6
+    description: Google Tensor @ 1.8 GHz
+    family: Google
+    score: 1368
+  - name: OnePlus Nord 2 5G
+    description: MediaTek Dimensity 1200 @ 2.0 GHz
+    family: OnePlus
+    score: 1105
+  - name: OnePlus 9R 5G
+    description: Qualcomm Snapdragon 870 @ 1.8 GHz
+    family: OnePlus
+    score: 1235
+  - name: Samsung Galaxy A22 5G
+    description: MediaTek Dimensity 700 @ 2.0 GHz
+    family: Samsung
+    score: 722
+  - name: Samsung Galaxy A52S 5G
+    description: Qualcomm Snapdragon 778G @ 1.8 GHz
+    family: Samsung
+    score: 944
+  - name: Samsung Galaxy F62
+    description: Samsung Exynos 9825 @ 2.0 GHz
+    family: Samsung
+    score: 643
+  - name: Samsung Galaxy A12s
+    description: Samsung Exynos 850 @ 2.0 GHz
+    family: Samsung
+    score: 206
+  - name: Samsung Galaxy S21 FE
+    description: Samsung Exynos 2100 @ 2.2 GHz
+    family: Samsung
+    score: 1027
+  - name: Oppo Reno Z
+    description: MediaTek Helio P90 @ 2.0 GHz
+    family: Oppo
+    score: 458
+  - name: Samsung Galaxy Z Fold3 5G
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Samsung
+    score: 1299
+  - name: Samsung Galaxy Z Flip3
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Samsung
+    score: 1180
+  - name: Samsung Galaxy S22+
+    description: Qualcomm Snapdragon 8 Gen 1 @ 1.8 GHz
+    family: Samsung
+    score: 1497
+  - name: Samsung Galaxy A52
+    description: Qualcomm Snapdragon 720G @ 1.8 GHz
+    family: Samsung
+    score: 681
+  - name: Samsung Galaxy A52 5G
+    description: Qualcomm Snapdragon 750G @ 1.8 GHz
+    family: Samsung
+    score: 769
+  - name: Samsung Galaxy Note20 5G
+    description: Samsung Exynos 990 @ 2.0 GHz
+    family: Samsung
+    score: 988
+  - name: Samsung Tab S6 Lite
+    description: Samsung Exynos 9611 @ 1.7 GHz
+    family: Samsung
+    score: 348
+  - name: Samsung Galaxy A71 5G
+    description: Samsung Exynos 980 @ 1.8 GHz
+    family: Samsung
+    score: 797
+  - name: Samsung Galaxy M30
+    description: Samsung Exynos 7904 @ 1.6 GHz
+    family: Samsung
+    score: 275
+  - name: Samsung Galaxy S21 FE
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Samsung
+    score: 1308
+  - name: Samsung Galaxy F41
+    description: Samsung Exynos 9611 @ 1.7 GHz
+    family: Samsung
+    score: 321
+  - name: Samsung Galaxy S22
+    description: Qualcomm Snapdragon 8 Gen 1 @ 1.8 GHz
+    family: Samsung
+    score: 1414
+  - name: Nokia 8.1
+    description: Qualcomm Snapdragon 710 @ 1.7 GHz
+    family: Nokia
+    score: 416
+  - name: Nokia 7.2
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Nokia
+    score: 350
+  - name: Nokia 5.3
+    description: Qualcomm Snapdragon 665 @ 1.8 GHz
+    family: Nokia
+    score: 328
+  - name: Nokia 5.4
+    description: Qualcomm Snapdragon 662 @ 1.8 GHz
+    family: Nokia
+    score: 324
+  - name: Nokia 9
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Nokia
+    score: 537
+  - name: Nokia 6.2
+    description: Qualcomm Snapdragon 636 @ 1.6 GHz
+    family: Nokia
+    score: 290
+  - name: Nokia 8.3 5G
+    description: Qualcomm Snapdragon 765G @ 1.8 GHz
+    family: Nokia
+    score: 777
+  - name: Nokia X20
+    description: Qualcomm Snapdragon 480 5G @ 1.8 GHz
+    family: Nokia
+    score: 668
+  - name: Nokia X10
+    description: Qualcomm Snapdragon 480 5G @ 1.8 GHz
+    family: Nokia
+    score: 664
+  - name: Xiaomi Redmi K40
+    description: Qualcomm Snapdragon 870 @ 1.8 GHz
+    family: Xiaomi
+    score: 1186
+  - name: Xiaomi Mi 11X
+    description: Qualcomm Snapdragon 870 @ 1.8 GHz
+    family: Xiaomi
+    score: 1106
+  - name: Realme GT Neo
+    description: MediaTek Dimensity 1200 @ 2.0 GHz
+    family: Realme
+    score: 1007
+  - name: Xiaomi Redmi Note 10 Pro
+    description: Qualcomm Snapdragon 732G @ 1.8 GHz
+    family: Xiaomi
+    score: 705
+  - name: Xiaomi Mi 11
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Xiaomi
+    score: 1178
+  - name: Realme 7
+    description: MediaTek Helio G95 @ 2.0 GHz
+    family: Realme
+    score: 634
+  - name: Xiaomi Poco X2
+    description: Qualcomm Snapdragon 730G @ 1.8 GHz
+    family: Xiaomi
+    score: 622
+  - name: Realme 7 Pro
+    description: Qualcomm Snapdragon 720G @ 1.8 GHz
+    family: Realme
+    score: 727
+  - name: Huawei P40 Lite
+    description: HiSilicon Kirin 810 @ 1.9 GHz
+    family: Huawei
+    score: 761
+  - name: OnePlus Nord CE 5G
+    description: Qualcomm Snapdragon 750G @ 1.8 GHz
+    family: OnePlus
+    score: 831
+  - name: Huawei Mate 40
+    description: HiSilicon Kirin 9000E 5G @ 2.0 GHz
+    family: Huawei
+    score: 1120
+  - name: OnePlus 8T+ 5G
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: OnePlus
+    score: 1158
+  - name: Samsung Galaxy A72
+    description: Qualcomm Snapdragon 720G @ 1.8 GHz
+    family: Samsung
+    score: 676
+  - name: Samsung Galaxy Quantum 2
+    description: Qualcomm Snapdragon 855+ @ 1.8 GHz
+    family: Samsung
+    score: 938
+  - name: Samsung Galaxy Tab S8
+    description: Qualcomm Snapdragon 8 Gen 1 @ 1.8 GHz
+    family: Samsung
+    score: 1512
+  - name: Samsung Galaxy Tab S8 5G
+    description: Qualcomm Snapdragon 8 Gen 1 @ 1.8 GHz
+    family: Samsung
+    score: 1484
+  - name: Samsung Galaxy Tab S8 Ultra
+    description: Qualcomm Snapdragon 8 Gen 1 @ 1.8 GHz
+    family: Samsung
+    score: 1621
+  - name: Samsung Galaxy Tab S8 Ultra 5G
+    description: Qualcomm Snapdragon 8 Gen 1 @ 1.8 GHz
+    family: Samsung
+    score: 1606
+  - name: Samsung Galaxy Tab S8+
+    description: Qualcomm Snapdragon 8 Gen 1 @ 1.8 GHz
+    family: Samsung
+    score: 1537
+  - name: Samsung Galaxy Tab S8+ 5G
+    description: Qualcomm Snapdragon 8 Gen 1 @ 1.8 GHz
+    family: Samsung
+    score: 1528
+  - name: Sony Xperia 1 III
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Sony
+    score: 1465
+  - name: Sony Xperia XZ2 Premium
+    description: Qualcomm Snapdragon 845 @ 1.8 GHz
+    family: Sony
+    score: 545
+  - name: Sony Xperia 10 III
+    description: Qualcomm Snapdragon 690 5G @ 1.7 GHz
+    family: Sony
+    score: 774
+  - name: Sony Xperia 5 III
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Sony
+    score: 1433
+  - name: Sony Xperia 10 Plus
+    description: Qualcomm Snapdragon 636 @ 1.6 GHz
+    family: Sony
+    score: 290
+  - name: Sony Xperia PRO-I
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Sony
+    score: 1486
+  - name: Sony Xperia XA2 Ultra
+    description: Qualcomm Snapdragon 630 @ 2.2 GHz
+    family: Sony
+    score: 192
+  - name: Sony Xperia 10 III Lite
+    description: Qualcomm Snapdragon 690 5G @ 1.7 GHz
+    family: Sony
+    score: 769
+  - name: Asus ROG Phone 5
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Asus
+    score: 1044
+  - name: Asus Zenfone 7
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Asus
+    score: 1036
+  - name: Asus Zenfone 8
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Asus
+    score: 1247
+  - name: Asus ROG Phone 5 Pro
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Asus
+    score: 1197
+  - name: Asus ROG Phone 5 Ultimate
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Asus
+    score: 1049
+  - name: Asus Zenfone 8 Flip
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Asus
+    score: 1295
+  - name: Asus ROG Phone 5s
+    description: Qualcomm Snapdragon 888+ @ 1.8 GHz
+    family: Asus
+    score: 1018
+  - name: Xiaomi Poco X3
+    description: Qualcomm Snapdragon 732G @ 1.8 GHz
+    family: Xiaomi
+    score: 704
+  - name: Xiaomi 11T Pro
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Xiaomi
+    score: 1087
+  - name: Xiaomi Redmi Note 10
+    description: Qualcomm Snapdragon 678 @ 1.7 GHz
+    family: Xiaomi
+    score: 669
+  - name: Xiaomi Mi 11 Ultra
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Xiaomi
+    score: 1210
+  - name: Xiaomi Redmi Note 10 Pro
+    description: Qualcomm Snapdragon 732G @ 1.8 GHz
+    family: Xiaomi
+    score: 679
+  - name: Xiaomi Poco M3
+    description: Qualcomm Snapdragon 662 @ 1.8 GHz
+    family: Xiaomi
+    score: 329
+  - name: Xiaomi 11T
+    description: MediaTek Dimensity 1200 @ 2.0 GHz
+    family: Xiaomi
+    score: 1084
+  - name: Xiaomi Mi 10 Ultra
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Xiaomi
+    score: 1076
+  - name: Xiaomi Mi 11 Lite
+    description: Qualcomm Snapdragon 780G @ 1.9 GHz
+    family: Xiaomi
+    score: 960
+  - name: Xiaomi Redmi 9T
+    description: Qualcomm Snapdragon 662 @ 1.8 GHz
+    family: Xiaomi
+    score: 331
+  - name: Xiaomi Poco M2 Pro
+    description: Qualcomm Snapdragon 720G @ 1.8 GHz
+    family: Xiaomi
+    score: 725
+  - name: Xiaomi Redmi K40 Gaming
+    description: MediaTek Dimensity 1200 @ 2.0 GHz
+    family: Xiaomi
+    score: 1049
+  - name: Xiaomi Mi 10T Lite 5G
+    description: Qualcomm Snapdragon 750G @ 1.8 GHz
+    family: Xiaomi
+    score: 824
+  - name: Xiaomi Poco X3 GT
+    description: MediaTek Dimensity 1100 @ 2.0 GHz
+    family: Xiaomi
+    score: 798
+  - name: Xiaomi Redmi K30 Ultra
+    description: MediaTek Dimensity 1000+ @ 2.0 GHz
+    family: Xiaomi
+    score: 907
+  - name: Xiaomi 11 Lite 5G NE
+    description: Qualcomm Snapdragon 778G @ 1.8 GHz
+    family: Xiaomi
+    score: 949
+  - name: Lenovo Legion Y90
+    description: Qualcomm Snapdragon 8 Gen 1 @ 1.8 GHz
+    family: Lenovo
+    score: 1629
+  - name: Lenovo Legion Pro
+    description: Qualcomm Snapdragon 865+ @ 1.8 GHz
+    family: Lenovo
+    score: 1246
+  - name: Lenovo Legion 2 Pro
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Lenovo
+    score: 1449
+  - name: Xiaomi Black Shark 4
+    description: Qualcomm Snapdragon 870 @ 1.8 GHz
+    family: Xiaomi
+    score: 1243
+  - name: Xiaomi Black Shark 4 Pro
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Xiaomi
+    score: 1488
+  - name: Xiaomi Black Shark 3
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Xiaomi
+    score: 1192
+  - name: Xiaomi Black Shark 2 Pro
+    description: Qualcomm Snapdragon 855+ @ 1.8 GHz
+    family: Xiaomi
+    score: 767
+  - name: Xiaomi Black Shark 3 Pro
+    description: Qualcomm Snapdragon 865 @ 1.8 GHz
+    family: Xiaomi
+    score: 1150
+  - name: Huawei Mate 40 Pro
+    description: HiSilicon Kirin 9000 @ 2.0 GHz
+    family: Huawei
+    score: 1181
+  - name: Realme 8
+    description: MediaTek Helio G95 @ 2.0 GHz
+    family: Realme
+    score: 638
+  - name: Realme GT 5G
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Realme
+    score: 1106
+  - name: Realme GT Neo2
+    description: Qualcomm Snapdragon 870 @ 1.8 GHz
+    family: Realme
+    score: 1250
+  - name: Realme 6 Pro
+    description: Qualcomm Snapdragon 720G @ 1.8 GHz
+    family: Realme
+    score: 727
+  - name: Realme X2
+    description: Qualcomm Snapdragon 730G @ 1.8 GHz
+    family: Realme
+    score: 698
+  - name: Realme X3
+    description: Qualcomm Snapdragon 855+ @ 1.8 GHz
+    family: Realme
+    score: 911
+  - name: Realme GT Master
+    description: Qualcomm Snapdragon 778G @ 1.8 GHz
+    family: Realme
+    score: 980
+  - name: Realme X7 Pro
+    description: MediaTek Dimensity 1000+ @ 2.0 GHz
+    family: Realme
+    score: 958
+  - name: Realme 7 5G
+    description: MediaTek Dimensity 800U @ 2.0 GHz
+    family: Realme
+    score: 749
+  - name: Huawei P40 Pro
+    description: HiSilicon Kirin 990 @ 2.0 GHz
+    family: Huawei
+    score: 918
+  - name: Huawei Mate 40 Pro+
+    description: HiSilicon Kirin 9000 @ 2.0 GHz
+    family: Huawei
+    score: 1188
+  - name: Huawei P50 Pro
+    description: HiSilicon Kirin 9000 @ 2.0 GHz
+    family: Huawei
+    score: 1158
+  - name: Huawei P50 Pro
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: Huawei
+    score: 1182
+  - name: Huawei P40
+    description: HiSilicon Kirin 990 @ 2.0 GHz
+    family: Huawei
+    score: 928
+  - name: Huawei Honor 20 lite
+    description: HiSilicon Kirin 710 @ 1.7 GHz
+    family: Huawei
+    score: 339
+  - name: Huawei Honor V30 Pro
+    description: HiSilicon Kirin 990 @ 2.0 GHz
+    family: Huawei
+    score: 946
+  - name: OnePlus Nord N200 5G
+    description: Qualcomm Snapdragon 480 5G @ 1.8 GHz
+    family: OnePlus
+    score: 674
+  - name: OnePlus 10 Pro 5G
+    description: Qualcomm Snapdragon 8 Gen 1 @ 1.8 GHz
+    family: OnePlus
+    score: 1317
+  - name: Samsung Galaxy A53 5G
+    description: Samsung Exynos 1280 @ 2.0 GHz
+    family: Samsung
+    score: 856
+  - name: Realme GT Neo 3
+    description: MediaTek Dimensity 8100 @ 2.0 GHz
+    family: Realme
+    score: 1090
+  - name: Motorola Edge X30
+    description: Qualcomm Snapdragon 8 Gen 1 @ 1.8 GHz
+    family: Motorola
+    score: 1617
+  - name: Google Pixel 7
+    description: Google Tensor G2 @ 1.8 GHz
+    family: Google
+    score: 1323
+  - name: Google Pixel 7 Pro
+    description: Google Tensor G2 @ 1.8 GHz
+    family: Google
+    score: 1410
+  - name: Google Pixel 6a
+    description: Google Tensor @ 1.8 GHz
+    family: Google
+    score: 1378
+  - name: OnePlus 10R
+    description: MediaTek Dimensity 8100 Max @ 2.0 GHz
+    family: OnePlus
+    score: 1093
+  - name: Samsung Galaxy Z Flip4
+    description: Qualcomm Snapdragon 8+ Gen 1 @ 2.0 GHz
+    family: Samsung
+    score: 1469
+  - name: Samsung Galaxy Z Fold4
+    description: Qualcomm Snapdragon 8+ Gen 1 @ 2.0 GHz
+    family: Samsung
+    score: 1664
+  - name: Nothing Phone (1)
+    description: Qualcomm Snapdragon 778G+ @ 1.8 GHz
+    family: Nothing
+    score: 1003
+  - name: OnePlus 9RT
+    description: Qualcomm Snapdragon 888 @ 1.8 GHz
+    family: OnePlus
+    score: 1218
+  - name: OnePlus 10T
+    description: Qualcomm Snapdragon 8+ Gen 1 @ 2.0 GHz
+    family: OnePlus
+    score: 1392
+  - name: OnePlus Nord 2T
+    description: MediaTek Dimensity 1300 @ 2.0 GHz
+    family: OnePlus
+    score: 992
+  - name: OnePlus Nord CE 2 Lite
+    description: Qualcomm Snapdragon 695 @ 1.8 GHz
+    family: OnePlus
+    score: 882
+  - name: OnePlus Ace
+    description: MediaTek Dimensity 8100 @ 2.0 GHz
+    family: OnePlus
+    score: 1027
+  - name: OnePlus Nord N20
+    description: Qualcomm Snapdragon 695 @ 1.8 GHz
+    family: OnePlus
+    score: 882
+  - name: OnePlus 11
+    description: Qualcomm Snapdragon 8 Gen 2 @ 2.0 GHz
+    family: OnePlus
+    score: 1734
+  - name: Samsung Galaxy A73
+    description: Qualcomm Snapdragon 778G @ 1.8 GHz
+    family: Samsung
+    score: 932
+  - name: Samsung Galaxy M52
+    description: Qualcomm Snapdragon 778G @ 1.8 GHz
+    family: Samsung
+    score: 883
+  - name: Samsung Galaxy A33
+    description: Samsung Exynos 1280 @ 2.0 GHz
+    family: Samsung
+    score: 840
+  - name: Samsung Galaxy Tab S7 FE
+    description: Qualcomm Snapdragon 778G @ 1.8 GHz
+    family: Samsung
+    score: 974
+  - name: Samsung Galaxy Tab S7 FE 5G
+    description: Qualcomm Snapdragon 750G @ 1.8 GHz
+    family: Samsung
+    score: 828
+  - name: Motorola Moto G6 Plus
+    description: Qualcomm Snapdragon 630 @ 2.2 GHz
+    family: Motorola
+    score: 196
+  - name: Nokia 6.1 Plus
+    description: Qualcomm Snapdragon 636 @ 1.6 GHz
+    family: Nokia
+    score: 288
+  - name: Xiaomi Redmi Note 7S
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Xiaomi
+    score: 345
+  - name: Xiaomi Redmi 7
+    description: Qualcomm Snapdragon 632 @ 1.8 GHz
+    family: Xiaomi
+    score: 288
+  - name: Nokia 3.4
+    description: Qualcomm Snapdragon 460 @ 1.8 GHz
+    family: Nokia
+    score: 266
+  - name: Vivo V9
+    description: Qualcomm Snapdragon 626 @ 2.2 GHz
+    family: Vivo
+    score: 208
+  - name: Asus Zenfone Max Pro (M2)
+    description: Qualcomm Snapdragon 660 @ 1.8 GHz
+    family: Asus
+    score: 309
+  - name: Samsung Galaxy S23 Ultra
+    description: Qualcomm Snapdragon 8 Gen 2 @ 2.0 GHz
+    family: Samsung
+    score: 1870
+  - name: Samsung Galaxy S23 Plus
+    description: Qualcomm Snapdragon 8 Gen 2 @ 2.0 GHz
+    family: Samsung
+    score: 1857
+  - name: Samsung Galaxy S23
+    description: Qualcomm Snapdragon 8 Gen 2 @ 2.0 GHz
+    family: Samsung
+    score: 1843
+  - name: ZTE Axon 7
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: ZTE
+    score: 306
+  - name: Oppo F9 Pro
+    description: Mediatek MT6771 Helio P60 @ 2.0 GHz
+    family: Oppo
+    score: 311
+  - name: Sony Xperia XA1 Plus
+    description: Mediatek Helio P20 MT6757 @ 1.6 GHz
+    family: Sony
+    score: 185
+  - name: Huawei P9 Plus
+    description: HiSilicon Kirin 955 @ 1.8 GHz
+    family: Huawei
+    score: 365
+  - name: Razer Phone
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Razer
+    score: 407
+  - name: Huawei Honor 10 Lite
+    description: HiSilicon Kirin 710 @ 1.7 GHz
+    family: Huawei
+    score: 353
+  - name: OnePlus 2
+    description: Qualcomm Snapdragon 810 @ 1.6 GHz
+    family: OnePlus
+    score: 215
+  - name: Asus Zenpad 3S 10
+    description: Mediatek MT8176 @ 1.7 GHz
+    family: Asus
+    score: 334
+  - name: Asus Zenpad Z8
+    description: Qualcomm Snapdragon 650 @ 1.4 GHz
+    family: Asus
+    score: 277
+  - name: Vivo S1
+    description: Mediatek MT6768 Helio P65 @ 1.7 GHz
+    family: Vivo
+    score: 407
+  - name: Sony Xperia Ace
+    description: Qualcomm Snapdragon 630 @ 2.2 GHz
+    family: Sony
+    score: 190
+  - name: Xiaomi Mi 5
+    description: Qualcomm Snapdragon 820 @ 1.6 GHz
+    family: Xiaomi
+    score: 338
+  - name: Nokia 7.1
+    description: Qualcomm Snapdragon 636 @ 1.6 GHz
+    family: Nokia
+    score: 274
+  - name: Samsung Galaxy C7 Pro
+    description: Qualcomm Snapdragon 626 @ 2.2 GHz
+    family: Samsung
+    score: 197
+  - name: Samsung Galaxy S10e
+    description: Samsung Exynos 9820 @ 2.0 GHz
+    family: Samsung
+    score: 840
+  - name: ZTE nubia Red Magic 3
+    description: Qualcomm Snapdragon 855 @ 1.8 GHz
+    family: ZTE
+    score: 853
+  - name: Samsung Galaxy S8 Active
+    description: Qualcomm Snapdragon 835 @ 1.9 GHz
+    family: Samsung
+    score: 329
+  - name: Samsung Galaxy A32
+    description: MediaTek Helio G80 @ 1.8 GHz
+    family: Samsung
+    score: 425
+  - name: OnePlus Nord CE 2
+    description: MediaTek Dimensity 900 @ 2.0 GHz
+    family: OnePlus
+    score: 883
+  - name: Vivo X9
+    description: Qualcomm Snapdragon 625 @ 2.0 GHz
+    family: Vivo
+    score: 187
+  - name: Asus Zenfone 5
+    description: Qualcomm Snapdragon 636 @ 2.2 GHz
+    family: Asus
+    score: 190
+  - name: OPPO Find X5 Pro
+    description: MediaTek Dimensity 9000 @ 1.8 GHz
+    family: OPPO
+    score: 1462
+  - name: Xiaomi 13
+    description: Qualcomm Snapdragon 8 Gen 2 @ 2.0 GHz
+    family: Xiaomi
+    score: 1732
+  - name: Xiaomi Redmi K50 Ultra
+    description: Qualcomm Snapdragon 8+ Gen 1 @ 2.0 GHz
+    family: Xiaomi
+    score: 1547
+  - name: Xiaomi Redmi K50
+    description: MediaTek Dimensity 8100 @ 2.0 GHz
+    family: Xiaomi
+    score: 1106
+  - name: Xiaomi Redmi K60 Pro
+    description: Qualcomm Snapdragon 8 Gen 2 @ 2.0 GHz
+    family: Xiaomi
+    score: 1734
+  - name: Xiaomi 12T Pro
+    description: Qualcomm Snapdragon 8+ Gen 1 @ 2.0 GHz
+    family: Xiaomi
+    score: 1162
+  - name: Xiaomi 12S Ultra
+    description: Qualcomm Snapdragon 8+ Gen 1 @ 2.0 GHz
+    family: Xiaomi
+    score: 1489
+  - name: Xiaomi Redmi Note 11T Pro
+    description: MediaTek Dimensity 8100 @ 2.0 GHz
+    family: Xiaomi
+    score: 1101
+  - name: Xiaomi Redmi K50 Pro
+    description: MediaTek Dimensity 9000 @ 1.8 GHz
+    family: Xiaomi
+    score: 1369
+  - name: Xiaomi 12S Pro
+    description: Qualcomm Snapdragon 8+ Gen 1 @ 2.0 GHz
+    family: Xiaomi
+    score: 1510
+  - name: Xiaomi Poco X4 GT
+    description: MediaTek Dimensity 8100 @ 2.0 GHz
+    family: Xiaomi
+    score: 1078
+  - name: Vivo X90
+    description: MediaTek Dimensity 9200 @ 1.8 GHz
+    family: Vivo
+    score: 1735
+  - name: Vivo X80
+    description: MediaTek Dimensity 9000 @ 1.8 GHz
+    family: Vivo
+    score: 1425
+  - name: Vivo iQOO 11 Pro
+    description: Qualcomm Snapdragon 8 Gen 2 @ 2.0 GHz
+    family: Vivo
+    score: 1748
+  - name: Vivo iQOO 10
+    description: Qualcomm Snapdragon 8+ Gen 1 @ 2.0 GHz
+    family: Vivo
+    score: 1500
+  - name: Vivo X90 Pro+
+    description: Qualcomm Snapdragon 8 Gen 2 @ 2.0 GHz
+    family: Vivo
+    score: 1729
+  - name: Xiaomi Redmi K50i
+    description: MediaTek Dimensity 8100 @ 2.0 GHz
+    family: Xiaomi
+    score: 1012
+  - name: Samsung Galaxy Tab S2 9.7 (2016)
+    description: Qualcomm Snapdragon 652 @ 1.4 GHz
+    family: Samsung
+    score: 300
+  deviceNameDictionary: {fileID: 11400000, guid: 43b8a40b6a84a425dabcb03f122b7a7f, type: 2}
+  testDevices: {fileID: 4900000, guid: fd8c12be6877494ab2b2c0fd35f42e6e, type: 3}
