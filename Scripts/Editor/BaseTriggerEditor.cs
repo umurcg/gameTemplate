@@ -1,6 +1,4 @@
-
 using ActionTriggers;
-using Core.ActionTriggers;
 using UnityEditor;
 
 namespace Core.Editor
