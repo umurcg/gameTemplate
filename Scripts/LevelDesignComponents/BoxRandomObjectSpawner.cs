@@ -79,7 +79,7 @@ namespace Helpers
 
         }
 
-#endif
+
         [ContextMenu("Spawn Prefabs Runtime")]
         private void ContextMenuSpawnPrefabsRuntime()
         {
@@ -91,5 +91,7 @@ namespace Helpers
         {
             SpawnPrefabsEditor();
         }
+#endif
+        
     }
 }
