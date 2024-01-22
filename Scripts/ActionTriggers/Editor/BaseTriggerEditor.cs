@@ -13,7 +13,7 @@ public class BaseTriggerEditor : Editor
         //Dropdown with all events
         string[] options = script.GetEvents();
         int index = Array.IndexOf(options, script.eventName);
-        var newIndex = EditorGUILayout.Popup("Event", 0, options);
+        var newIndex = EditorGUILayout.Popup("Event", index, options);
 
         if (newIndex != index)
         {
