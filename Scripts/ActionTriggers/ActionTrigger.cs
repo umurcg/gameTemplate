@@ -11,9 +11,6 @@ namespace ActionTriggers
     {
         [SerializeField] private static ActionManager _actionManager;
 
-        public Dictionary<string, string> Descriptions =>
-            _actionManager == null ? null : _actionManager.Descriptions;
-
         [Serializable] public class Event
         {
             [SerializeField] public string eventName;

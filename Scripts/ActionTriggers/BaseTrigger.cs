@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using Managers;
 using UnityEngine;
@@ -7,15 +6,9 @@ namespace ActionTriggers
 {
     public abstract class BaseTrigger: MonoBehaviour
     {
-        [SerializeField] public string eventName;
-#if UNITY_EDITOR
+        [HideInInspector,SerializeField] public string eventName;
         [SerializeField] private static ActionManager _actionManager;
-#else
-        private static ActionManager _actionManager;
-#endif
-
-        public Dictionary<string, string> Descriptions =>
-            _actionManager == null ? null : _actionManager.Descriptions;
+        
       
         // Start is called before the first frame update
         void OnValidate()
@@ -58,7 +51,7 @@ namespace ActionTriggers
         [ContextMenu("Trigger")]
 #endif
         protected abstract void Trigger();
-
+        
         private void Trigger_int(int arg0)
         {
             Trigger();
@@ -79,12 +72,12 @@ namespace ActionTriggers
             Trigger();
         }
 
-#if UNITY_EDITOR
-        private string[] GetEvents()
+
+        public string[] GetEvents()
         {
             if (!_actionManager) return new string[]{"No GlobalEventsController found"};
             return _actionManager.GetActionNames();
         }
-#endif
+
     }
 }
