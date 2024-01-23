@@ -13,7 +13,7 @@ namespace UI
 
         public IEnumerator Start()
         {
-            if (RemoteConfig.Instance && !RemoteConfig.Instance.GetBool("isStatsEnabled",true))
+            if (RemoteConfig.Instance && !RemoteConfig.Instance.GetBool("isStatsEnabled",false))
             {
                 Destroy(gameObject);
                 yield break;
