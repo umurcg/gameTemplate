@@ -28,7 +28,7 @@ namespace Helpers
             aimScale = _originalScale;
             
             //Calculate scale speed from original scale and active scale
-            scaleSpeed = (ActiveScale - _originalScale.x) / ScaleDuration; 
+            scaleSpeed = Mathf.Abs(ActiveScale - _originalScale.x) / ScaleDuration; 
 
         }
 
