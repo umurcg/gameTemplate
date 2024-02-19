@@ -1,6 +1,6 @@
 namespace ColorObjects
 {
-    public enum Colors
+    public enum ColorObjectType
     {
         Red,
         Green,

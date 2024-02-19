@@ -6,7 +6,7 @@ namespace ColorObjects
 {
     public class ColorObject : MonoBehaviour
     {
-        public Colors colorType;
+        public ColorObjectType colorType;
         [SerializeField] private MeshRenderer[] meshRenderers;
         [SerializeField] private SpriteRenderer[] spriteRenderers;
         public ColorDirectory ColorDirectory;
@@ -32,7 +32,8 @@ namespace ColorObjects
                 UnityEditor.EditorUtility.SetDirty(meshRenderer);
             }
 
-            var color = GetColor();
+            var color=ColorDirectory.FindColor(colorType);
+            
             foreach (SpriteRenderer spriteRenderer in spriteRenderers)
             {
                 spriteRenderer.color = color;
@@ -40,58 +41,17 @@ namespace ColorObjects
             }
 #endif
         }
-
-        private Color GetColor()
-        {
-            switch (colorType)
-            {
-                case Colors.Red:
-                    return Color.red;
-                case Colors.Green:
-                    return Color.green;
-                case Colors.Blue:
-                    return Color.blue;
-                case Colors.Yellow:
-                    return Color.yellow;
-                case Colors.Purple:
-                    return Color.magenta;
-                case Colors.Orange:
-                    return new Color(1, 0.5f, 0);
-                case Colors.White:
-                    return Color.white;
-                case Colors.Black:
-                    return Color.black;
-                case Colors.Brown:
-                    return new Color(0.5f, 0.25f, 0);
-                case Colors.Pink:
-                    return new Color(1, 0.5f, 0.5f);
-                case Colors.Gray:
-                    return Color.gray;
-                case Colors.Cyan:
-                    return Color.cyan;
-                case Colors.Magenta:
-                    return Color.magenta;
-                default:
-                    return Color.white;
-            }
-        }
-
-
-        public bool useAllColors = true;
-        [HideInInspector] public List<Colors> colors;
-
+        
         [ContextMenu("Randomize")]
         public void Randomize()
         {
-            if (useAllColors)
+            if (!ColorDirectory)
             {
-                colorType = (Colors)UnityEngine.Random.Range(0, Enum.GetValues(typeof(Colors)).Length);
+                Debug.LogError("ColorDirectory not set");
+                return;
             }
-            else
-            {
-                colorType = colors[UnityEngine.Random.Range(0, colors.Count)];
-            }
-
+            
+            colorType = ColorDirectory.GetRandomType();
             UpdateVisual();
 
 #if UNITY_EDITOR
