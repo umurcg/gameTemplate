@@ -12,7 +12,7 @@ namespace ColorObjects
         
         public ColorObjectType GetRandomType()
         {
-            return (ColorObjectType) Random.Range(0, Enum.GetValues(typeof(ColorObjectType)).Length);
+            return ColorMaterials[Random.Range(0, ColorMaterials.Length)].Color;
         }
         
         public Color FindColor(ColorObjectType colorType)
@@ -42,5 +42,47 @@ namespace ColorObjects
             
             return null;
         }
+        
+        //Create color library
+        [ContextMenu("Create Color Library")]
+        public void CreateColorLibrary()
+        {
+            if (ColorMaterials.Length > 0)
+            {
+                Debug.LogError("Color Library already created");
+            }
+                
+            var colorTypes=Enum.GetValues(typeof(ColorObjectType));
+            
+            //If dont exist create material folder first
+            if (!System.IO.Directory.Exists("Assets/Materials"))
+            {
+                System.IO.Directory.CreateDirectory("Assets/Materials");
+            }
+            
+            //Crate base material first in Materials folder. Lit material URP
+            var baseMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+            baseMaterial.color = Color.white;
+            UnityEditor.AssetDatabase.CreateAsset(baseMaterial, "Assets/Materials/BaseMaterial.mat");
+            
+            ColorMaterials=new ColorMaterial[colorTypes.Length];
+            
+            //Create color materials
+            foreach (ColorObjectType colorType in colorTypes)
+            {
+                //Crate variable material
+                var material = new Material(baseMaterial);
+                material.color = Utility.GetColor(colorType);
+                UnityEditor.AssetDatabase.CreateAsset(material, "Assets/Materials/"+colorType+".mat");
+                ColorMaterials[(int)colorType]=new ColorMaterial{Color=colorType, Material=material, ColorValue=material.color};
+            }
+            
+            UnityEditor.EditorUtility.SetDirty(this);
+            //Refresh the assets
+            UnityEditor.AssetDatabase.Refresh();
+        }
+        
+        
+     
     }
 }
