@@ -41,7 +41,7 @@ namespace ColorObjects
             
             return null;
         }
-        
+        #if UNITY_EDITOR
         //Create color library
         [ContextMenu("Create Color Library")]
         public void CreateColorLibrary()
@@ -80,6 +80,8 @@ namespace ColorObjects
             //Refresh the assets
             UnityEditor.AssetDatabase.Refresh();
         }
+        
+        #endif
         
         
      
