@@ -31,7 +31,8 @@ public class RemoteConfig : Singleton<RemoteConfig>, IStats
     [SerializeField] private float minimumWaitDuration = 4.5f;
     [SerializeField] public bool showDebugLogs;
     [SerializeField] private string environmentID;
-
+    [SerializeField] private bool loadAsync;
+    
     private float _bornTime;
 
     new async Task Awake()
@@ -99,11 +100,19 @@ public class RemoteConfig : Singleton<RemoteConfig>, IStats
 
     private IEnumerator LoadMainScene()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        var asyncOperation = SceneManager.LoadSceneAsync(mainSceneIndex, LoadSceneMode.Additive);
-        while (Time.time - _bornTime < minimumWaitDuration) yield return null;
-        while (!asyncOperation.isDone) yield return null;
-        SceneManager.UnloadSceneAsync(currentSceneIndex);
+        if (loadAsync)
+        {
+
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            var asyncOperation = SceneManager.LoadSceneAsync(mainSceneIndex, LoadSceneMode.Additive);
+            while (Time.time - _bornTime < minimumWaitDuration) yield return null;
+            while (!asyncOperation.isDone) yield return null;
+            SceneManager.UnloadSceneAsync(currentSceneIndex);
+        }else
+        {
+            while (Time.time - _bornTime < minimumWaitDuration) yield return null;
+            SceneManager.LoadScene(mainSceneIndex);
+        }
     }
     
     public float GetFloat(string key, float defaultValue = -1)
