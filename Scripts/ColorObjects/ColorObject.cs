@@ -23,13 +23,15 @@ namespace ColorObjects
         [ContextMenu("Update Visual")]
         public void UpdateVisual()
         {
-#if UNITY_EDITOR
+
             var material = ColorDirectory.FindMaterial(colorType);
 
             foreach (MeshRenderer meshRenderer in meshRenderers)
             {
                 meshRenderer.material = material;
+#if UNITY_EDITOR
                 UnityEditor.EditorUtility.SetDirty(meshRenderer);
+#endif
             }
 
             var color=ColorDirectory.FindColor(colorType);
@@ -37,9 +39,11 @@ namespace ColorObjects
             foreach (SpriteRenderer spriteRenderer in spriteRenderers)
             {
                 spriteRenderer.color = color;
+#if UNITY_EDITOR
                 UnityEditor.EditorUtility.SetDirty(spriteRenderer);
-            }
 #endif
+            }
+
         }
         
         [ContextMenu("Randomize")]

@@ -41,6 +41,7 @@ namespace ColorObjects
             
             return null;
         }
+        
         #if UNITY_EDITOR
         //Create color library
         [ContextMenu("Create Color Library")]

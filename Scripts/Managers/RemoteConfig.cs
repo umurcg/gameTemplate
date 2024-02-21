@@ -102,7 +102,6 @@ public class RemoteConfig : Singleton<RemoteConfig>, IStats
     {
         if (loadAsync)
         {
-
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             var asyncOperation = SceneManager.LoadSceneAsync(mainSceneIndex, LoadSceneMode.Additive);
             while (Time.time - _bornTime < minimumWaitDuration) yield return null;
