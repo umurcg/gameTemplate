@@ -10,7 +10,7 @@ using Unity.Services.Core;
 using Unity.Services.Authentication;
 using UnityEngine.SceneManagement;
 
-public class RemoteConfig : Singleton<RemoteConfig>, IStats
+public class RemoteConfig : Singleton<RemoteConfig>, IStats, IPrerequisite
 {
     public struct UserAttributes {
         public bool expansionFlag;
@@ -22,27 +22,15 @@ public class RemoteConfig : Singleton<RemoteConfig>, IStats
         public string appVersion;
     }
     
-    public bool isDataReady = false;
-    
-
-    [SerializeField] private bool increaseSceneOnLoad;
-    [SerializeField] private bool mainSceneIsLast;
-    [SerializeField] private int mainSceneIndex=1;
-    [SerializeField] private float minimumWaitDuration = 4.5f;
     [SerializeField] public bool showDebugLogs;
     [SerializeField] private string environmentID;
-    [SerializeField] private bool loadAsync;
-    
     private float _bornTime;
+    
+    private bool isReady;
 
     new async Task Awake()
     {
         base.Awake();
-        
-        if (mainSceneIsLast)
-        {
-            mainSceneIndex=SceneManager.sceneCountInBuildSettings-1;
-        }
         
         if (Utilities.CheckForInternetConnection()) 
         {
@@ -92,26 +80,8 @@ public class RemoteConfig : Singleton<RemoteConfig>, IStats
                 break;
         }
 
-        isDataReady = true;
-
-        if (increaseSceneOnLoad)
-            StartCoroutine(LoadMainScene());
-    }
-
-    private IEnumerator LoadMainScene()
-    {
-        if (loadAsync)
-        {
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            var asyncOperation = SceneManager.LoadSceneAsync(mainSceneIndex, LoadSceneMode.Additive);
-            while (Time.time - _bornTime < minimumWaitDuration) yield return null;
-            while (!asyncOperation.isDone) yield return null;
-            SceneManager.UnloadSceneAsync(currentSceneIndex);
-        }else
-        {
-            while (Time.time - _bornTime < minimumWaitDuration) yield return null;
-            SceneManager.LoadScene(mainSceneIndex);
-        }
+        isReady = true;
+        
     }
     
     public float GetFloat(string key, float defaultValue = -1)
@@ -196,7 +166,7 @@ public class RemoteConfig : Singleton<RemoteConfig>, IStats
     {
         if (!showDebugLogs) return null;
         
-        if (!isDataReady)
+        if (!isReady)
         {
             return "<color=#FF0000> Remote config is not ready! </color>";
         }
@@ -217,6 +187,10 @@ public class RemoteConfig : Singleton<RemoteConfig>, IStats
     {
         RemoteConfigService.Instance.FetchCompleted -= ApplyRemoteConfig;
     }
-    
+
+    public bool IsMet()
+    {
+        return isReady;
+    }
 }
 
