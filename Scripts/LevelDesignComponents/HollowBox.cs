@@ -5,16 +5,16 @@ namespace Helpers
     [AddComponentMenu("*Reboot/LevelDesign/Hollow Box")]
     public class HollowBox : MonoBehaviour
     {
-        [SerializeField]public float width=1;
-        [SerializeField]private float depth=1;
-        [SerializeField]private float height=1;
-        [SerializeField]private float wallDepth = .2f;
-        [SerializeField]private Transform[] walls;
-        [SerializeField]private GameObject ground;
-        [SerializeField]private GameObject ceil;
+        public float width=1;
+        public float depth=1;
+        public float height=1;
+        public float wallDepth = .2f;
+        public Transform[] walls;
+        public GameObject ground;
+        public GameObject ceil;
 
-        [SerializeField]public bool createGround;
-        [SerializeField]public bool createCeil;
+        public bool createGround;
+        public bool createCeil;
 
     
         private void CreateWalls()
