@@ -16,6 +16,8 @@ namespace Helpers
         public bool createGround;
         public bool createCeil;
 
+        public bool updateOnValidate;
+
     
         private void CreateWalls()
         {
@@ -98,8 +100,8 @@ namespace Helpers
 
         private void OnValidate()
         {
+            if(!updateOnValidate) return;
             if(Application.isPlaying) return;
-        
             if(createCeil && !ceil) CreateCeilObject();
             if(createGround && !ground) CreateGroundObject();
             UpdateWalls();
