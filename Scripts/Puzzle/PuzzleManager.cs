@@ -1,16 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Core.Interfaces;
-using Core.Managers;
 using Helpers;
 using Managers;
-using Samples.Puzzle.Scripts;
 using UnityEngine;
 
-namespace Samples.Puzzle
+namespace Puzzle
 {
     public class PuzzleManager : Singleton<PuzzleManager>, IStats
     {

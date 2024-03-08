@@ -1,8 +1,6 @@
-using System;
 using Managers;
-using UnityEngine;
 
-namespace PuzzleUI
+namespace Puzzle.UI
 {
     public class InGamePanel: UIPanel
     {

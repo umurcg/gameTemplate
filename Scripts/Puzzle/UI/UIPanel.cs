@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace PuzzleUI
+namespace Puzzle.UI
 {
     [RequireComponent(typeof(CanvasGroup))]
     public class UIPanel : MonoBehaviour

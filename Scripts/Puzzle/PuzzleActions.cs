@@ -1,9 +1,8 @@
 using System;
 using Core.Interfaces;
 using Helpers;
-using UnityEngine;
 
-namespace Samples.Puzzle.Scripts
+namespace Puzzle
 {
     public class PuzzleActions: Singleton<PuzzleActions>, IAction
     {

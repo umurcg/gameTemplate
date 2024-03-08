@@ -1,11 +1,8 @@
-using System;
 using System.Collections;
 using Managers;
-using Samples.Puzzle;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace PuzzleUI
+namespace Puzzle.UI
 {
     public class WinPanel: UIPanel
     {

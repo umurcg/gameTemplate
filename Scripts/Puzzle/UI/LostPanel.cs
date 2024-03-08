@@ -1,6 +1,6 @@
 using Managers;
 
-namespace PuzzleUI
+namespace Puzzle.UI
 {
     public class LostPanel: UIPanel
     {

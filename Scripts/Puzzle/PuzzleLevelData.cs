@@ -1,7 +1,7 @@
 using ScriptableObjects;
 using UnityEngine;
 
-namespace Samples.Puzzle.Scripts
+namespace Puzzle
 {
     [CreateAssetMenu(fileName = "PuzzleLevelData", menuName = "Puzzle/LevelData")]
     public class PuzzleLevelData: LevelData
