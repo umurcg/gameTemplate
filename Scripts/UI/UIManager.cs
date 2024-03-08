@@ -7,7 +7,6 @@ namespace UI
     public class UIManager : Singleton<UIManager>
     {
         [HideInInspector] public Canvas mainCanvas;
-        public MoneyText activeMoneyText;
 
         private void Start()
         {

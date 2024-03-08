@@ -1,6 +1,6 @@
 {
   "name": "com.reboot.core",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "displayName": "Core",
   "description": "Core package of the template",
   "unity": "2021.3",
@@ -113,6 +113,11 @@
       "displayName": "Button3D",
         "description": "Contains assets that can be used for 3D buttons.",
         "path": "Samples/Button3D"
+    },
+    {
+      "displayName": "Puzzle Pack",
+        "description": "Contains assets that can be used for puzzle games.",
+        "path": "Samples/Puzzle"
     }
   ],
   "author": {

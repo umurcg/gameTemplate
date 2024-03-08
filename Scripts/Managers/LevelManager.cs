@@ -282,6 +282,8 @@ namespace Managers
                     DestroyImmediate(transform.GetChild(i).gameObject);
 
                 ActiveLevelData = null;
+                
+                ActionManager.Instance.OnLevelDestroyed.Invoke();
             }
         }
 

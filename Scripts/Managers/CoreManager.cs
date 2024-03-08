@@ -1,4 +1,3 @@
-
 using System.Collections;
 using Core.Interfaces;
 using Helpers;
@@ -18,10 +17,6 @@ namespace Managers
 
         [Tooltip("If checked, start state will be triggered automatically when a level loaded")] [SerializeField]
         private bool autoStart = true;
-
-        [SerializeField] private bool allowInputOnlyInGameplay;
-
-        private LeanTouch _inputController;
 
         public bool IsGameStarted { private set; get; }
 
@@ -48,17 +43,6 @@ namespace Managers
             base.Awake();
 
             Screen.orientation = ScreenOrientation.Portrait;
-
-            _inputController = LeanTouch.Instance;
-
-            if (!_inputController)
-            {
-                Debug.LogError("There is no lean touch in the scene!");
-                return;
-            }
-
-            if (allowInputOnlyInGameplay) _inputController.enabled = false;
-
             QualitySettings.vSyncCount = 0;
         }
 
@@ -79,7 +63,7 @@ namespace Managers
                 }
             }
         }
-        
+
 
         public void OnDestroy()
         {
@@ -105,8 +89,6 @@ namespace Managers
 
             IsGameStarted = true;
             ActionManager.Instance.OnGameStarted?.Invoke();
-
-            if (allowInputOnlyInGameplay) _inputController.enabled = true;
         }
 
         private void StartGameNextFrame()
@@ -131,8 +113,6 @@ namespace Managers
             ActionManager.Instance.OnGameWin?.Invoke();
             ActionManager.Instance.OnGameEnded?.Invoke();
             IsGameStarted = false;
-
-            if (allowInputOnlyInGameplay) _inputController.enabled = false;
         }
 
         public void LostGame()
@@ -146,8 +126,6 @@ namespace Managers
             ActionManager.Instance.OnGameLost?.Invoke();
             ActionManager.Instance.OnGameEnded?.Invoke();
             IsGameStarted = false;
-
-            if (allowInputOnlyInGameplay) _inputController.enabled = false;
         }
 
         public void EarnMoney(float amount)

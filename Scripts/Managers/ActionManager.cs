@@ -20,12 +20,14 @@ namespace Managers
         public Action OnGameStarted;
         public Action OnGameEnded;
         public Action OnNewLevelLoaded;
+        public Action OnLevelDestroyed;
         public Action OnGameLost;
         public Action OnGameWin;
         public Action OnGameRestarted;
         public Action<int> OnLevelChanged;
         public Action<float> OnGameMoneyChanged;
         public Action<float> OnLevelMoneyChanged;
+        
      
         
         //Editor descriptions. Fill for the ones that are not obvious.
@@ -187,6 +189,7 @@ namespace Managers
 
             Debug.LogError($"Action {actionName} not found");
         }
+
         
     }
 }

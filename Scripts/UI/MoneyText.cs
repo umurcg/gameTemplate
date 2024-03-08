@@ -20,14 +20,7 @@ namespace UI
         private GameManager _gameManager;
 
         private Camera _mainCamera;
-
-
         
-        private void OnEnable()
-        {
-            UIManager.Instance.activeMoneyText = this;
-        }
-
         private void Start()
         {
             _coreManager = CoreManager.Request();
