@@ -11,6 +11,6 @@ namespace Puzzle
         public Action OnAdditionalMoveBought;
         public Action OnPuzzleManagerInitialized;
         public Action<int> OnMoveCountChanged;
-        public Action LostIsCalled;
+        
     }
 }

@@ -14,10 +14,10 @@ namespace Puzzle.UI
         {
             foreach (var text in moveCountTexts)
             {
-                text.SetText(PuzzleManager.Instance.AdditionalMoveCount.ToString());
+                text.SetText(MoveManager.Instance.AdditionalMoveCount.ToString());
             }
 
-            costText.text = PuzzleManager.Instance.AdditionalMoveCost.ToString();
+            costText.text = MoveManager.Instance.AdditionalMoveCost.ToString();
             PuzzleActions.Instance.OnAdditionalMoveOffer += Activate;
             PuzzleActions.Instance.OnAdditionalMoveBought += Deactivate;
             ActionManager.Instance.OnGameLost += Deactivate;
@@ -25,10 +25,10 @@ namespace Puzzle.UI
 
         public void BuyMoves()
         {
-            if (PuzzleManager.Instance.CanBuyMoves())
+            if (MoveManager.Instance.CanBuyMoves())
             {
                 SetAnimationTrigger();
-                PuzzleManager.Instance.BuyAdditionalMoves();
+                MoveManager.Instance.BuyAdditionalMoves();
             }
             else
             {

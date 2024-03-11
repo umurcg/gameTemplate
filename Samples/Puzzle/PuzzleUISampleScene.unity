@@ -883,8 +883,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1587682794}
-        m_TargetAssemblyTypeName: Samples.Puzzle.PuzzleManager, Reboot.Core
+      - m_Target: {fileID: 1587682796}
+        m_TargetAssemblyTypeName: Puzzle.MoveManager, Reboot.Core
         m_MethodName: FakeLost
         m_Mode: 1
         m_Arguments:
@@ -1222,6 +1222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1587682795}
   - component: {fileID: 1587682794}
+  - component: {fileID: 1587682796}
   m_Layer: 0
   m_Name: PuzzleManager
   m_TagString: Untagged
@@ -1241,10 +1242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50a4cd7de9e4042b0119a08bc9d4d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AdditionalMoveCount: 5
-  AdditionalMoveCost: 100
-  MoveCountValue: 2
   lostPrerequisites: []
+  CanCallGameLost: 0
 --- !u!4 &1587682795
 Transform:
   m_ObjectHideFlags: 0
@@ -1260,6 +1259,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1587682796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587682793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb8722a88bc4d9ea0b08edf3f782380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AdditionalMoveCount: 5
+  AdditionalMoveCost: 100
+  MoveCountValue: 2
 --- !u!1 &1599983409
 GameObject:
   m_ObjectHideFlags: 0

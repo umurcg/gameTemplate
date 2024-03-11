@@ -26,8 +26,12 @@ namespace Puzzle.UI
         private IEnumerator ActivateCoroutine()
         {
             yield return StartCoroutine(base.ActivateCoroutine());
-            yield return new WaitForSeconds(convertMoveAfterActivation);
-            StartCoroutine(PuzzleManager.Instance.ConvertMovesToCurrencyCoroutine(convertMaxDurationFlow,convertMaxRate,SetAnimationTrigger));
+            if (MoveManager.Instance)
+            {
+                yield return new WaitForSeconds(convertMoveAfterActivation);
+                StartCoroutine(MoveManager.Instance.ConvertMovesToCurrencyCoroutine(convertMaxDurationFlow,
+                    convertMaxRate, SetAnimationTrigger));
+            }
         }
         
         public void NextLevel()
