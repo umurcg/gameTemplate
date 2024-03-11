@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Helpers;
 using UnityEngine;
 
 namespace Puzzle.UI
@@ -22,7 +23,7 @@ namespace Puzzle.UI
         {
             canvasGroup = GetComponent<CanvasGroup>();
             Deactivate();
-            animator = GetComponentInParent<Animator>();
+            animator = gameObject.GetComponentOnObjectOrParent<Animator>();
         }
         
         public void Activate()

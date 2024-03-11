@@ -4,19 +4,18 @@ namespace Helpers
 {
     public static class GameObjectExtensions
     {
-        public static MonoBehaviour GetComponentOnObjectOrParent<T>(this UnityEngine.GameObject gameObject) where T : UnityEngine.MonoBehaviour
+        public static T GetComponentOnObjectOrParent<T>(this UnityEngine.GameObject gameObject) where T : Component
         {
-            MonoBehaviour component = gameObject.GetComponent<T>();
+            T component = gameObject.GetComponent<T>();
             if (component == null)
             {
                 component = gameObject.GetComponentInParent<T>();
             }
-            
+
             return component;
         }
 
-        public static MonoBehaviour GetOrAddComponent<T>(this UnityEngine.GameObject gameObject)
-            where T : UnityEngine.MonoBehaviour
+        public static T GetOrAddComponent<T>(this UnityEngine.GameObject gameObject) where T : Component
         {
             var component = gameObject.GetComponent<T>();
             if (component == null)
