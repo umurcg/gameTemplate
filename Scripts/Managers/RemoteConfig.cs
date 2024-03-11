@@ -43,14 +43,23 @@ public class RemoteConfig : Singleton<RemoteConfig>, IStats, IPrerequisite
 
         if (rebootSettings)
         {
-            environmentID = rebootSettings.remoteConfigEnvironmentID;
+            if (Debug.isDebugBuild)
+            {
+                environmentID = rebootSettings.remoteConfigEnvironmentIDDebug;
+            }
+            else
+            {
+                environmentID = rebootSettings.remoteConfigEnvironmentID;    
+            }
+            
+            
         }
         
         RemoteConfigService.Instance.SetEnvironmentID(environmentID);
         RemoteConfigService.Instance.FetchConfigs(new UserAttributes(), new AppAttributes());
 
         _bornTime = Time.time;
-        
+         
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
     }
