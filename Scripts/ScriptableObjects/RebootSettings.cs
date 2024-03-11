@@ -1,7 +1,9 @@
-
+using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Build;
-using UnityEngine;
+#endif
+
 
 namespace ScriptableObjects
 {
@@ -14,32 +16,32 @@ namespace ScriptableObjects
         public int bundleVersionCode = 1;
         public string remoteConfigEnvironmentID = "xxx_rel_xxx";
         public string remoteConfigEnvironmentIDDebug = "xxx_dev_xxx";
-        
-        
+
 
 #if UNITY_EDITOR
-        
+
         public void UpdateProjectSettings()
         {
-            PlayerSettings.companyName="Reboot Interactive";
+            PlayerSettings.companyName = "Reboot Interactive";
             PlayerSettings.productName = gameName;
             PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, bundleID);
             PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, bundleID);
             PlayerSettings.Android.bundleVersionCode = bundleVersionCode;
             PlayerSettings.bundleVersion = bundleVersion;
-            PlayerSettings.iOS.buildNumber= bundleVersionCode.ToString();
-            PlayerSettings.SetIcons(NamedBuildTarget.Unknown, new[] {gameIcon},IconKind.Any);
-            
+            PlayerSettings.iOS.buildNumber = bundleVersionCode.ToString();
+            PlayerSettings.SetIcons(NamedBuildTarget.Unknown, new[] { gameIcon }, IconKind.Any);
+
             Debug.Log("Project settings updated");
         }
 
         public bool ReadyToBuild(out string error)
         {
             error = "";
-            bool fieldsFull = gameName != "" && bundleID != "" && bundleVersionCode >= 0 && remoteConfigEnvironmentID != "";
+            bool fieldsFull = gameName != "" && bundleID != "" && bundleVersionCode >= 0 &&
+                              remoteConfigEnvironmentID != "";
             if (!fieldsFull)
             {
-                error="Reboot settings fields are not fulfilled";
+                error = "Reboot settings fields are not fulfilled";
                 return false;
             }
 
@@ -50,9 +52,9 @@ namespace ScriptableObjects
                 PlayerSettings.Android.bundleVersionCode != bundleVersionCode ||
                 PlayerSettings.iOS.buildNumber != bundleVersionCode.ToString() ||
                 PlayerSettings.bundleVersion != bundleVersion ||
-                PlayerSettings.GetIcons(NamedBuildTarget.Unknown, IconKind.Any)[0] != gameIcon)
+                PlayerSettings.GetIconsForTargetGroup(BuildTargetGroup.Unknown)[0] != gameIcon)
             {
-                error= "Reboot settings fields are not synced with player settings!";
+                error = "Reboot settings fields are not synced with player settings!";
                 return false;
             }
 
