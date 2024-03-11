@@ -1,5 +1,6 @@
 
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEngine;
 
 namespace ScriptableObjects
@@ -17,8 +18,8 @@ namespace ScriptableObjects
         
 
 #if UNITY_EDITOR
-        [ContextMenu("Update Project Settings")]
-        private void UpdateProjectSettings()
+        
+        public void UpdateProjectSettings()
         {
             PlayerSettings.companyName="Reboot Interactive";
             PlayerSettings.productName = gameName;
@@ -27,9 +28,9 @@ namespace ScriptableObjects
             PlayerSettings.Android.bundleVersionCode = bundleVersionCode;
             PlayerSettings.bundleVersion = bundleVersion;
             PlayerSettings.iOS.buildNumber= bundleVersionCode.ToString();
-            PlayerSettings.SetIconsForTargetGroup(BuildTargetGroup.Standalone, new[] {gameIcon});
-            PlayerSettings.SetIconsForTargetGroup(BuildTargetGroup.Android, new[] {gameIcon});
-            PlayerSettings.SetIconsForTargetGroup(BuildTargetGroup.iOS, new[] {gameIcon});
+            PlayerSettings.SetIcons(NamedBuildTarget.Unknown, new[] {gameIcon},IconKind.Any);
+            
+            Debug.Log("Project settings updated");
         }
 
         public bool ReadyToBuild(out string error)
@@ -49,9 +50,7 @@ namespace ScriptableObjects
                 PlayerSettings.Android.bundleVersionCode != bundleVersionCode ||
                 PlayerSettings.iOS.buildNumber != bundleVersionCode.ToString() ||
                 PlayerSettings.bundleVersion != bundleVersion ||
-                PlayerSettings.GetIconsForTargetGroup(BuildTargetGroup.Standalone)[0] != gameIcon ||
-                PlayerSettings.GetIconsForTargetGroup(BuildTargetGroup.Android)[0] != gameIcon ||
-                PlayerSettings.GetIconsForTargetGroup(BuildTargetGroup.iOS)[0] != gameIcon)
+                PlayerSettings.GetIcons(NamedBuildTarget.Unknown, IconKind.Any)[0] != gameIcon)
             {
                 error= "Reboot settings fields are not synced with player settings!";
                 return false;
