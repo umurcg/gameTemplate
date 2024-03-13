@@ -33,7 +33,7 @@ namespace Puzzle
             base.Awake();
         }
 
-        private void Start()
+        protected void Start()
         {
             if (ActionManager.Instance)
             {
@@ -48,7 +48,7 @@ namespace Puzzle
         }
 
         
-        private void OnNewLevelLoaded()
+        protected void OnNewLevelLoaded()
         {
             if (_clearLostData)
             {
@@ -61,12 +61,12 @@ namespace Puzzle
         }
 
 
-        private void OnGameWin()
+        protected void OnGameWin()
         {
             _clearLostData = true;
         }
 
-        private void OnGameLost()
+        protected void OnGameLost()
         {
             LostCounter++;
         }
