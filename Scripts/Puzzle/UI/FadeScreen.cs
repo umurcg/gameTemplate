@@ -11,6 +11,7 @@ namespace Puzzle.UI
         [SerializeField] private bool fadeOutOnGameStart;
         [SerializeField] private float maximumAlpha = 1;
         [SerializeField] private AnimationCurve fadeCurve;
+        [SerializeField] private float fadeDuration = 1;
         private Image _image;
         public bool IsFading { get; private set; }
 
@@ -51,7 +52,7 @@ namespace Puzzle.UI
             }
         
             SetAlpha(0);
-            StartCoroutine(Fade(maximumAlpha, 1, onComplete));
+            StartCoroutine(Fade(maximumAlpha, fadeDuration, onComplete));
         }
     
         public void FadeOut(Action onComplete=null)
@@ -62,7 +63,7 @@ namespace Puzzle.UI
                 IsFading = false;
             }
         
-            StartCoroutine(Fade(0, 1, onComplete));
+            StartCoroutine(Fade(0, fadeDuration, onComplete));
         }
 
         public IEnumerator Fade(float aimAlpha, float duration, Action onComplete)
