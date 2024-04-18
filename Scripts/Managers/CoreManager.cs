@@ -164,10 +164,11 @@ namespace Managers
             ActionManager.Instance.OnLevelChanged?.Invoke(Level);
         }
 
-        public void SetLevel(int levelIndex)
+        public void SetLevel(int levelIndex, bool preventCallback = false)
         {
             Level = levelIndex;
-            ActionManager.Instance.OnLevelChanged?.Invoke(Level);
+            if (!preventCallback)
+                ActionManager.Instance.OnLevelChanged?.Invoke(Level);
         }
 
         public void ReloadLevel()
