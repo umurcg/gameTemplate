@@ -14,7 +14,7 @@ public class SwitchButton : MonoBehaviour
     private Button _button;
     private bool _isOn = false;
 
-    [SerializeField] private bool defaultState = false;
+    [SerializeField] protected bool defaultState = false;
     [SerializeField] private bool invokeEventsAtStart;
 
     public bool persistent;
