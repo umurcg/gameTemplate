@@ -100,11 +100,11 @@ namespace UI
             SetText(text);
         }
 
-        public static string FormatNumber(int num)
+        public string FormatNumber(int num)
         {
-            if (num >= 1000000000) return (num / 1000000000f).ToString("F1") + "B";
-            if (num >= 1000000) return (num / 1000000f).ToString("F1") + "M";
-            if (num >= 1000) return (num / 1000f).ToString("F1") + "K";
+            if (num >= 1000000000) return (num / 1000000000f).ToString(numberFormatter) + "B";
+            if (num >= 1000000) return (num / 1000000f).ToString(numberFormatter) + "M";
+            if (num >= 1000) return (num / 1000f).ToString(numberFormatter) + "K";
             return num.ToString("F0");
         }
     }
