@@ -14,7 +14,7 @@ namespace Puzzle.UI
             if (_initialized) return;
             if (moveCounter == null) moveCounter = GetComponent<TMPro.TMP_Text>();
 
-            PuzzleActions.Instance.OnMoveCountChanged += OnMovementCountChanged;
+            PuzzleActions.OnMoveCountChanged += OnMovementCountChanged;
             moveCounter.text = MoveManager.Instance.LeftMoveCount.ToString();
             _initialized = true;
         }
@@ -41,9 +41,8 @@ namespace Puzzle.UI
             {
                 return;
             }
-
-            if (PuzzleActions.Instance == null) return;
-            PuzzleActions.Instance.OnMoveCountChanged -= OnMovementCountChanged;
+            
+            PuzzleActions.OnMoveCountChanged -= OnMovementCountChanged;
             _initialized = false;
         }
 

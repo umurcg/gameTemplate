@@ -4,13 +4,22 @@ using Helpers;
 
 namespace Puzzle
 {
-    public class PuzzleActions: Singleton<PuzzleActions>, IAction
+    public static class PuzzleActions 
     {
-        public Action OnAdditionalMoveOffer;
-        public Action OnValidMove;
-        public Action OnAdditionalMoveBought;
-        public Action OnPuzzleManagerInitialized;
-        public Action<int> OnMoveCountChanged;
+        public static Action OnAdditionalMoveOffer;
+        public static Action OnValidMove;
+        public static Action OnAdditionalMoveBought;
+        public static Action OnPuzzleManagerInitialized;
+        public static Action<int> OnMoveCountChanged;
+        
+        public static void Reset()
+        {
+            OnAdditionalMoveOffer = null;
+            OnValidMove = null;
+            OnAdditionalMoveBought = null;
+            OnPuzzleManagerInitialized = null;
+            OnMoveCountChanged = null;
+        }
         
     }
 }

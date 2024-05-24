@@ -30,18 +30,18 @@ namespace UI
             
             if (type == Types.GameMoney)
             {
-                ActionManager.Instance.OnGameMoneyChanged+=MoneyIsChanged;
+                GlobalActions.OnGameMoneyChanged+=MoneyIsChanged;
                 MoneyIsChanged(_coreManager.GameMoney);
             }
             else if(type==Types.LevelMoney)
             {
-                ActionManager.Instance.OnLevelMoneyChanged+=MoneyIsChanged;
+                GlobalActions.OnLevelMoneyChanged+=MoneyIsChanged;
                 MoneyIsChanged(_gameManager.LevelMoney);
                 
             }else if(type==Types.TotalMoney)
             {
-                ActionManager.Instance.OnLevelMoneyChanged += MoneyIsChanged;
-                ActionManager.Instance.OnGameMoneyChanged += MoneyIsChanged;
+                GlobalActions.OnLevelMoneyChanged += MoneyIsChanged;
+                GlobalActions.OnGameMoneyChanged += MoneyIsChanged;
                 MoneyIsChanged(_gameManager.LevelMoney+_coreManager.GameMoney);
             }
         }

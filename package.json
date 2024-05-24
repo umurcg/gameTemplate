@@ -1,6 +1,6 @@
 {
   "name": "com.reboot.core",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "displayName": "Core",
   "description": "Core package of the template",
   "unity": "2021.3",
@@ -119,6 +119,11 @@
       "displayName": "Puzzle Pack",
         "description": "Contains assets that can be used for puzzle games.",
         "path": "Samples/Puzzle"
+    },
+    {
+      "displayName": "Game Events",
+      "description": "Contains assets that can be used for game events.",
+      "path": "Samples/GameEvents"
     }
   ],
   "author": {

@@ -6,8 +6,8 @@ namespace Puzzle.UI
     {
         public void Start()
         {
-            ActionManager.Instance.OnGameStarted += Activate;
-            ActionManager.Instance.OnLevelDestroyed += Deactivate;
+            GlobalActions.OnGameStarted += Activate;
+            GlobalActions.OnLevelDestroyed += Deactivate;
         }
     }
 }

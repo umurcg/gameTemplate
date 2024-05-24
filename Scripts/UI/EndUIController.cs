@@ -14,17 +14,16 @@ namespace UI
         public override void Initialize()
         {
             base.Initialize();
-            ActionManager.Instance.OnGameLost+=(LevelFailed);
-            ActionManager.Instance.OnGameWin+=(LevelWin);
-            ActionManager.Instance.OnNewLevelLoaded += Deactivate;
+            GlobalActions.OnGameLost+=(LevelFailed);
+            GlobalActions.OnGameWin+=(LevelWin);
+            GlobalActions.OnNewLevelLoaded += Deactivate;
 
         }
 
         private void OnDestroy()
         {
-            if(!ActionManager.Instance) return;
-            ActionManager.Instance.OnGameLost-=(LevelFailed);
-            ActionManager.Instance.OnGameWin-=(LevelWin);
+            GlobalActions.OnGameLost-=(LevelFailed);
+            GlobalActions.OnGameWin-=(LevelWin);
         }
         
         private void LevelFailed()

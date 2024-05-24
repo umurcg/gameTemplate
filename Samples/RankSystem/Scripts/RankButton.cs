@@ -54,9 +54,9 @@ public class RankButton : RankGuid
         UpdateButton();
         
         if(moneyType == MoneyType.GameMoney)
-            ActionManager.Instance.OnGameMoneyChanged += MoneyChanged;
+            GlobalActions.OnGameMoneyChanged += MoneyChanged;
         else
-            ActionManager.Instance.OnLevelMoneyChanged += MoneyChanged;
+            GlobalActions.OnLevelMoneyChanged += MoneyChanged;
     }
     
 

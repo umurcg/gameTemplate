@@ -8,8 +8,8 @@ namespace Puzzle.UI
         
         public void Start()
         {
-            ActionManager.Instance.OnGameLost += Activate;
-            ActionManager.Instance.OnLevelDestroyed += Deactivate;
+            GlobalActions.OnGameLost += Activate;
+            GlobalActions.OnLevelDestroyed += Deactivate;
             OnDeactivated += () => _isReloading = false;
         }        
         

@@ -53,13 +53,13 @@ namespace Managers
             if (autoStart)
             {
                 if (hasLevelManager)
-                    ActionManager.Instance.OnNewLevelLoaded += StartGameNextFrame;
+                    GlobalActions.OnNewLevelLoaded += StartGameNextFrame;
                 else
                 {
                     yield return null;
                     StartGame();
-                    ActionManager.Instance.OnLevelChanged += _ => StartGameNextFrame();
-                    ActionManager.Instance.OnGameRestarted += StartGameNextFrame;
+                    GlobalActions.OnLevelChanged += _ => StartGameNextFrame();
+                    GlobalActions.OnGameRestarted += StartGameNextFrame;
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace Managers
             }
 
             IsGameStarted = true;
-            ActionManager.Instance.OnGameStarted?.Invoke();
+            GlobalActions.OnGameStarted?.Invoke();
         }
 
         private void StartGameNextFrame()
@@ -110,8 +110,8 @@ namespace Managers
                 return;
             }
 
-            ActionManager.Instance.OnGameWin?.Invoke();
-            ActionManager.Instance.OnGameEnded?.Invoke();
+            GlobalActions.OnGameWin?.Invoke();
+            GlobalActions.OnGameEnded?.Invoke();
             IsGameStarted = false;
         }
 
@@ -123,15 +123,15 @@ namespace Managers
                 return;
             }
 
-            ActionManager.Instance.OnGameLost?.Invoke();
-            ActionManager.Instance.OnGameEnded?.Invoke();
+            GlobalActions.OnGameLost?.Invoke();
+            GlobalActions.OnGameEnded?.Invoke();
             IsGameStarted = false;
         }
 
         public void EarnMoney(float amount)
         {
             GameMoney += amount;
-            ActionManager.Instance.OnGameMoneyChanged?.Invoke(GameMoney);
+            GlobalActions.OnGameMoneyChanged?.Invoke(GameMoney);
         }
 
         public bool SpendMoney(float amount)
@@ -139,7 +139,7 @@ namespace Managers
             if (amount <= GameMoney)
             {
                 GameMoney -= amount;
-                ActionManager.Instance.OnGameMoneyChanged?.Invoke(GameMoney);
+                GlobalActions.OnGameMoneyChanged?.Invoke(GameMoney);
                 return true;
             }
 
@@ -161,14 +161,14 @@ namespace Managers
             }
 
             Level++;
-            ActionManager.Instance.OnLevelChanged?.Invoke(Level);
+            GlobalActions.OnLevelChanged?.Invoke(Level);
         }
 
         public void SetLevel(int levelIndex, bool preventCallback = false)
         {
             Level = levelIndex;
             if (!preventCallback)
-                ActionManager.Instance.OnLevelChanged?.Invoke(Level);
+                GlobalActions.OnLevelChanged?.Invoke(Level);
         }
 
         public void ReloadLevel()
@@ -179,8 +179,8 @@ namespace Managers
                 return;
             }
 
-            ActionManager.Instance.OnLevelChanged?.Invoke(Level);
-            ActionManager.Instance.OnGameRestarted?.Invoke();
+            GlobalActions.OnLevelChanged?.Invoke(Level);
+            GlobalActions.OnGameRestarted?.Invoke();
         }
 
         public string GetStats()

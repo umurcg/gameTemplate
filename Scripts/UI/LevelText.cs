@@ -15,15 +15,14 @@ namespace UI
             _coreManager = CoreManager.Request();
 
             if (_coreManager == null) return;
-            ActionManager.Instance.OnLevelChanged+=LevelIsChanged;
+            GlobalActions.OnLevelChanged+=LevelIsChanged;
 
             LevelIsChanged(_coreManager.Level);
         }
 
         private void OnDestroy()
         {
-            if(!ActionManager.Instance) return;
-            ActionManager.Instance.OnLevelChanged-=LevelIsChanged;
+            GlobalActions.OnLevelChanged-=LevelIsChanged;
         }
 
         private void LevelIsChanged(int level)

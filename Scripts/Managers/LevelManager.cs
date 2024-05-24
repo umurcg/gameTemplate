@@ -104,14 +104,14 @@ namespace Managers
                 if (transform.childCount > 0)
                 {
                     InDesignMode = true;
-                    ActionManager.Instance.OnNewLevelLoaded.Invoke();
+                    GlobalActions.OnNewLevelLoaded.Invoke();
                     yield break;
                 }
             }
             
             if(TestLevelData){
                 LoadLevel(TestLevelData);
-                ActionManager.Instance.OnGameWin += GameWin;
+                GlobalActions.OnGameWin += GameWin;
                 yield break;
             }
 #endif
@@ -132,10 +132,10 @@ namespace Managers
             if (AutoLoad)
             {
                 LoadLevel(CoreManager.Level);
-                ActionManager.Instance.OnLevelChanged += (LoadLevel);
+                GlobalActions.OnLevelChanged += (LoadLevel);
             }
 
-            ActionManager.Instance.OnGameWin += GameWin;
+            GlobalActions.OnGameWin += GameWin;
         }
 
         private void GameWin()
@@ -180,7 +180,7 @@ namespace Managers
         private void OnNewSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             Debug.Log("new scene is laoded!");
-            ActionManager.Instance.OnNewLevelLoaded.Invoke();
+            GlobalActions.OnNewLevelLoaded?.Invoke();
         }
 
         public void LoadLevel(int levelIndex)
@@ -266,7 +266,7 @@ namespace Managers
         {
             ClearLoadedLevel();
             LoadLevelWithData(levelData);
-            ActionManager.Instance.OnNewLevelLoaded.Invoke();
+            GlobalActions.OnNewLevelLoaded?.Invoke();
         }
 
 
@@ -283,7 +283,7 @@ namespace Managers
 
                 ActiveLevelData = null;
                 
-                ActionManager.Instance.OnLevelDestroyed.Invoke();
+                GlobalActions.OnLevelDestroyed?.Invoke();
             }
         }
 
@@ -311,7 +311,7 @@ namespace Managers
         {
             if (AutoLoad)
             {
-                if (ActionManager.Instance) ActionManager.Instance.OnLevelChanged -= (LoadLevel);
+                GlobalActions.OnLevelChanged -= LoadLevel;
             }
 
 #if UNITY_EDITOR

@@ -38,19 +38,19 @@ namespace Managers
             {
                 if (virtualCamera.name == "StartCamera")
                 {
-                    ActionManager.Instance.OnNewLevelLoaded += () => SetCameraStatus("StartCamera");
+                    GlobalActions.OnNewLevelLoaded += () => SetCameraStatus("StartCamera");
                 }
                 else if (virtualCamera.name == "InGameCamera")
                 {
-                    ActionManager.Instance.OnGameStarted += () => SetCameraStatus("InGameCamera");
+                    GlobalActions.OnGameStarted += () => SetCameraStatus("InGameCamera");
                 }
                 else if (virtualCamera.name == "WinCamera")
                 {
-                    ActionManager.Instance.OnGameWin += () => SetCameraStatus("WinCamera");
+                    GlobalActions.OnGameWin += () => SetCameraStatus("WinCamera");
                 }
                 else if (virtualCamera.name == "LostCamera")
                 {
-                    ActionManager.Instance.OnGameLost += () => SetCameraStatus("LostCamera");
+                    GlobalActions.OnGameLost += () => SetCameraStatus("LostCamera");
                 }
             }
 

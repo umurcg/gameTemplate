@@ -9,9 +9,9 @@ namespace UI
         {
             base.Initialize();
 
-            ActionManager.Instance.OnGameStarted+=Activate;
-            ActionManager.Instance.OnGameLost+=Deactivate;
-            ActionManager.Instance.OnGameWin+=Deactivate;
+            GlobalActions.OnGameStarted+=Activate;
+            GlobalActions.OnGameLost+=Deactivate;
+            GlobalActions.OnGameWin+=Deactivate;
 
             if (CoreManager.IsGameStarted)
                 Activate();
@@ -19,10 +19,9 @@ namespace UI
 
         private void OnDestroy()
         {
-            if(!ActionManager.Instance) return;
-            ActionManager.Instance.OnGameStarted-=Activate;
-            ActionManager.Instance.OnGameLost-=Deactivate;
-            ActionManager.Instance.OnGameWin-=Deactivate;
+            GlobalActions.OnGameStarted-=Activate;
+            GlobalActions.OnGameLost-=Deactivate;
+            GlobalActions.OnGameWin-=Deactivate;
         }
     }
 }

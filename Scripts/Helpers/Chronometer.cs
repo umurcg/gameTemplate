@@ -18,10 +18,10 @@ namespace Helpers
             if (runOnGameplay)
             {
                 
-                ActionManager.Instance.OnGameStarted += StartChronometer;
-                ActionManager.Instance.OnGameWin += PauseChronometer;
-                ActionManager.Instance.OnGameLost += PauseChronometer;
-                ActionManager.Instance.OnNewLevelLoaded += StopChronometer;
+                GlobalActions.OnGameStarted += StartChronometer;
+                GlobalActions.OnGameWin += PauseChronometer;
+                GlobalActions.OnGameLost += PauseChronometer;
+                GlobalActions.OnNewLevelLoaded += StopChronometer;
             }
         }
 

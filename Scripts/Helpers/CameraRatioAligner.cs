@@ -19,7 +19,7 @@ namespace Helpers
         private void Start()
         {
             _coreManager = CoreManager.Request();
-            ActionManager.Instance.OnGameStarted += GameStarted;
+            GlobalActions.OnGameStarted += GameStarted;
 
 
         }

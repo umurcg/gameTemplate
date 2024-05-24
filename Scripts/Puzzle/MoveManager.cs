@@ -23,39 +23,24 @@ namespace Puzzle
             _puzzleManager = GetComponent<PuzzleManager>();
             _puzzleManager.CanCallGameLost = false;
             _puzzleManager.LostCallFinished += OnLostCallFinished;
-            
 
-            if (ActionManager.Instance)
-            {
-                ActionManager.Instance.OnNewLevelLoaded += OnNewLevelLoaded;
-            }
-            else
-            {
-                Debug.LogError("ActionManager is missing");
-            }
-            
-            if (PuzzleActions.Instance)
-            {
-                PuzzleActions.Instance.OnValidMove += OnValidMove;
-            }
-            else
-            {
-                Debug.LogError("PuzzleActions is missing");
-            }
+            GlobalActions.OnNewLevelLoaded += OnNewLevelLoaded;
+            PuzzleActions.OnValidMove += OnValidMove;
+           
         }
         
         private void OnNewLevelLoaded()
         {
             var level = LevelManager.Instance.ActiveLevelData as PuzzleLevelData;
             LeftMoveCount = level.moveCount;
-            PuzzleActions.Instance?.OnMoveCountChanged?.Invoke(LeftMoveCount);
+            PuzzleActions.OnMoveCountChanged?.Invoke(LeftMoveCount);
             _didUseAdditionalMove = false;
         }
         
         private void OnValidMove()
         {
             LeftMoveCount--;
-            PuzzleActions.Instance?.OnMoveCountChanged?.Invoke(LeftMoveCount);
+            PuzzleActions.OnMoveCountChanged?.Invoke(LeftMoveCount);
             if (LeftMoveCount <= 0)
             {
                 StartCoroutine(_puzzleManager.CallLost());
@@ -71,7 +56,7 @@ namespace Puzzle
             }
             else
             {
-                PuzzleActions.Instance?.OnAdditionalMoveOffer?.Invoke();
+                PuzzleActions.OnAdditionalMoveOffer?.Invoke();
             }
         }
         
@@ -89,8 +74,8 @@ namespace Puzzle
                 LeftMoveCount += AdditionalMoveCount;
                 _didUseAdditionalMove = true;
                 
-                PuzzleActions.Instance.OnMoveCountChanged?.Invoke(LeftMoveCount);
-                PuzzleActions.Instance.OnAdditionalMoveBought?.Invoke();
+                PuzzleActions.OnMoveCountChanged?.Invoke(LeftMoveCount);
+                PuzzleActions.OnAdditionalMoveBought?.Invoke();
             }
         }
         
@@ -105,7 +90,7 @@ namespace Puzzle
             while (LeftMoveCount > 0)
             {
                 LeftMoveCount--;
-                PuzzleActions.Instance?.OnMoveCountChanged?.Invoke(LeftMoveCount);
+                PuzzleActions.OnMoveCountChanged?.Invoke(LeftMoveCount);
                 CoreManager.Instance.EarnMoney(MoveCountValue);
                 yield return new WaitForSeconds(durationPerMove);
             }
@@ -115,13 +100,13 @@ namespace Puzzle
 
         public void FakeMove()
         {
-            PuzzleActions.Instance?.OnValidMove?.Invoke();
+            PuzzleActions.OnValidMove?.Invoke();
         }
 
         public void FakeLost()
         {
             LeftMoveCount = 1;
-            PuzzleActions.Instance?.OnValidMove?.Invoke();
+            PuzzleActions.OnValidMove?.Invoke();
         }
 
 

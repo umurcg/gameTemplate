@@ -13,8 +13,8 @@ namespace Core.UI
         public override void Initialize()
         {
             base.Initialize();
-            ActionManager.Instance.OnGameStarted += () => Deactivate();
-            ActionManager.Instance.OnNewLevelLoaded += () => Activate();
+            GlobalActions.OnGameStarted += Deactivate;
+            GlobalActions.OnNewLevelLoaded += Activate;
         }
 
         private void OnFingerDown(LeanFinger obj)
@@ -29,9 +29,8 @@ namespace Core.UI
                 LeanTouch.OnFingerDown -= OnFingerDown;
             }
             
-            if (!ActionManager.Instance) return;
-            ActionManager.Instance.OnNewLevelLoaded -= (Activate);
-            ActionManager.Instance.OnGameStarted -= (Deactivate);
+            GlobalActions.OnNewLevelLoaded -= (Activate);
+            GlobalActions.OnGameStarted -= (Deactivate);
 
      
         }

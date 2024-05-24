@@ -15,7 +15,7 @@ namespace Core.Managers
             set
             {
                 _levelMoney = value;
-                ActionManager.Instance.OnLevelMoneyChanged?.Invoke(_levelMoney);
+                GlobalActions.OnLevelMoneyChanged?.Invoke(_levelMoney);
             }
         }
     }

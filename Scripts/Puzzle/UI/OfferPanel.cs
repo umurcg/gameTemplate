@@ -18,9 +18,9 @@ namespace Puzzle.UI
             }
 
             costText.text = MoveManager.Instance.AdditionalMoveCost.ToString();
-            PuzzleActions.Instance.OnAdditionalMoveOffer += Activate;
-            PuzzleActions.Instance.OnAdditionalMoveBought += Deactivate;
-            ActionManager.Instance.OnGameLost += Deactivate;
+            PuzzleActions.OnAdditionalMoveOffer += Activate;
+            PuzzleActions.OnAdditionalMoveBought += Deactivate;
+            GlobalActions.OnGameLost += Deactivate;
         }
 
         public void BuyMoves()

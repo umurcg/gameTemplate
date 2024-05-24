@@ -9,14 +9,13 @@ namespace Puzzle.UI
 
         private void Start()
         {
-            ActionManager.Instance.OnLevelChanged+=LevelIsChanged;
+            GlobalActions.OnLevelChanged+=LevelIsChanged;
             LevelIsChanged(CoreManager.Instance.Level);
         }
 
         private void OnDestroy()
         {
-            if(!ActionManager.Instance) return;
-            ActionManager.Instance.OnLevelChanged-=LevelIsChanged;
+            GlobalActions.OnLevelChanged-=LevelIsChanged;
         }
 
         private void LevelIsChanged(int level)
