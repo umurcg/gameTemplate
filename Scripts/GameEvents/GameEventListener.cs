@@ -8,6 +8,9 @@ namespace GameEvents
 {
     public class GameEventListener : MonoBehaviour, IGameEventListener
     {
+#if ODIN_INSPECTOR
+        [ValueDropdown(nameof(GetGameEvents))]
+#endif
         public GameEvent gameEvent;
         public UnityEvent response;
         public int registerDelay = 0;
@@ -106,14 +109,12 @@ namespace GameEvents
             return false;
 
         }
-
-        // Removed the dependency on Odin Inspector for getting the GameEvents
-        // Ensure you implement this method to retrieve all GameEvents
-        // for example, by referencing them directly or using a Resource folder to load them
-        public GameEvent[] GetGameEvents()
+        
+#if ODIN_INSPECTOR
+        private GameEvent[] GetGameEvents()
         {
-            // Implement logic to retrieve all GameEvents if required
-            return new GameEvent[]{};
+            return GameEvent.GetAllGameEvents();
         }
+#endif
     }
 }
