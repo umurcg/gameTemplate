@@ -15,7 +15,11 @@ namespace Puzzle.UI
             if (moveCounter == null) moveCounter = GetComponent<TMPro.TMP_Text>();
 
             PuzzleActions.OnMoveCountChanged += OnMovementCountChanged;
-            moveCounter.text = MoveManager.Instance.LeftMoveCount.ToString();
+            if (MoveManager.Instance)
+            {
+                moveCounter.text = MoveManager.Instance.LeftMoveCount.ToString();
+            }
+
             _initialized = true;
         }
 

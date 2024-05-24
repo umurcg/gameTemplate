@@ -702,7 +702,6 @@ GameObject:
   - component: {fileID: 216651291727793521}
   - component: {fileID: 6466438114732945527}
   - component: {fileID: 866358945245970014}
-  - component: {fileID: 5204714871432880735}
   m_Layer: 0
   m_Name: Retry
   m_TagString: Untagged
@@ -827,33 +826,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1.5, y: 1.5}
   m_UseGraphicAlpha: 1
---- !u!114 &5204714871432880735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1573014167693477604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eda1f25c4a53471392b25fee748332a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onFadeInComplete:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3624491207897543287}
-        m_TargetAssemblyTypeName: PuzzleUI.LostPanel, Reboot.Core
-        m_MethodName: ReloadLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1767184370971049023
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +837,7 @@ GameObject:
   - component: {fileID: 8370552134248218824}
   - component: {fileID: 939836418756265380}
   - component: {fileID: 2668077100761829016}
-  - component: {fileID: 2065741530753226149}
+  - component: {fileID: 8627827949972012699}
   m_Layer: 5
   m_Name: LevelWin
   m_TagString: Untagged
@@ -917,10 +889,10 @@ CanvasGroup:
   m_GameObject: {fileID: 1767184370971049023}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &2065741530753226149
+--- !u!114 &8627827949972012699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -929,16 +901,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1767184370971049023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fed2f14c7cc4dc9831644e3716f77f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 22b78d05e73544fbae21d8ab5d35a4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasActivationAnimation: 1
-  animationTriggerName: LevelWin
-  activationDelay: 1
-  deactivationDelay: 0
-  convertMaxRate: 0.1
-  convertMaxDurationFlow: 0.8
-  convertMoveAfterActivation: 3
 --- !u!1 &1855934931454315876
 GameObject:
   m_ObjectHideFlags: 0
@@ -2900,7 +2865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3895598779741545642}
   - component: {fileID: 5881353010466900919}
-  - component: {fileID: 4975695884905123629}
+  - component: {fileID: 8634389026058454770}
   m_Layer: 5
   m_Name: InGamePanel
   m_TagString: Untagged
@@ -2936,11 +2901,11 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5386354540608370726}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &4975695884905123629
+--- !u!114 &8634389026058454770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2949,13 +2914,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5386354540608370726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 903f2e9bbeb94f4ebbda04539263eaa0, type: 3}
+  m_Script: {fileID: 11500000, guid: 22b78d05e73544fbae21d8ab5d35a4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasActivationAnimation: 0
-  animationTriggerName: LevelStart
-  activationDelay: 0.5
-  deactivationDelay: 0.5
 --- !u!1 &5426838865907246634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3042,7 +3003,6 @@ GameObject:
   - component: {fileID: 6948484919760281766}
   - component: {fileID: 4867489481856723773}
   - component: {fileID: 4089358303603041927}
-  - component: {fileID: 8433719784981895542}
   m_Layer: 5
   m_Name: UIParticle
   m_TagString: Untagged
@@ -3117,49 +3077,6 @@ MonoBehaviour:
   m_AutoScaling: 0
   m_AutoScalingMode: 2
   m_ResetScaleOnEnable: 0
---- !u!114 &8433719784981895542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5808338058776424465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 849c90e272f954f92917760093bf4d5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - eventName: OnGameWin
-    eventType: 0
-    _event:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3817884142312874724}
-          m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    _eventInt:
-      m_PersistentCalls:
-        m_Calls: []
-    _eventFloat:
-      m_PersistentCalls:
-        m_Calls: []
-    _eventBool:
-      m_PersistentCalls:
-        m_Calls: []
-    _eventString:
-      m_PersistentCalls:
-        m_Calls: []
-  ShowEventDescription: 
 --- !u!1 &5935992295252849167
 GameObject:
   m_ObjectHideFlags: 0
@@ -3292,7 +3209,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5619313244218405088}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MoveBuyPanel, Assembly-CSharp
         m_MethodName: DeclineMoves
         m_Mode: 1
@@ -3313,8 +3230,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8606942530489119228}
-  - component: {fileID: 5619313244218405088}
   - component: {fileID: 1477928613476244293}
+  - component: {fileID: 1752414943797907948}
   m_Layer: 5
   m_Name: LevelLostWithOffer
   m_TagString: Untagged
@@ -3344,26 +3261,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5619313244218405088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6067848806599576972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b85a53f02f6b468c986b39e6aff9e3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasActivationAnimation: 1
-  animationTriggerName: LevelLostWithOffer
-  activationDelay: 0
-  deactivationDelay: 0.5
-  moveCountTexts:
-  - {fileID: 4464566510063386519}
-  - {fileID: 5679261914951037614}
-  costText: {fileID: 5893625078652972344}
 --- !u!225 &1477928613476244293
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3373,9 +3270,21 @@ CanvasGroup:
   m_GameObject: {fileID: 6067848806599576972}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &1752414943797907948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6067848806599576972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b78d05e73544fbae21d8ab5d35a4ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6354140804496183398
 GameObject:
   m_ObjectHideFlags: 0
@@ -3784,7 +3693,6 @@ GameObject:
   - component: {fileID: 7131751134886021458}
   - component: {fileID: 7131751134886021459}
   - component: {fileID: 7131751134886021420}
-  - component: {fileID: 2649672951047386855}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3808,7 +3716,6 @@ RectTransform:
   - {fileID: 8370552134248218824}
   - {fileID: 4667891225807331166}
   - {fileID: 8606942530489119228}
-  - {fileID: 5747392521024098887}
   - {fileID: 6948484919760281766}
   - {fileID: 8785053951390716967}
   m_Father: {fileID: 0}
@@ -3881,27 +3788,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!95 &2649672951047386855
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7131751134886021421}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d33922fbd3e414000b59f9fe1bbe01b9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7350142818483100525
 GameObject:
   m_ObjectHideFlags: 0
@@ -4335,7 +4221,7 @@ GameObject:
   - component: {fileID: 4667891225807331166}
   - component: {fileID: 1949220098192407622}
   - component: {fileID: 3368360671401003489}
-  - component: {fileID: 3624491207897543287}
+  - component: {fileID: 496657313846113354}
   m_Layer: 5
   m_Name: LevelLost
   m_TagString: Untagged
@@ -4382,10 +4268,10 @@ CanvasGroup:
   m_GameObject: {fileID: 7799526343921299147}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &3624491207897543287
+--- !u!114 &496657313846113354
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4394,13 +4280,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7799526343921299147}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4273a92a61643c69f67c2f02de2be52, type: 3}
+  m_Script: {fileID: 11500000, guid: 22b78d05e73544fbae21d8ab5d35a4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasActivationAnimation: 1
-  animationTriggerName: LevelLost
-  activationDelay: 0
-  deactivationDelay: 0
 --- !u!1 &7978253335540070447
 GameObject:
   m_ObjectHideFlags: 0
@@ -4624,7 +4506,6 @@ GameObject:
   - component: {fileID: 1409650115720733997}
   - component: {fileID: 7591985793397292566}
   - component: {fileID: 3735249572666844188}
-  - component: {fileID: 7238153401229225284}
   m_Layer: 0
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -4764,147 +4645,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2}
   m_EffectDistance: {x: 4.2, y: -3.4}
   m_UseGraphicAlpha: 1
---- !u!114 &7238153401229225284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8149021396923003376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eda1f25c4a53471392b25fee748332a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onFadeInComplete:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2065741530753226149}
-        m_TargetAssemblyTypeName: PuzzleUI.WinPanel, Reboot.Core
-        m_MethodName: NextLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!1 &8230974939508585031
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5747392521024098887}
-  - component: {fileID: 2349204272546844040}
-  - component: {fileID: 26980967485522858}
-  - component: {fileID: 4365839642798300894}
-  m_Layer: 5
-  m_Name: Fade
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &5747392521024098887
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8230974939508585031}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7131751134886021457}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2349204272546844040
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8230974939508585031}
-  m_CullTransparentMesh: 1
---- !u!114 &26980967485522858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8230974939508585031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.105882354, g: 0.11764706, b: 0.18039216, a: 0}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!114 &4365839642798300894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8230974939508585031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a88ef7f37dc8499c99b6d460443aa1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeOutOnGameStart: 1
-  maximumAlpha: 1
-  fadeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &8413797764005061212
 GameObject:
   m_ObjectHideFlags: 0
@@ -5222,19 +4962,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8765875120141758643}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5619313244218405088}
-        m_TargetAssemblyTypeName: MoveBuyPanel, Assembly-CSharp
-        m_MethodName: BuyMoves
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8765875120141758643
 MonoBehaviour:
   m_ObjectHideFlags: 0
