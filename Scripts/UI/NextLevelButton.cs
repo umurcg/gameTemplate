@@ -7,6 +7,7 @@ namespace UI
     {
         public override void OnCall()
         {
+            base.OnCall();
             CoreManager.Instance.IncreaseLevel();
         }
     }

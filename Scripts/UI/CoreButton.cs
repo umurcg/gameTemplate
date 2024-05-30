@@ -9,6 +9,7 @@ namespace UI
     {
         public UnityEvent onButtonPressed;
         public float callDelay = 1f;
+        protected bool isPressed;
 
         public void Awake()
         {
@@ -17,10 +18,15 @@ namespace UI
 
         private void OnButtonPressed()
         {
+            if (isPressed) return;
+            isPressed = true;
             onButtonPressed?.Invoke();
             Invoke(nameof(OnCall), callDelay);
         }
 
-        public abstract void OnCall();
+        public virtual void OnCall()
+        {
+            isPressed = false;
+        }
     }
 }
