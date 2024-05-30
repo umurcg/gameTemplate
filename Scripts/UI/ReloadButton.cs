@@ -4,15 +4,10 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    [RequireComponent(typeof(Button))]
-    public class ReloadButton: MonoBehaviour
+    
+    public class ReloadButton: CoreButton
     {
-        private void Start()
-        {
-            GetComponent<Button>().onClick.AddListener(Reload);
-        }
-
-        private void Reload()
+        public override void OnCall()
         {
             CoreManager.Instance.ReloadLevel();
         }

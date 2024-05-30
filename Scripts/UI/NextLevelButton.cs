@@ -1,20 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using Managers;
 using UnityEngine;
-using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public class NextLevelButton : MonoBehaviour
+namespace UI
 {
-    private void Start()
+    public class NextLevelButton : CoreButton
     {
-        GetComponent<Button>().onClick.AddListener(NextLevel);
+        public override void OnCall()
+        {
+            CoreManager.Instance.IncreaseLevel();
+        }
     }
-
-    private void NextLevel()
-    {
-        CoreManager.Instance.IncreaseLevel();
-    }
-
 }
