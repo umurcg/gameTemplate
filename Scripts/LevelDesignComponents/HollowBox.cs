@@ -29,8 +29,6 @@ namespace Helpers
                 wall.transform.parent = transform;
                 walls[i] = wall.transform;
             }
-            
-        
         }
     
         public void CreateGroundObject()
