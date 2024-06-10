@@ -116,11 +116,6 @@
         "path": "Samples/Button3D"
     },
     {
-      "displayName": "Puzzle Pack",
-        "description": "Contains assets that can be used for puzzle games.",
-        "path": "Samples/Puzzle"
-    },
-    {
       "displayName": "Game Events",
       "description": "Contains assets that can be used for game events.",
       "path": "Samples/GameEvents"
