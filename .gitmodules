@@ -1,0 +1,3 @@
+[submodule "Scripts/unityColorTypes"]
+	path = Scripts/unityColorTypes
+	url = https://github.com/umurcg/unityColorTypes.git
