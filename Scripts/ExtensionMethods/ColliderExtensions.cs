@@ -19,9 +19,9 @@ namespace Helpers
             return selfComponent;
         }
         
-        public static MonoBehaviour GetComponentOnSelfOrParent(this Collider collider)
+        public static T GetComponentOnSelfOrParent<T>(this Collider collider) where T : Component
         {
-            return collider.gameObject.GetComponentOnObjectOrParent<MonoBehaviour>();
+            return collider.gameObject.GetComponentOnObjectOrParent<T>();
         }
     }
 }
