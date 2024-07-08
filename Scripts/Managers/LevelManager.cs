@@ -60,7 +60,7 @@ namespace Managers
         public LevelData TestLevelData;
 #endif
         
-        public LevelData ActiveLevelData { get; private set; }
+        public LevelData ActiveLevelData { get; protected set; }
 
         [Tooltip("Game will be tried to start with this level ignoring game data. This is useful for fast development")]
         public int TestLevelIndex = -1;
