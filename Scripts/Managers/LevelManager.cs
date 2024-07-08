@@ -273,7 +273,7 @@ namespace Managers
         /// <summary>
         ///     Clears active if level if there is loaded one
         /// </summary>
-        public void ClearLoadedLevel()
+        protected virtual void ClearLoadedLevel()
         {
             if (LevelIsLoaded)
             {
@@ -294,7 +294,7 @@ namespace Managers
 
 
         //This can be edited according to needs!!
-        private void LoadLevelWithData(LevelData levelData)
+        protected virtual void LoadLevelWithData(LevelData levelData)
         {
             ActiveLevelData = levelData;
 
@@ -303,8 +303,7 @@ namespace Managers
             {
                 Instantiate(levelData.levelPrefab, transform);
             }
-
-            //Can do something else...
+            
         }
 
         private void OnDestroy()
