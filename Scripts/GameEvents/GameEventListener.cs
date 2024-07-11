@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +12,9 @@ namespace GameEvents
     public class GameEventListener : MonoBehaviour, IGameEventListener
     {
 #if ODIN_INSPECTOR
-        [ValueDropdown(nameof(GetGameEvents))]
+        public bool customEvent;
+        [ValueDropdown(nameof(GetGameEvents))] public public GameEvent dropDownGameEvent;
+        [ShowIf(nameof(customEvent))]
 #endif
         public GameEvent gameEvent;
         public UnityEvent response;
@@ -28,6 +31,15 @@ namespace GameEvents
         public bool checkPersistantEventsAtStart = false;
         public CallType callType;
         public int callIndex;
+
+
+        private void Awake()
+        {
+            #if ODIN_INSPECTOR
+            if(!customEvent)
+                gameEvent = dropDownGameEvent;
+            #endif
+        }
 
         public void Start()
         {
