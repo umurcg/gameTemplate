@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #endif
@@ -11,11 +12,13 @@ namespace GameEvents
 {
     public class GameEventListener : MonoBehaviour, IGameEventListener
     {
+
 #if ODIN_INSPECTOR
         public bool customEvent;
         [ValueDropdown(nameof(GetGameEvents)),FormerlySerializedAs("gameEvent")] public GameEvent dropDownGameEvent;
         [ShowIf(nameof(customEvent))]
 #endif
+        
         public GameEvent gameEvent;
         public UnityEvent response;
         public int registerDelay = 0;
