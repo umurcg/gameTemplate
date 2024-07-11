@@ -13,7 +13,7 @@ namespace GameEvents
     {
 #if ODIN_INSPECTOR
         public bool customEvent;
-        [ValueDropdown(nameof(GetGameEvents))] public public GameEvent dropDownGameEvent;
+        [ValueDropdown(nameof(GetGameEvents))] public GameEvent dropDownGameEvent;
         [ShowIf(nameof(customEvent))]
 #endif
         public GameEvent gameEvent;
