@@ -38,7 +38,7 @@ namespace Managers
         #if ODIN_INSPECTOR
         [ShowIf(nameof(loadType),LoadType.Reference)]
         #endif
-        [SerializeField]private LevelData[] Levels;
+        [SerializeField]protected LevelData[] Levels;
         
         #if ODIN_INSPECTOR
         [ShowIf(nameof(loadType),LoadType.Reference)]
