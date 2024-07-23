@@ -38,12 +38,12 @@ namespace Managers
         #if ODIN_INSPECTOR
         [ShowIf(nameof(loadType),LoadType.Reference)]
         #endif
-        [SerializeField]private LevelData[] Levels;
+        [SerializeField]protected LevelData[] Levels;
         
         #if ODIN_INSPECTOR
         [ShowIf(nameof(loadType),LoadType.Reference)]
         #endif
-        [SerializeField]private LevelData[] AllLevels;
+        [SerializeField]protected LevelData[] AllLevels;
         
         #if ODIN_INSPECTOR
         [ShowIf(nameof(loadType),LoadType.Resource)]
@@ -54,7 +54,7 @@ namespace Managers
         #if ODIN_INSPECTOR
         [ShowIf(nameof(loadType), LoadType.Resource)]
         #endif
-        [SerializeField]private string[] LevelDataNames;
+        [SerializeField]protected string[] LevelDataNames;
 
 #if UNITY_EDITOR
         public LevelData TestLevelData;
@@ -116,8 +116,6 @@ namespace Managers
             }
 #endif
             
-            
-
             //Error protection
             if (NumberOfTotalLevels == 0)
             {
