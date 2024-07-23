@@ -19,6 +19,8 @@ namespace Managers
         private bool autoStart = true;
 
         public bool IsGameStarted { private set; get; }
+        
+        private bool _hasLevelManager;
 
         public float GameMoney
         {
@@ -48,17 +50,16 @@ namespace Managers
 
         private IEnumerator Start()
         {
-            var hasLevelManager = LevelManager.Request();
+            _hasLevelManager = LevelManager.Request();
 
             if (autoStart)
             {
-                if (hasLevelManager)
+                if (_hasLevelManager)
                     GlobalActions.OnNewLevelLoaded += StartGameNextFrame;
                 else
                 {
                     yield return null;
-                    StartGame();
-                    GlobalActions.OnLevelChanged += _ => StartGameNextFrame();
+                    GlobalActions.OnLevelChanged += StartGameNextFrame;
                     GlobalActions.OnGameRestarted += StartGameNextFrame;
                 }
             }
@@ -71,6 +72,17 @@ namespace Managers
 
             if (!saveEnabled)
                 PlayerPrefs.DeleteAll();
+
+            if (autoStart)
+            {
+                if (_hasLevelManager)
+                    GlobalActions.OnNewLevelLoaded -= StartGameNextFrame;
+                else
+                {
+                    GlobalActions.OnLevelChanged -= StartGameNextFrame;
+                    GlobalActions.OnGameRestarted -= StartGameNextFrame;
+                }
+            }
 
             IsFirstSession = false;
         }
@@ -89,6 +101,11 @@ namespace Managers
 
             IsGameStarted = true;
             GlobalActions.OnGameStarted?.Invoke();
+        }
+        
+        private void StartGameNextFrame(int arg)
+        {
+            StartCoroutine(_StartGameNextFrame());
         }
 
         private void StartGameNextFrame()
