@@ -15,6 +15,8 @@ public class SwitchButton : MonoBehaviour
     private bool _isOn = false;
 
     [SerializeField] protected bool defaultState = false;
+    [SerializeField] protected bool defaultAndroidState = false;
+    [SerializeField] protected bool defaultIOSState = false;
     [SerializeField] private bool invokeEventsAtStart;
 
     public bool persistent;
@@ -42,8 +44,14 @@ public class SwitchButton : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
+        
+#if UNITY_ANDROID
+        defaultState = defaultAndroidState;
+#elif UNITY_IOS
+        defaultState = defaultIOSState;
+#endif
+        
         _isOn = persistent ? PlayerPrefs.GetInt(key, defaultState ? 1 : 0) == 1 : defaultState;
-
         _button = GetComponent<Button>();
         _button.onClick.AddListener(OnClick);
 
