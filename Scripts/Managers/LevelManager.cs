@@ -181,7 +181,7 @@ namespace Managers
             GlobalActions.OnNewLevelLoaded?.Invoke();
         }
 
-        public void LoadLevel(int levelIndex)
+        public virtual void LoadLevel(int levelIndex)
         {
             //First try to load test levels if in editor
 #if UNITY_EDITOR
@@ -218,7 +218,7 @@ namespace Managers
             }
         }
 
-        private void LoadRepeatLevel()
+        protected virtual void LoadRepeatLevel()
         {
             int repeatStartLevelIndex = RemoteConfig.Instance.GetInt("repeatStartLevelIndex");
             var isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
@@ -260,7 +260,7 @@ namespace Managers
             LoadLevel(TestLevelData);
         }
 #endif
-        public void LoadLevel(LevelData levelData)
+        public virtual void LoadLevel(LevelData levelData)
         {
             ClearLoadedLevel();
             LoadLevelWithData(levelData);
