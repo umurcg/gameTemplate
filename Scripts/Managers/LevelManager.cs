@@ -220,7 +220,7 @@ namespace Managers
 
         protected virtual void LoadRepeatLevel()
         {
-            int repeatStartLevelIndex = RemoteConfig.Instance.GetInt("repeatStartLevelIndex");
+            int repeatStartLevelIndex = RemoteConfig.Instance ? RemoteConfig.Instance.GetInt("repeatStartLevelIndex") : -1;
             var isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
 
             if (isRandomRepeating)
