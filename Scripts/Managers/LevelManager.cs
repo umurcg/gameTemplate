@@ -64,7 +64,8 @@ namespace Managers
 
         [Tooltip("Game will be tried to start with this level ignoring game data. This is useful for fast development")]
         public int TestLevelIndex = -1;
-
+        public int DefaultRepeatLevelIndex = -1;
+        
         /// <summary>
         ///     Whether or not there are active loaded level in the scene
         /// </summary>
@@ -220,7 +221,10 @@ namespace Managers
 
         protected virtual void LoadRepeatLevel()
         {
-            int repeatStartLevelIndex = RemoteConfig.Instance ? RemoteConfig.Instance.GetInt("repeatStartLevelIndex") : -1;
+            int repeatStartLevelIndex = DefaultRepeatLevelIndex;
+            if (RemoteConfig.Instance) 
+                repeatStartLevelIndex=RemoteConfig.Instance.GetInt("repeatStartLevelIndex", repeatStartLevelIndex);
+            
             var isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
 
             if (isRandomRepeating)
