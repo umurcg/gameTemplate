@@ -342,5 +342,17 @@ namespace Managers
         }
         
         #endif
+
+#if ODIN_INSPECTOR
+[Button]
+#endif
+        public void LoadLevelDataFromResources()
+        {
+            Levels = Resources.LoadAll<LevelData>("Levels");
+            AllLevels = Resources.LoadAll<LevelData>("Levels");
+            #if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+            #endif
+        }
     }
 }
