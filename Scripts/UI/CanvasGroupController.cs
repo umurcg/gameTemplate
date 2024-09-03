@@ -6,13 +6,14 @@ namespace UI
     [RequireComponent(typeof(CanvasGroup))]
     public class CanvasGroupController : MonoBehaviour
     {
-#if ODIN_INSPECTOR
-[Sirenix.OdinInspector.ShowInInspector]
-#endif
+
         protected CanvasGroup _canvasGroup;
         public UnityEvent OnActivate;
         public UnityEvent OnDeactivate;
 
+#if ODIN_INSPECTOR
+[Sirenix.OdinInspector.ShowInInspector]
+#endif
         public virtual void Activate()
         {
             SetEnable(true);
