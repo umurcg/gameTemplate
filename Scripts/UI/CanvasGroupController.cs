@@ -1,72 +1,50 @@
-using UnityEditor;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor.UIElements;
-using UnityEngine.UIElements;
-#endif
+using UnityEngine.Events;
 
 namespace UI
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public class
-        CanvasGroupController : MonoBehaviour
+    public class CanvasGroupController : MonoBehaviour
     {
-        public void Activate()
+#if ODIN_INSPECTOR
+[Sirenix.OdinInspector.ShowInInspector]
+#endif
+        protected CanvasGroup _canvasGroup;
+        public UnityEvent OnActivate;
+        public UnityEvent OnDeactivate;
+
+        public virtual void Activate()
         {
             SetEnable(true);
         }
 
-        public void Deactivate()
+#if ODIN_INSPECTOR
+        [Sirenix.OdinInspector.Button]
+#endif
+        public virtual void Deactivate()
         {
             SetEnable(false);
         }
 
         public void SetEnable(bool enable)
         {
-            var canvasGroup = GetComponent<CanvasGroup>();
-            canvasGroup.alpha = enable ? 1 : 0;
-            canvasGroup.interactable = enable;
-            canvasGroup.blocksRaycasts = enable;
-        }
-    }
+            if (_canvasGroup == null)
+                _canvasGroup = GetComponent<CanvasGroup>();
+            _canvasGroup.alpha = enable ? 1 : 0;
+            _canvasGroup.interactable = enable;
+            _canvasGroup.blocksRaycasts = enable;
 
+            if (Application.isPlaying)
+            {
+                if (enable)
+                    OnActivate?.Invoke();
+                else
+                    OnDeactivate?.Invoke();
+            }
+            
 #if UNITY_EDITOR
-    [CustomEditor(typeof(CanvasGroupController))]
-    public class CanvasGroupControllerEditor : Editor
-    {
-        public override VisualElement CreateInspectorGUI()
-        {
-            var root = new VisualElement();
-            var script = serializedObject.FindProperty("m_Script");
-            root.Add(new PropertyField(script));
-
-
-            // Add a button to activate the canvas group
-            var activateButton = new Button(() =>
-            {
-                var canvasGroupController = (CanvasGroupController)target;
-                canvasGroupController.Activate();
-                EditorUtility.SetDirty(target);
-            });
-
-            activateButton.text = "Activate";
-
-
-            // Add a button to deactivate the canvas group
-            var deactivateButton = new Button(() =>
-            {
-                var canvasGroupController = (CanvasGroupController)target;
-                canvasGroupController.Deactivate();
-                EditorUtility.SetDirty(target);
-            });
-
-            deactivateButton.text = "Deactivate";
-
-            root.Add(activateButton);
-            root.Add(deactivateButton);
-
-            return root;
+            UnityEditor.EditorUtility.SetDirty(_canvasGroup);
+#endif
         }
     }
-#endif
 }
