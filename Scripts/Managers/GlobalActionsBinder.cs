@@ -40,6 +40,9 @@ namespace Managers
             
             var levelMoneyChangedEvent=FindGameEvent("OnLevelMoneyChanged");
             GlobalActions.OnLevelMoneyChanged += _ => levelMoneyChangedEvent.Invoke();
+            
+            var gameRevivedEvent=FindGameEvent("OnGameRevived");
+            GlobalActions.OnGameRevived += gameRevivedEvent.Invoke;
         }
 
 
