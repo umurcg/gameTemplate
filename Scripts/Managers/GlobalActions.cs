@@ -13,6 +13,7 @@ namespace Managers
         public static Action OnGameLost;
         public static Action OnGameWin;
         public static Action OnGameRestarted;
+        public static Action OnGameRevived;
         public static Action<int> OnLevelChanged;
         public static Action<float> OnGameMoneyChanged;
         public static Action<float> OnLevelMoneyChanged;

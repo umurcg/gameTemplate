@@ -19,6 +19,7 @@ namespace Managers
         private bool autoStart = true;
 
         public bool IsGameStarted { private set; get; }
+        public bool IsLost { private set; get; }
         
         private bool _hasLevelManager;
 
@@ -68,8 +69,6 @@ namespace Managers
 
         public void OnDestroy()
         {
-            SceneManager.sceneLoaded -= OnNewSceneLoaded;
-
             if (!saveEnabled)
                 PlayerPrefs.DeleteAll();
 
@@ -87,9 +86,8 @@ namespace Managers
             IsFirstSession = false;
         }
 
-        private void OnNewSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-        }
+
+        
 
         public void StartGame()
         {
@@ -99,6 +97,7 @@ namespace Managers
                 return;
             }
 
+            IsLost = false;
             IsGameStarted = true;
             GlobalActions.OnGameStarted?.Invoke();
         }
@@ -140,9 +139,10 @@ namespace Managers
                 return;
             }
 
+            IsGameStarted = false;
+            IsLost = true;
             GlobalActions.OnGameLost?.Invoke();
             GlobalActions.OnGameEnded?.Invoke();
-            IsGameStarted = false;
         }
 
         public void EarnMoney(float amount)
@@ -198,6 +198,25 @@ namespace Managers
 
             GlobalActions.OnLevelChanged?.Invoke(Level);
             GlobalActions.OnGameRestarted?.Invoke();
+        }
+
+        public void Revive()
+        {
+            if (IsGameStarted)
+            {
+                Debug.LogError("Gameplay is continuing You can not revive during a gameplay");
+                return;
+            }
+
+            if (!IsLost)
+            {
+                Debug.LogError("Game is not lost you can not revive");
+                return;
+            }
+            
+            IsLost = false;
+            IsGameStarted = true;
+            GlobalActions.OnGameRevived?.Invoke();
         }
 
         public string GetStats()
