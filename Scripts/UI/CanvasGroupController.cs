@@ -42,6 +42,15 @@ namespace UI
                 else
                     OnDeactivate?.Invoke();
             }
+
+            if (enable)
+            {
+                var parentControllers=GetComponentsInParent<CanvasGroupController>();
+                foreach (var parentController in parentControllers)
+                {
+                    parentController.Activate();
+                }
+            }
             
 #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(_canvasGroup);
