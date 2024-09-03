@@ -45,11 +45,8 @@ namespace UI
 
             if (enable)
             {
-                var parentControllers=GetComponentsInParent<CanvasGroupController>();
-                foreach (var parentController in parentControllers)
-                {
-                    parentController.Activate();
-                }
+                var parentController=GetComponentInParent<CanvasGroupController>();
+                if (parentController) parentController.SetEnable(true);
             }
             
 #if UNITY_EDITOR
