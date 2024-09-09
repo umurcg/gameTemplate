@@ -5,7 +5,7 @@ using ScriptableObjects;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #endif
-using Unity.RemoteConfig;
+// using Unity.RemoteConfig;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -144,36 +144,36 @@ namespace Managers
 
         private void RetrieveRemoteFunnel()
         {
-            if (!ConfigManager.appConfig.HasKey("levelFunnel")) return;
-            string levelKeysJson = ConfigManager.appConfig.GetJson("levelFunnel");
-            var remote = JsonUtility.FromJson<LevelRemoteWrapper>(levelKeysJson);
-
-            var key_levels = new Dictionary<string, LevelData>();
-            foreach (var level in AllLevels)
-            {
-                var levelKey = level.levelName;
-                if (levelKey == "")
-                {
-                    Debug.LogError("There is not defined key for level " + level.name);
-                    return;
-                }
-
-                key_levels.Add(levelKey, level);
-            }
-
-            var remoteLevels = new List<LevelData>();
-            foreach (var key in remote.levelKeys)
-            {
-                if (key_levels.ContainsKey(key) == false)
-                {
-                    Debug.LogWarning("There is no level defined with key " + key);
-                    return;
-                }
-
-                remoteLevels.Add(key_levels[key]);
-            }
-
-            Levels = remoteLevels.ToArray();
+            // if (!ConfigManager.appConfig.HasKey("levelFunnel")) return;
+            // string levelKeysJson = ConfigManager.appConfig.GetJson("levelFunnel");
+            // var remote = JsonUtility.FromJson<LevelRemoteWrapper>(levelKeysJson);
+            //
+            // var key_levels = new Dictionary<string, LevelData>();
+            // foreach (var level in AllLevels)
+            // {
+            //     var levelKey = level.levelName;
+            //     if (levelKey == "")
+            //     {
+            //         Debug.LogError("There is not defined key for level " + level.name);
+            //         return;
+            //     }
+            //
+            //     key_levels.Add(levelKey, level);
+            // }
+            //
+            // var remoteLevels = new List<LevelData>();
+            // foreach (var key in remote.levelKeys)
+            // {
+            //     if (key_levels.ContainsKey(key) == false)
+            //     {
+            //         Debug.LogWarning("There is no level defined with key " + key);
+            //         return;
+            //     }
+            //
+            //     remoteLevels.Add(key_levels[key]);
+            // }
+            //
+            // Levels = remoteLevels.ToArray();
         }
 
         private void OnNewSceneLoaded(Scene scene, LoadSceneMode mode)
