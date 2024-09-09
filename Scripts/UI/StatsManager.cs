@@ -13,12 +13,12 @@ namespace UI
 
         public IEnumerator Start()
         {
-            if (!Debug.isDebugBuild && RemoteConfig.Instance && !RemoteConfig.Instance.GetBool("isStatsEnabled",false))
-            {
-                Destroy(gameObject);
-                yield break;
-            }
-            
+            // if (!Debug.isDebugBuild && RemoteConfig.Instance && !RemoteConfig.Instance.GetBool("isStatsEnabled",false))
+            // {
+            //     Destroy(gameObject);
+            //     yield break;
+            // }
+            //
             yield return null;
             
             _text = GetComponent<Text>();

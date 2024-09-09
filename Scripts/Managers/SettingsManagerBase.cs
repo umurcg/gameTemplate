@@ -29,22 +29,22 @@ public abstract class SettingsManagerBase<T> : ScriptableObject where T : Settin
 
     protected virtual void LoadSettings()
     {
-        if (RemoteConfig.Instance != null)
-        {
-            var json = RemoteConfig.Instance.GetJson(RemoteConfigKey);
-            if (!string.IsNullOrEmpty(json))
-            {
-                try
-                {
-                    JsonUtility.FromJsonOverwrite(json, this);
-                    return;
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"Error parsing remote config for {GetType().Name}: {e.Message}");
-                }
-            }
-        }
+        // if (RemoteConfig.Instance != null)
+        // {
+        //     var json = RemoteConfig.Instance.GetJson(RemoteConfigKey);
+        //     if (!string.IsNullOrEmpty(json))
+        //     {
+        //         try
+        //         {
+        //             JsonUtility.FromJsonOverwrite(json, this);
+        //             return;
+        //         }
+        //         catch (Exception e)
+        //         {
+        //             Debug.LogError($"Error parsing remote config for {GetType().Name}: {e.Message}");
+        //         }
+        //     }
+        // }
 
         // If remote config failed or wasn't available, we're already using the ScriptableObject 
         // loaded from Resources, so no need to do anything else here.

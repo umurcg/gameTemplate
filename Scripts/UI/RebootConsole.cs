@@ -16,12 +16,12 @@ namespace UI
     
         public IEnumerator Start()
         {
-            if (!RemoteConfig.Instance.GetBool("isStatsEnabled",true))
-            {
-                Destroy(gameObject);
-                yield break;
-            }
-            
+            // if (!RemoteConfig.Instance.GetBool("isStatsEnabled",true))
+            // {
+            //     Destroy(gameObject);
+            //     yield break;
+            // }
+            //
             yield return null;
             
             _text = GetComponent<Text>();

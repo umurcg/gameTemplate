@@ -20,16 +20,16 @@ namespace Helpers
         // Start is called before the first frame update
         void Start()
         {
-            var touchEnabled = RemoteConfig.Instance.GetBool("touchToolsEnabled", true);
-            if (!touchEnabled)
-            {
-                Destroy(this);
-            }
-            else
-            {
-                LeanTouch.OnFingerDown += OnFingerDown;
-                _inputListenerAssigned = true;
-            }
+            // var touchEnabled = RemoteConfig.Instance.GetBool("touchToolsEnabled", true);
+            // if (!touchEnabled)
+            // {
+            //     Destroy(this);
+            // }
+            // else
+            // {
+            //     LeanTouch.OnFingerDown += OnFingerDown;
+            //     _inputListenerAssigned = true;
+            // }
         }
 
         private void OnDestroy()
