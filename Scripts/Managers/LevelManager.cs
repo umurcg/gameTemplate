@@ -135,6 +135,7 @@ namespace Managers
             }
 
             GlobalActions.OnGameWin += GameWin;
+            GlobalActions.OnGameExit += ClearLoadedLevel;
         }
 
         private void GameWin()
