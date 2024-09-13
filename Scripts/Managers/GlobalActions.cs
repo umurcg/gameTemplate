@@ -12,6 +12,7 @@ namespace Managers
         public static Action OnLevelDestroyed;
         public static Action OnGameLost;
         public static Action OnGameWin;
+        public static Action OnGameExit;
         public static Action OnGameRestarted;
         public static Action OnGameRevived;
         public static Action<int> OnLevelChanged;
@@ -28,12 +29,11 @@ namespace Managers
             OnGameLost = null;
             OnGameWin = null;
             OnGameRestarted = null;
+            OnGameRevived = null;
+            OnGameExit = null;
             OnLevelChanged = null;
             OnGameMoneyChanged = null;
             OnLevelMoneyChanged = null;
         }
-        
-        
-        
     }
 }

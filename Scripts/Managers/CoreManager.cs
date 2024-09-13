@@ -145,6 +145,21 @@ namespace Managers
             GlobalActions.OnGameEnded?.Invoke();
         }
 
+        public void ExitGame()
+        {
+            if (!IsGameStarted)
+            {
+                Debug.LogError("Gameplay is not started you can not exit the game");
+                return;
+            }
+            
+            IsGameStarted = false;
+            IsLost = false;
+            
+            GlobalActions.OnGameExit?.Invoke();
+            GlobalActions.OnGameEnded?.Invoke();
+        }
+        
         public void EarnMoney(float amount)
         {
             GameMoney += amount;
