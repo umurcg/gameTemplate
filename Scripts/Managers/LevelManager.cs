@@ -58,6 +58,7 @@ namespace Managers
 
 #if UNITY_EDITOR
         public LevelData TestLevelData;
+        public bool EnableDesignMode=true;
 #endif
         
         public LevelData ActiveLevelData { get; protected set; }
@@ -100,7 +101,7 @@ namespace Managers
             
             yield return null;
 #if UNITY_EDITOR
-            if (Application.isEditor)
+            if (Application.isEditor && EnableDesignMode)
             {
                 if (transform.childCount > 0)
                 {
