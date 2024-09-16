@@ -276,7 +276,7 @@ namespace Managers
         /// <summary>
         ///     Clears active if level if there is loaded one
         /// </summary>
-        protected virtual void ClearLoadedLevel()
+        public virtual void ClearLoadedLevel()
         {
             if (LevelIsLoaded)
             {
@@ -285,7 +285,6 @@ namespace Managers
                     DestroyImmediate(transform.GetChild(i).gameObject);
 
                 ActiveLevelData = null;
-                
                 GlobalActions.OnLevelDestroyed?.Invoke();
             }
         }
