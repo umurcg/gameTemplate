@@ -17,6 +17,7 @@ namespace UI
         public virtual void Activate()
         {
             SetEnable(true);
+        
         }
 
 #if ODIN_INSPECTOR
@@ -25,7 +26,10 @@ namespace UI
         public virtual void Deactivate()
         {
             SetEnable(false);
+            
+        
         }
+        
 
         public void SetEnable(bool enable)
         {
@@ -41,7 +45,18 @@ namespace UI
                     OnActivate?.Invoke();
                 else
                     OnDeactivate?.Invoke();
+                
+                var canvasGroupListeners = GetComponentsInChildren<ICanvasGroupListener>();
+                foreach (var listener in canvasGroupListeners)
+                {
+                    if (enable)
+                        listener.OnActivate();
+                    else
+                        listener.OnDeactivate();
+                }
             }
+            
+   
             
 #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(_canvasGroup);
