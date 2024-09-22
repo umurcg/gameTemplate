@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class FPSDropper : MonoBehaviour
 {
-    public int FPSDropThreshold = 40;
-    public int DropFPS = 30;
     
-    private int frameCount;
-    public float monitoringDuration = 10f;
-    private float monitoringStartTime;
+    public Action<int> OnFPSDropped;
+    public int fpsDropThreshold = 40;
+    public int dropFPS = 30;
+    public float monitoringDuration = 5f;
+    
+    private int _frameCount;
+    private float _monitoringStartTime;
+    
 
 
     private void Start()
@@ -22,23 +25,24 @@ public class FPSDropper : MonoBehaviour
     {
         while (true)
         {
-            frameCount++;
-            float elapsedTime = Time.time - monitoringStartTime;
+            _frameCount++;
+            float elapsedTime = Time.time - _monitoringStartTime;
 
             if (elapsedTime >= monitoringDuration)
             {
-                float averageFps = frameCount / elapsedTime;
+                float averageFps = _frameCount / elapsedTime;
 
-                if (averageFps < FPSDropThreshold)
+                if (averageFps < fpsDropThreshold)
                 {
-                    Application.targetFrameRate = DropFPS;
+                    Application.targetFrameRate = dropFPS;
+                    OnFPSDropped?.Invoke(dropFPS);
                     //No need to monitor anymore
                     Destroy(this);
                     yield break;
                 }
 
-                frameCount = 0;
-                monitoringStartTime = Time.time;
+                _frameCount = 0;
+                _monitoringStartTime = Time.time;
             }
 
             yield return null;
