@@ -1,51 +1,67 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FPSDropper : MonoBehaviour
+namespace AutoQualitySetter
 {
-    
-    public Action<int> OnFPSDropped;
-    public int fpsDropThreshold = 40;
-    public int dropFPS = 30;
-    public float monitoringDuration = 5f;
-    
-    private int _frameCount;
-    private float _monitoringStartTime;
-    
-
-
-    private void Start()
+    public class FPSDropper : MonoBehaviour
     {
-        StartCoroutine(MonitorFPS());
-    }
+    
+        public Action<int> OnFPSDropped;
+        public int fpsDropThreshold = 40;
+        public int dropFPS = 30;
+        public float monitoringDuration = 5f;
+        public bool saveSettings = true;
+        private int _frameCount;
+        private float _monitoringStartTime;
 
-    IEnumerator MonitorFPS()
-    {
-        while (true)
+        private bool IsDropped
         {
-            _frameCount++;
-            float elapsedTime = Time.time - _monitoringStartTime;
-
-            if (elapsedTime >= monitoringDuration)
+            get=> saveSettings && PlayerPrefs.GetInt("FpsIsDropped",0)==1;
+            set
             {
-                float averageFps = _frameCount / elapsedTime;
+                if(saveSettings) PlayerPrefs.SetInt("FpsIsDropped", value ? 1 : 0);
+            }
+        }
 
-                if (averageFps < fpsDropThreshold)
+
+        private void Start()
+        {
+            if (IsDropped)
+            {
+                Application.targetFrameRate = dropFPS;
+                return;
+            }
+            StartCoroutine(MonitorFPS());
+        }
+
+        IEnumerator MonitorFPS()
+        {
+            while (true)
+            {
+                _frameCount++;
+                float elapsedTime = Time.time - _monitoringStartTime;
+
+                if (elapsedTime >= monitoringDuration)
                 {
-                    Application.targetFrameRate = dropFPS;
-                    OnFPSDropped?.Invoke(dropFPS);
-                    //No need to monitor anymore
-                    Destroy(this);
-                    yield break;
+                    float averageFps = _frameCount / elapsedTime;
+
+                    if (averageFps < fpsDropThreshold)
+                    {
+                        Application.targetFrameRate = dropFPS;
+                        OnFPSDropped?.Invoke(dropFPS);
+                        IsDropped = true;
+                        //No need to monitor anymore
+                        Destroy(this);
+                        yield break;
+                    }
+
+                    _frameCount = 0;
+                    _monitoringStartTime = Time.time;
                 }
 
-                _frameCount = 0;
-                _monitoringStartTime = Time.time;
+                yield return null;
             }
-
-            yield return null;
         }
     }
 }
