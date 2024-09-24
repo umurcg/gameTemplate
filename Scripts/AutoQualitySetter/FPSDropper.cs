@@ -30,6 +30,7 @@ namespace AutoQualitySetter
             if (IsDropped)
             {
                 Application.targetFrameRate = dropFPS;
+                OnFPSDropped?.Invoke(dropFPS);
                 return;
             }
             StartCoroutine(MonitorFPS());
