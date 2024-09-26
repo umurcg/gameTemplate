@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using UnityEngine;
 
 public abstract class SettingsManagerBase<T> : ScriptableObject where T : SettingsManagerBase<T>

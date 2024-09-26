@@ -1,6 +1,7 @@
 
 using Core;
 using Lean.Touch;
+using Managers;
 using UnityEngine;
 using UnityEngine.Events;
 
