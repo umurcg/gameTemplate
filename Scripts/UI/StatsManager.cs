@@ -11,6 +11,7 @@ namespace UI
     {
         private Text _text;
         private IStats[] _allStats;
+        private Button debugSwitchButton;
 
         public IEnumerator Start()
         {
@@ -35,6 +36,32 @@ namespace UI
                 _text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
                 _text.fontSize = 9;
                 _text.raycastTarget = false;
+            }
+
+            debugSwitchButton = GetComponentInChildren<Button>();
+            if (debugSwitchButton == null)
+            {
+                //Create button
+                var buttonRectTransform =  new GameObject("DebugSwitchButton").AddComponent<RectTransform>();
+                buttonRectTransform.SetParent(transform);
+                buttonRectTransform.transform.localScale = Vector3.one;
+                
+                var image=buttonRectTransform.gameObject.AddComponent<Image>();
+                image.color = new Color(0, 0, 0, 0);
+                
+                debugSwitchButton = buttonRectTransform.gameObject.AddComponent<Button>();
+                debugSwitchButton.transform.SetParent(transform);
+                //Set button position to bottom right of screen and set its size to .05 of viewport
+                 debugSwitchButton.GetComponent<RectTransform>();
+                buttonRectTransform.anchorMin = new Vector2(1, 0);
+                buttonRectTransform.anchorMax = new Vector2(1, 0);
+                float width = Screen.width * .05f;
+                buttonRectTransform.sizeDelta = new Vector2(width, width);
+                buttonRectTransform.anchoredPosition = new Vector2(-width/2, width/2);
+                
+                debugSwitchButton.transition = Selectable.Transition.ColorTint;
+                debugSwitchButton.targetGraphic = image;
+                
             }
             
             _allStats = FindObjectsOfType<MonoBehaviour>().OfType<IStats>().ToArray();

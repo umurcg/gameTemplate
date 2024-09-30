@@ -364,7 +364,7 @@ namespace Managers
             stats += "Level Manager Design Mode: " + InDesignMode + "\n";
             if (ActiveLevelData)
             {
-                stats += "Active Level: " + ActiveLevelData.levelName + "\n";
+                stats += "Active Level: " + ActiveLevelData.levelName;
             }
             return stats;
         }

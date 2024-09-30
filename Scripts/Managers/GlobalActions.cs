@@ -1,10 +1,8 @@
 ﻿using System;
-using Core.Interfaces;
-using Helpers;
 
 namespace Managers
 {
-    public class GlobalActions
+    public static class GlobalActions
     {
         public static Action OnGameStarted;
         public static Action OnGameEnded;
