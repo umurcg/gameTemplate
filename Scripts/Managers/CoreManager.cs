@@ -238,7 +238,9 @@ namespace Managers
         {
             var versionStats = "v " + Application.version;
             var gamePlayStats = "Game Started: " + IsGameStarted;
-            return versionStats + "\n" + gamePlayStats;
+            var level = "Level: " + Level;
+            var money = "Money: " + GameMoney;
+            return versionStats + "\n" + gamePlayStats + "\n" + level + "\n" + money;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Core.Interfaces;
 using Helpers;
 using ScriptableObjects;
 #if ODIN_INSPECTOR
@@ -12,7 +13,7 @@ using Random = UnityEngine.Random;
 
 namespace Managers
 {
-    public class LevelManager : Singleton<LevelManager>
+    public class LevelManager : Singleton<LevelManager>, IStats
     {
         public enum LoadType
         {
@@ -354,6 +355,18 @@ namespace Managers
             #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(this);
             #endif
+        }
+
+        public string GetStats()
+        {
+            string stats = "";
+            stats += "Is Level Loaded: " + LevelIsLoaded + "\n";
+            stats += "Level Manager Design Mode: " + InDesignMode + "\n";
+            if (ActiveLevelData)
+            {
+                stats += "Active Level: " + ActiveLevelData.levelName + "\n";
+            }
+            return stats;
         }
     }
 }
