@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/LevelData", order = 1),Serializable]
+    [CreateAssetMenu(fileName = "Data", menuName = "Reboot/LevelData", order = 1),Serializable]
     public class LevelData : ScriptableObject
     {
         public string levelName=> name;
