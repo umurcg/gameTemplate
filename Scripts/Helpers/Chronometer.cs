@@ -7,21 +7,32 @@ namespace Helpers
 {
     public class Chronometer : MonoBehaviour, IStats
     {
-        
-        [SerializeField] private bool runOnGameplay = true;
+        [SerializeField] private Modes mode;
         [SerializeField] private float timer;
+
+        private enum Modes
+        {
+            Normal,
+            LevelTime,
+            TotalPlayTime
+        }
 
         private bool _isActive;
 
         private void Start()
         {
-            if (runOnGameplay)
+            if (mode == Modes.LevelTime)
             {
-                
                 GlobalActions.OnGameStarted += StartChronometer;
                 GlobalActions.OnGameWin += PauseChronometer;
                 GlobalActions.OnGameLost += PauseChronometer;
                 GlobalActions.OnNewLevelLoaded += StopChronometer;
+            }
+            else if (mode == Modes.TotalPlayTime)
+            {
+                GlobalActions.OnGameStarted += StartChronometer;
+                GlobalActions.OnGameWin += PauseChronometer;
+                GlobalActions.OnGameLost += PauseChronometer;
             }
         }
 
@@ -53,8 +64,8 @@ namespace Helpers
         public string GetStats()
         {
             var timeSpan = TimeSpan.FromSeconds(timer);
-            var timeText =
-                $"  {timeSpan.Hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}:{timeSpan.Milliseconds:D3}";
+            var timeText = gameObject.name +
+                           $"  {timeSpan.Hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}:{timeSpan.Milliseconds:D3}";
             return timeText;
         }
     }
