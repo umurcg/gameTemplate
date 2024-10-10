@@ -21,12 +21,14 @@ namespace Managers
         {
             if (IsInputActive) return;
             BindEvents();
+            IsInputActive = true;
         }
 
         protected virtual void DeactivateInput()
         {
             if (!IsInputActive) return;
             UnbindEvents();
+            IsInputActive = false;
         }
 
         protected abstract void BindEvents();
