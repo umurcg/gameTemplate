@@ -62,6 +62,7 @@ namespace Managers
                     yield return null;
                     GlobalActions.OnLevelChanged += StartGameNextFrame;
                     GlobalActions.OnGameRestarted += StartGameNextFrame;
+                    StartGameNextFrame();
                 }
             }
         }
