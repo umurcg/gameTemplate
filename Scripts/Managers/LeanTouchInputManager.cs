@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Managers
 {
-    [RequireComponent(typeof(LeanTouch))]
     public abstract class LeanTouchInputManager : MonoBehaviour, IStats
     {
         public bool IsInputActive { get; protected set; }
