@@ -1,6 +1,6 @@
 using Managers;
 using UnityEngine;
-// using Coffee.UIExtensions;
+using Coffee.UIExtensions;
 
 namespace CurrencySystem
 {
@@ -11,11 +11,11 @@ namespace CurrencySystem
         // Start is called before the first frame update
         void Start()
         {
-            // var attractors=GetComponentsInChildren<UIParticleAttractor>();
-            // foreach (var attractor in attractors)
-            // {
-            //     attractor.onAttracted.AddListener(RegisterCurrency);
-            // }
+            var attractors=GetComponentsInChildren<UIParticleAttractor>();
+            foreach (var attractor in attractors)
+            {
+                attractor.onAttracted.AddListener(RegisterCurrency);
+            }
         
         }
 
