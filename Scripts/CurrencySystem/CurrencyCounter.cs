@@ -21,10 +21,8 @@ namespace CurrencySystem
         }
         
         public CounterTypes counterType=CounterTypes.Registered;
-
         
-        
-        void OnEnable()
+        protected void OnEnable()
         {
             _currency = CurrencyData.Instance.GetCurrency(currency.value);
             if (currencyIcon) currencyIcon.sprite = _currency.icon;
@@ -47,7 +45,7 @@ namespace CurrencySystem
             UpdateCurrencyText();
         }
 
-        private void UpdateCurrencyText()
+        protected void UpdateCurrencyText()
         {
             float value = 0;
             switch (counterType)
@@ -66,7 +64,7 @@ namespace CurrencySystem
             textController.SetText(value);
         }
 
-        private void OnDisable()
+        protected void OnDisable()
         {
             if (_currency == null) return;
             

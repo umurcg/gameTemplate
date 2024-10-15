@@ -17,7 +17,8 @@ namespace ScriptableObjects
                     _instance = Resources.Load<T>(typeof(T).Name);
                     if (_instance == null)
                     {
-                        Debug.LogError($"Failed to load settings for {typeof(T).Name}. Please ensure you have created a settings asset.");
+                        Debug.LogWarning($"Failed to load settings for {typeof(T).Name}. Please ensure you have created a settings asset. To handle the issue, a new instance of the settings will be created.");
+                        _instance = CreateInstance();
                     }
                     else
                     {
@@ -28,6 +29,12 @@ namespace ScriptableObjects
             }
         }
 
+        protected static T CreateInstance()
+        {
+            _instance = CreateInstance<T>();
+            return _instance;
+        }
+        
         protected abstract string RemoteConfigKey { get; }
 
         protected virtual void LoadSettings()

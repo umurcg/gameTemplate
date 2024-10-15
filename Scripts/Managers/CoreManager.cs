@@ -1,5 +1,6 @@
 using System.Collections;
 using Core.Interfaces;
+using CurrencySystem;
 using Helpers;
 using Lean.Touch;
 using UnityEngine;
@@ -11,7 +12,6 @@ namespace Managers
     public sealed class CoreManager : Singleton<CoreManager>, IStats
     {
         private const string LevelSaveKey = "GameLevel";
-        private const string MoneySaveKey = "GameMoney";
 
         [SerializeField] private bool saveEnabled = true;
 
@@ -25,10 +25,31 @@ namespace Managers
 
         public float GameMoney
         {
-            get => PlayerPrefs.GetFloat(MoneySaveKey, 0);
-            private set => PlayerPrefs.SetFloat(MoneySaveKey, value);
+            get
+            {
+                var currency = GetMainCurrency();
+                if (currency == null)
+                {
+                    Debug.LogError("Currency is not found in the currency data");
+                    return 0;
+                }
+
+                return currency.Value;
+            }
+            private set
+            {
+                var currency = GetMainCurrency();
+                if (currency == null)
+                {
+                    Debug.LogError("Currency is not found in the currency data");
+                    return;
+                }
+
+                currency.Earn(value - currency.Value);
+            }
         }
 
+   
         public int Level
         {
             get => PlayerPrefs.GetInt(LevelSaveKey, 0);
@@ -234,6 +255,22 @@ namespace Managers
             IsGameStarted = true;
             GlobalActions.OnGameRevived?.Invoke();
         }
+        
+        public Currency GetMainCurrency()
+        {
+            var currencyData = CurrencyData.Instance;
+            if(currencyData == null) return null;
+            if (currencyData.currencies==null || currencyData.currencies.Length == 0)
+            {
+                Debug.LogWarning("There is no currency in the currency data, Creating a currency in the currency data with name 'MainMoney'");
+                currencyData.currencies = new Currency[1];
+                currencyData.currencies[0] = new Currency();
+                currencyData.currencies[0].name = "MainMoney";
+            }
+            
+            return currencyData.currencies[0];
+        }
+
 
         public string GetStats()
         {
