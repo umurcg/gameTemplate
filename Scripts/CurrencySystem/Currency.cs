@@ -66,5 +66,11 @@ namespace CurrencySystem
             NonRegisteredValue = value;
             OnNonRegisteredValueChanged?.Invoke(value);
         }
+        
+        public void ClearNonRegisteredValue()
+        {
+            NonRegisteredValue = 0;
+            OnNonRegisteredValueChanged?.Invoke(0);
+        }
     }
 }
