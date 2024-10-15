@@ -10,7 +10,6 @@ namespace Managers
         {
             GlobalActions.Reset();
             
-            
             var gameStartEvent=FindGameEvent("OnGameStarted");
             GlobalActions.OnGameStarted += gameStartEvent.Invoke;
             
