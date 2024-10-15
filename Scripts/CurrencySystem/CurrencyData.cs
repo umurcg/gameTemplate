@@ -26,9 +26,10 @@ namespace CurrencySystem
         public string[] GetCurrencyNames()
         {
             var names = new string[currencies.Length];
-            foreach (var currency in currencies)
+            for (int index = 0; index < currencies.Length; index++)
             {
-                names[currencies.Length] = currency.name;
+                Currency currency = currencies[index];
+                names[index] = currency.name;
             }
 
             return names;
