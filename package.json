@@ -1,6 +1,6 @@
 {
   "name": "com.reboot.core",
-  "version": "0.1.39",
+  "version": "0.2.0",
   "displayName": "Core",
   "description": "Core package of the template",
   "unity": "2021.3",
