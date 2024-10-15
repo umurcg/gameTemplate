@@ -26,16 +26,16 @@ namespace CurrencySystem.Editor
             EditorGUI.BeginProperty(position, label, property);
 
             // Find the typeName property
-            SerializedProperty typeNameProp = property.FindPropertyRelative("typeName");
+            SerializedProperty currencyProperty = property.FindPropertyRelative("value");
 
-            // Get the current type name and find its index in the list
-            string currentTypeName = typeNameProp.stringValue;
+            // Get the current type name and find its index in the list 
+            string currentTypeName = currencyProperty.stringValue;
             int currentIndex = Array.IndexOf(typeNames, currentTypeName);
             if (currentIndex == -1) currentIndex = 0; // Default to first item if not found
 
             // Draw the dropdown
             currentIndex = EditorGUI.Popup(position, label.text, currentIndex, typeNames);
-            typeNameProp.stringValue = typeNames[currentIndex];
+            currencyProperty.stringValue = typeNames[currentIndex];
 
             EditorGUI.EndProperty();
         }

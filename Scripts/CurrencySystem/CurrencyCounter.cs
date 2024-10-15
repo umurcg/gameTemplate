@@ -10,7 +10,6 @@ namespace CurrencySystem
         [SerializeField] private Image currencyIcon;
         
         public CurrencyEnum currency;
-
         private Currency _currency;
         
         public enum CounterTypes
