@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.ExtensionMethods
 {
     public static class GameObjectExtensions
     {
@@ -24,6 +24,18 @@ namespace Helpers
             }
 
             return component;
+        }
+
+
+        public static T GetCachedComponent<T>(this GameObject gameObject) where T : Component
+        {
+            return ComponentCache.GetComponentCached<T>(gameObject);
+        }
+
+        public static T GetCachedComponentInChildren<T>(this GameObject gameObject, bool includeInactive = false)
+            where T : Component
+        {
+            return ComponentCache.GetComponentCachedInChildren<T>(gameObject, includeInactive);
         }
     }
 }

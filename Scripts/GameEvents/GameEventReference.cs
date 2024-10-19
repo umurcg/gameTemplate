@@ -1,7 +1,6 @@
 using System;
-using UnityEngine;
 
-namespace GameEvents
+namespace CorePublic.GameEvents
 {
     [Serializable]
     public class GameEventReference

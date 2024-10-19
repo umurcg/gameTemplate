@@ -1,9 +1,8 @@
-﻿using Managers;
+﻿using CorePublic.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-namespace UI
+namespace CorePublic.UI
 {
     /// <summary>
     ///     Used for switching between levels easily. Do not use this approach to load new levels it is only for debug purposes

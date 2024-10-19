@@ -1,6 +1,4 @@
 using System;
-using Core.Interfaces;
-using Helpers;
 
 namespace Puzzle
 {

@@ -1,8 +1,7 @@
-
-using Core.Enums;
+using CorePublic.Enums;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class TargetFollower : MonoBehaviour
     {

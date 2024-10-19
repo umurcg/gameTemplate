@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.LevelDesignComponents
 {
     [AddComponentMenu("*Reboot/LevelDesign/Hollow Box")]
     public class HollowBox : MonoBehaviour

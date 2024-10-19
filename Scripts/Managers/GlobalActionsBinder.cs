@@ -1,7 +1,7 @@
-using GameEvents;
+using CorePublic.GameEvents;
 using UnityEngine;
 
-namespace Managers
+namespace CorePublic.Managers
 {
     public class GlobalActionsBinder
     {

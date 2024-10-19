@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Core.Editor
+namespace CorePublic.Editor
 {
     public class TextureConvertorASTC : AssetPostprocessor
     {

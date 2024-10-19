@@ -1,7 +1,6 @@
-﻿using Core.UI;
-using Managers;
+﻿using CorePublic.Managers;
 
-namespace UI
+namespace CorePublic.UI
 {
     /// <summary>
     ///     Retrieve current level from game controller and assign it to text component of gameObject

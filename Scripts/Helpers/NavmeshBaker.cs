@@ -1,11 +1,9 @@
+using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
-    using System;
-    using Managers;
     // using Unity.AI.Navigation;
-    using UnityEngine;
-    
+
 
     // [RequireComponent(typeof(NavMeshSurface))]
     public class NavmeshBaker : MonoBehaviour

@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.LevelDesignComponents
 {
     [AddComponentMenu("*Reboot/LevelDesign/Dynamic Obstacle")]
     public class DynamicObstacle : MonoBehaviour

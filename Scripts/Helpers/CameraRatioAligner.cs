@@ -1,8 +1,8 @@
 using Cinemachine;
-using Managers;
+using CorePublic.Managers;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class CameraRatioAligner : MonoBehaviour
     {

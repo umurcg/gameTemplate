@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AutoQualitySetter
+namespace CorePublic.Helpers
 {
     public class FPSSetter : MonoBehaviour
     {

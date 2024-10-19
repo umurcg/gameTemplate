@@ -1,6 +1,6 @@
-using Core.Interfaces;
+using CorePublic.Interfaces;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     
     public class FPSStats: FPSCounter, IStats

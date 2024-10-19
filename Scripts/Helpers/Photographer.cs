@@ -1,11 +1,10 @@
 
-﻿#if UNITY_EDITOR
-using UnityEditor;
-#endif
+﻿
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class Photographer : MonoBehaviour
     {

@@ -1,8 +1,8 @@
-using UI;
+using CorePublic.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CurrencySystem
+namespace CorePublic.CurrencySystem
 {
     public class CurrencyCounter : MonoBehaviour
     {

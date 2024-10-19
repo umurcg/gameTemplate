@@ -1,11 +1,9 @@
-using ScriptableObjects;
-using UnityEditor;
+using CorePublic.ScriptableObjects;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace Core.Editor
+namespace CorePublic.Editor
 {
     public class RebootBuildPreProcessor : IPreprocessBuildWithReport
     {

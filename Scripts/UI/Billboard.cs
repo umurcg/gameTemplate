@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Core.UI
+namespace CorePublic.UI
 {
     public class Billboard: MonoBehaviour
     {

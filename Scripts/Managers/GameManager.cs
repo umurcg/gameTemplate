@@ -1,9 +1,6 @@
-﻿using System;
-using Helpers;
-using Managers;
-using UnityEngine;
+﻿using CorePublic.Helpers;
 
-namespace Core.Managers
+namespace CorePublic.Managers
 {
     public class GameManager : Singleton<GameManager>
     {

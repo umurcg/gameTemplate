@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace CurrencySystem
+namespace CorePublic.CurrencySystem
 {
     [Serializable]
     public class Currency

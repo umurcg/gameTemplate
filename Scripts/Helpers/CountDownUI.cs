@@ -1,9 +1,8 @@
-using Core.UI;
-using UI;
+using CorePublic.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class CountDownUI : MonoBehaviour
     {

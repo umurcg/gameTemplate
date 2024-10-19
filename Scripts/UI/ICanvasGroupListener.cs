@@ -1,4 +1,4 @@
-namespace UI
+namespace CorePublic.UI
 {
     public interface ICanvasGroupListener
     {

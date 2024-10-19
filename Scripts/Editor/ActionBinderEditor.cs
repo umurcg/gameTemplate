@@ -1,86 +1,89 @@
+using System.Reflection;
+using CorePublic.Helpers;
 using UnityEditor;
 using UnityEngine;
-using System;
-using System.Reflection;
 
-[CustomEditor(typeof(ActionBinder))]
-public class ActionBinderEditor : Editor
+namespace CorePublic.Editor
 {
-    private SerializedProperty _unityEvents;
-    private SerializedProperty _unityEventsFloat;
-    private SerializedProperty _unityEventsString;
-    private SerializedProperty _unityEventsInt;
-
-    private void OnEnable()
+    [CustomEditor(typeof(ActionBinder))]
+    public class ActionBinderEditor : UnityEditor.Editor
     {
-        _unityEvents = serializedObject.FindProperty("_unityEvents");
-        _unityEventsFloat = serializedObject.FindProperty("_unityEventsFloat");
-        _unityEventsString = serializedObject.FindProperty("_unityEventsString");
-        _unityEventsInt = serializedObject.FindProperty("_unityEventsInt");
+        private SerializedProperty _unityEvents;
+        private SerializedProperty _unityEventsFloat;
+        private SerializedProperty _unityEventsString;
+        private SerializedProperty _unityEventsInt;
 
-        BindActionsToEvents();
-    }
-
-    public override void OnInspectorGUI()
-    {
-        serializedObject.Update();
-
-        EditorGUILayout.PropertyField(_unityEvents, true);
-        EditorGUILayout.PropertyField(_unityEventsFloat, true);
-        EditorGUILayout.PropertyField(_unityEventsString, true);
-        EditorGUILayout.PropertyField(_unityEventsInt, true);
-
-        serializedObject.ApplyModifiedProperties();
-    }
-
-    private void BindActionsToEvents()
-    {
-        var actionBinder = (ActionBinder)target;
-        var components = actionBinder.GetComponents<MonoBehaviour>();
-
-        foreach (var component in components)
+        private void OnEnable()
         {
-            var type = component.GetType();
-            var methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            _unityEvents = serializedObject.FindProperty("_unityEvents");
+            _unityEventsFloat = serializedObject.FindProperty("_unityEventsFloat");
+            _unityEventsString = serializedObject.FindProperty("_unityEventsString");
+            _unityEventsInt = serializedObject.FindProperty("_unityEventsInt");
 
-            foreach (var method in methods)
+            BindActionsToEvents();
+        }
+
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+
+            EditorGUILayout.PropertyField(_unityEvents, true);
+            EditorGUILayout.PropertyField(_unityEventsFloat, true);
+            EditorGUILayout.PropertyField(_unityEventsString, true);
+            EditorGUILayout.PropertyField(_unityEventsInt, true);
+
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        private void BindActionsToEvents()
+        {
+            var actionBinder = (ActionBinder)target;
+            var components = actionBinder.GetComponents<MonoBehaviour>();
+
+            foreach (var component in components)
             {
-                var parameters = method.GetParameters();
+                var type = component.GetType();
+                var methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
-                if (parameters.Length == 0 && method.ReturnType == typeof(void))
+                foreach (var method in methods)
                 {
-                    if (!_unityEvents.arraySize.Equals(method.Name))
-                    {
-                        _unityEvents.InsertArrayElementAtIndex(_unityEvents.arraySize);
-                        _unityEvents.GetArrayElementAtIndex(_unityEvents.arraySize - 1).stringValue = method.Name;
-                    }
-                }
-                else if (parameters.Length == 1 && method.ReturnType == typeof(void))
-                {
-                    var parameterType = parameters[0].ParameterType;
+                    var parameters = method.GetParameters();
 
-                    if (parameterType == typeof(float))
+                    if (parameters.Length == 0 && method.ReturnType == typeof(void))
                     {
-                        if (!_unityEventsFloat.arraySize.Equals(method.Name))
+                        if (!_unityEvents.arraySize.Equals(method.Name))
                         {
-                            _unityEventsFloat.InsertArrayElementAtIndex(_unityEventsFloat.arraySize);
-                            _unityEventsFloat.GetArrayElementAtIndex(_unityEventsFloat.arraySize - 1).stringValue = method.Name;
+                            _unityEvents.InsertArrayElementAtIndex(_unityEvents.arraySize);
+                            _unityEvents.GetArrayElementAtIndex(_unityEvents.arraySize - 1).stringValue = method.Name;
                         }
                     }
-                    else if (parameterType == typeof(string))
+                    else if (parameters.Length == 1 && method.ReturnType == typeof(void))
                     {
-                        if (!_unityEventsString.arraySize.Equals(method.Name))
+                        var parameterType = parameters[0].ParameterType;
+
+                        if (parameterType == typeof(float))
                         {
-                            _unityEventsString.InsertArrayElementAtIndex(_unityEventsString.arraySize);
-                            _unityEventsString.GetArrayElementAtIndex(_unityEventsString.arraySize - 1).stringValue = method.Name;
+                            if (!_unityEventsFloat.arraySize.Equals(method.Name))
+                            {
+                                _unityEventsFloat.InsertArrayElementAtIndex(_unityEventsFloat.arraySize);
+                                _unityEventsFloat.GetArrayElementAtIndex(_unityEventsFloat.arraySize - 1).stringValue = method.Name;
+                            }
                         }
-                    }
-                    else if (parameterType == typeof(int))
-                    {
-                        if (!_unityEventsInt.arraySize.Equals(method.Name))
+                        else if (parameterType == typeof(string))
                         {
-                            _unityEventsInt.InsertArrayElementAtIndex(_unityEventsInt.arraySize);
-                            _unityEventsInt.GetArrayElementAtIndex(_unityEventsInt.arraySize - 1).stringValue = method.Name;
+                            if (!_unityEventsString.arraySize.Equals(method.Name))
+                            {
+                                _unityEventsString.InsertArrayElementAtIndex(_unityEventsString.arraySize);
+                                _unityEventsString.GetArrayElementAtIndex(_unityEventsString.arraySize - 1).stringValue = method.Name;
+                            }
+                        }
+                        else if (parameterType == typeof(int))
+                        {
+                            if (!_unityEventsInt.arraySize.Equals(method.Name))
+                            {
+                                _unityEventsInt.InsertArrayElementAtIndex(_unityEventsInt.arraySize);
+                                _unityEventsInt.GetArrayElementAtIndex(_unityEventsInt.arraySize - 1).stringValue = method.Name;
+                            }
                         }
                     }
                 }

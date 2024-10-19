@@ -4,7 +4,7 @@ using UnityEditor.Callbacks;
 using UnityEditor.iOS.Xcode;
 using UnityEngine;
 
-namespace RebootTemplate.Editor
+namespace CorePublic.Editor
 {
     public class BuildPostProcessor {
 

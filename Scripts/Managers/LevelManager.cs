@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Core.Interfaces;
-using Helpers;
-using ScriptableObjects;
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-#endif
-using Unity.RemoteConfig;
+using CorePublic.Classes;
+using CorePublic.Helpers;
+using CorePublic.Interfaces;
+using CorePublic.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#endif
 
-namespace Managers
+namespace CorePublic.Managers
 {
     public class LevelManager : Singleton<LevelManager>, IStats
     {
@@ -147,8 +147,8 @@ namespace Managers
 
         private void RetrieveRemoteFunnel()
         {
-            if (!ConfigManager.appConfig.HasKey("levelFunnel")) return;
-            string levelKeysJson = ConfigManager.appConfig.GetJson("levelFunnel");
+            if (RemoteConfig.Instance==null) return;
+            string levelKeysJson = RemoteConfig.Instance.GetJson("levelFunnel");
             var remote = JsonUtility.FromJson<LevelRemoteWrapper>(levelKeysJson);
 
             var key_levels = new Dictionary<string, LevelData>();

@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     [RequireComponent(typeof(Animator))]
     public class AnimatorSetter : MonoBehaviour

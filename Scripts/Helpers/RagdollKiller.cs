@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class RagdollKiller : MonoBehaviour
     {

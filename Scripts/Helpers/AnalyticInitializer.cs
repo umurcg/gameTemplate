@@ -1,5 +1,5 @@
 using System.Collections;
-using Core.Interfaces;
+using CorePublic.Interfaces;
 using UnityEngine;
 
 namespace CorePublic.Helpers

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class OnCollision : MonoBehaviour
     {

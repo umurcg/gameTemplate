@@ -1,9 +1,6 @@
-using System;
-using Core.Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class FPSCounter: MonoBehaviour
     {

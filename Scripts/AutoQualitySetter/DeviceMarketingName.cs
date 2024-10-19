@@ -1,6 +1,9 @@
-[System.Serializable]
-public class DeviceMarketingName
+namespace CorePublic.AutoQualitySetter
 {
-    public string deviceName;
-    public string marketingName;
+    [System.Serializable]
+    public class DeviceMarketingName
+    {
+        public string deviceName;
+        public string marketingName;
+    }
 }

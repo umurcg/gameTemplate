@@ -1,22 +1,24 @@
 using System;
-using Managers;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #endif
 
-[Serializable]public class CameraStatus
+namespace CorePublic.Managers
 {
-    #if ODIN_INSPECTOR
-    [ValueDropdown("GetCameraStatuses")]
-    #endif
-    public string status;
-        
-    public string[] GetCameraStatuses()
+    [Serializable]public class CameraStatus
     {
-        CameraManager cameraManager = CameraManager.Instance;
-        if (!cameraManager)
-            return null;
+#if ODIN_INSPECTOR
+    [ValueDropdown("GetCameraStatuses")]
+#endif
+        public string status;
+        
+        public string[] GetCameraStatuses()
+        {
+            CameraManager cameraManager = CameraManager.Instance;
+            if (!cameraManager)
+                return null;
 
-        return cameraManager.GetCameraStatuses();
+            return cameraManager.GetCameraStatuses();
+        }
     }
 }

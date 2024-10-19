@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public static class PlayerPrefsX
     {

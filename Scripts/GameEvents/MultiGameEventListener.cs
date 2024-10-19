@@ -2,11 +2,11 @@
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #endif
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections;
 
-namespace GameEvents
+namespace CorePublic.GameEvents
 {
     public class MultiGameEventListener : MonoBehaviour, IGameEventListener
     {

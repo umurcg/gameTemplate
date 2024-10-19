@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Cinemachine;
-using Helpers;
+using CorePublic.Helpers;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
@@ -9,7 +8,7 @@ using Sirenix.Utilities;
 #endif
 
 
-namespace Managers
+namespace CorePublic.Managers
 {
     public class CameraManager : Singleton<CameraManager>
     {

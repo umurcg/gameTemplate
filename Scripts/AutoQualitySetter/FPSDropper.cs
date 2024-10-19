@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace AutoQualitySetter
+namespace CorePublic.AutoQualitySetter
 {
     public class FPSDropper : MonoBehaviour
     {

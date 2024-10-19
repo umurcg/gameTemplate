@@ -1,7 +1,7 @@
-
+using CorePublic.Helpers;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.LevelDesignComponents
 {
     [RequireComponent(typeof(BoxCollider)), AddComponentMenu("*Reboot/LevelDesign/Box Random Object Spawner")]
     public class BoxRandomObjectSpawner : MonoBehaviour

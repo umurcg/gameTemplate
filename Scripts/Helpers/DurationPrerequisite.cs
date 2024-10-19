@@ -1,7 +1,7 @@
-using Core.Interfaces;
+using CorePublic.Interfaces;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class DurationPrerequisite: MonoBehaviour, IPrerequisite
     {

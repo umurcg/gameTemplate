@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Classes
+namespace CorePublic.Classes
 {
     [Serializable]public class Tags
     {

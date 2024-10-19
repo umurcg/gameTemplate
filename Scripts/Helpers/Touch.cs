@@ -1,11 +1,8 @@
-
-using Core;
+using CorePublic.Managers;
 using Lean.Touch;
-using Managers;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public abstract class Touch : MonoBehaviour
     {

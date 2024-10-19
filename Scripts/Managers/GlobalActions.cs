@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Managers
+namespace CorePublic.Managers
 {
     public static class GlobalActions
     {

@@ -1,59 +1,60 @@
-using System;
 using System.Collections;
-using Core.Interfaces;
-using Helpers;
+using CorePublic.Classes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+namespace CorePublic.Helpers
 {
-    public PrerequisiteReference[] Prerequisites;
-    public bool loadOnStart;
-    public int sceneIndex;
-    public bool loadAsync;
-    
-    public void Start()
+    public class SceneLoader : MonoBehaviour
     {
-        if (loadOnStart)
+        public PrerequisiteReference[] Prerequisites;
+        public bool loadOnStart;
+        public int sceneIndex;
+        public bool loadAsync;
+    
+        public void Start()
         {
-            StartCoroutine(LoadScene());
+            if (loadOnStart)
+            {
+                StartCoroutine(LoadScene());
+            }
         }
-    }
 
-    private IEnumerator LoadScene()
-    {
-        //Wait for all prerequisites to be met
-        while (!IsReady()) yield return null;
+        private IEnumerator LoadScene()
+        {
+            //Wait for all prerequisites to be met
+            while (!IsReady()) yield return null;
         
-        if (loadAsync)
-        {
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            var asyncOperation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
-            while (!asyncOperation.isDone) yield return null;
-            SceneManager.UnloadSceneAsync(currentSceneIndex);
+            if (loadAsync)
+            {
+                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                var asyncOperation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
+                while (!asyncOperation.isDone) yield return null;
+                SceneManager.UnloadSceneAsync(currentSceneIndex);
             
-        }else
-        {
-            SceneManager.LoadScene(sceneIndex);
+            }else
+            {
+                SceneManager.LoadScene(sceneIndex);
+            }
         }
-    }
     
-    public void LoadScene(int index)
-    {
-        if(!IsReady()) return;
-        SceneManager.LoadScene(index-1);
-    }
+        public void LoadScene(int index)
+        {
+            if(!IsReady()) return;
+            SceneManager.LoadScene(index-1);
+        }
     
  
-    private bool IsReady()
-    {
-        foreach (PrerequisiteReference prerequisiteRef in Prerequisites)
+        private bool IsReady()
         {
-            var prerequisite = prerequisiteRef.Prerequisite;
-            if (prerequisite == null) continue;
-            if (!prerequisite.IsMet()) return false;
+            foreach (PrerequisiteReference prerequisiteRef in Prerequisites)
+            {
+                var prerequisite = prerequisiteRef.Prerequisite;
+                if (prerequisite == null) continue;
+                if (!prerequisite.IsMet()) return false;
+            }
+            return true;
         }
-        return true;
-    }
 
+    }
 }

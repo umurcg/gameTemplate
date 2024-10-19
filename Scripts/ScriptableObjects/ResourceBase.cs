@@ -1,8 +1,8 @@
 using System;
-using Managers;
+using CorePublic.Managers;
 using UnityEngine;
 
-namespace ScriptableObjects
+namespace CorePublic.ScriptableObjects
 {
     public abstract class ResourceBase<T> : ScriptableObject where T : ResourceBase<T>
     {

@@ -1,12 +1,10 @@
 using System.Collections;
-using Core.Interfaces;
-using CurrencySystem;
-using Helpers;
-using Lean.Touch;
+using CorePublic.CurrencySystem;
+using CorePublic.Helpers;
+using CorePublic.Interfaces;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace Managers
+namespace CorePublic.Managers
 {
     [AddComponentMenu("*Reboot/Managers/Core Manager")]
     public sealed class CoreManager : Singleton<CoreManager>, IStats

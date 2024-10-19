@@ -1,8 +1,6 @@
-
-using System;
 using UnityEngine;
 
-namespace GameEvents
+namespace CorePublic.GameEvents
 {
     public class GameEventObjectActivator : MonoBehaviour, IGameEventListener
     {

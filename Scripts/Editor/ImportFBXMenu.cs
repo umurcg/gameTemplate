@@ -1,31 +1,33 @@
-using UnityEditor;
-using UnityEngine;
 using System.Diagnostics;
 using System.IO;
+using UnityEditor;
+using UnityEngine;
 
-public class ImportFBXMenu : MonoBehaviour
+namespace CorePublic.Editor
 {
-    [MenuItem("Assets/Import FBX with Blender")]
-    private static void ImportFBXWithBlender()
+    public class ImportFBXMenu : MonoBehaviour
     {
-        // Get the selected asset path
-        string assetPath = AssetDatabase.GetAssetPath(Selection.activeObject);
-        if (!assetPath.EndsWith(".fbx"))
+        [MenuItem("Assets/Import FBX with Blender")]
+        private static void ImportFBXWithBlender()
         {
-            EditorUtility.DisplayDialog("Error", "Selected file is not an FBX file.", "OK");
-            return;
-        }
+            // Get the selected asset path
+            string assetPath = AssetDatabase.GetAssetPath(Selection.activeObject);
+            if (!assetPath.EndsWith(".fbx"))
+            {
+                EditorUtility.DisplayDialog("Error", "Selected file is not an FBX file.", "OK");
+                return;
+            }
 
-        // Convert the Unity asset path to a full system path
-        string fullPath = Application.dataPath.Substring(0, Application.dataPath.Length - "Assets".Length) + assetPath;
-        UnityEngine.Debug.Log("Full path to FBX file: " + fullPath);
+            // Convert the Unity asset path to a full system path
+            string fullPath = Application.dataPath.Substring(0, Application.dataPath.Length - "Assets".Length) + assetPath;
+            UnityEngine.Debug.Log("Full path to FBX file: " + fullPath);
 
-        // Define the Blender executable path
-        string blenderPath = "/Applications/Blender.app/Contents/MacOS/Blender"; // Adjust this path if necessary
-        UnityEngine.Debug.Log("Blender path: " + blenderPath);
+            // Define the Blender executable path
+            string blenderPath = "/Applications/Blender.app/Contents/MacOS/Blender"; // Adjust this path if necessary
+            UnityEngine.Debug.Log("Blender path: " + blenderPath);
 
-        // Define the Python script content
-        string pythonScript = $@"
+            // Define the Python script content
+            string pythonScript = $@"
 import bpy
 import sys
 
@@ -61,50 +63,51 @@ bpy.context.preferences.filepaths.file_path = fbx_file_path
 print(f'Set export path to: {{fbx_file_path}}')
 ";
 
-        // Create a temporary Python script file
-        string tempScriptPath = Path.GetTempFileName() + ".py";
-        File.WriteAllText(tempScriptPath, pythonScript);
-        UnityEngine.Debug.Log("Temporary script path: " + tempScriptPath);
+            // Create a temporary Python script file
+            string tempScriptPath = Path.GetTempFileName() + ".py";
+            File.WriteAllText(tempScriptPath, pythonScript);
+            UnityEngine.Debug.Log("Temporary script path: " + tempScriptPath);
 
-        // Create the process start info
-        ProcessStartInfo startInfo = new ProcessStartInfo
-        {
-            FileName = blenderPath,
-            Arguments = $"--python \"{tempScriptPath}\" -- \"{fullPath}\"",
-            UseShellExecute = true,
-            RedirectStandardOutput = false,
-            RedirectStandardError = false,
-            CreateNoWindow = false
-        };
+            // Create the process start info
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = blenderPath,
+                Arguments = $"--python \"{tempScriptPath}\" -- \"{fullPath}\"",
+                UseShellExecute = true,
+                RedirectStandardOutput = false,
+                RedirectStandardError = false,
+                CreateNoWindow = false
+            };
         
 
-        // Start the process
-        Process process = new Process
-        {
-            StartInfo = startInfo,
-            EnableRaisingEvents = true
-        };
+            // Start the process
+            Process process = new Process
+            {
+                StartInfo = startInfo,
+                EnableRaisingEvents = true
+            };
 
-        process.Exited += (sender, args) =>
-        {
-            // Delete the temporary Python script file
-            File.Delete(tempScriptPath);
-            UnityEngine.Debug.Log("Temporary script file deleted.");
+            process.Exited += (sender, args) =>
+            {
+                // Delete the temporary Python script file
+                File.Delete(tempScriptPath);
+                UnityEngine.Debug.Log("Temporary script file deleted.");
 
-            // Refresh the AssetDatabase to reflect the changes
-            AssetDatabase.Refresh();
-        };
+                // Refresh the AssetDatabase to reflect the changes
+                AssetDatabase.Refresh();
+            };
 
-        process.Start();
-        UnityEngine.Debug.Log("Blender process started.");
+            process.Start();
+            UnityEngine.Debug.Log("Blender process started.");
         
-        //Copy full path to clipboard of the system
-        TextEditor te = new TextEditor();
-        te.text = fullPath;
-        te.SelectAll();
-        te.Copy();
-        UnityEngine.Debug.Log("Full path copied to clipboard.");
+            //Copy full path to clipboard of the system
+            TextEditor te = new TextEditor();
+            te.text = fullPath;
+            te.SelectAll();
+            te.Copy();
+            UnityEngine.Debug.Log("Full path copied to clipboard.");
         
         
+        }
     }
 }

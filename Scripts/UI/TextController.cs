@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace CorePublic.UI
 {
     public class TextController : MonoBehaviour
     {

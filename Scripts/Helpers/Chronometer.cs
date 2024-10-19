@@ -1,9 +1,9 @@
 using System;
-using Core.Interfaces;
-using Managers;
+using CorePublic.Interfaces;
+using CorePublic.Managers;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class Chronometer : MonoBehaviour, IStats
     {

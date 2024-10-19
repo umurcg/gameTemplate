@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class MultiCommandPerFrame : MonoBehaviour
     {

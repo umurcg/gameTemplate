@@ -1,7 +1,7 @@
-using ScriptableObjects;
+using CorePublic.ScriptableObjects;
 using UnityEngine;
 
-namespace CurrencySystem
+namespace CorePublic.CurrencySystem
 {
     [CreateAssetMenu(fileName = "CurrencyData", menuName = "Reboot/CurrencyData")]
     public class CurrencyData: ResourceBase<CurrencyData>

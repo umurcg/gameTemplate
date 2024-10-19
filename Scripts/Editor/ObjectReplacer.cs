@@ -1,9 +1,8 @@
-
 using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Core.Editor
+namespace CorePublic.Editor
 {
     public class ObjectReplacer : EditorWindow
     {

@@ -1,8 +1,8 @@
 ﻿using System;
-using Managers;
+using CorePublic.Managers;
 using UnityEngine;
 
-namespace ScriptableObjects
+namespace CorePublic.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "Data", menuName = "Reboot/LevelData", order = 1),Serializable]
     public class LevelData : ScriptableObject

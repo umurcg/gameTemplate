@@ -4,7 +4,7 @@ using Handles = UnityEditor.Handles;
 using HandleUtility = UnityEditor.HandleUtility;
 #endif
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
 	public struct ColorScope : System.IDisposable
 	{

@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace CurrencySystem.Editor
+namespace CorePublic.CurrencySystem.Editor
 {
     [CustomPropertyDrawer(typeof(CurrencyEnum))]
     public class CurrencyEnumEditor : PropertyDrawer

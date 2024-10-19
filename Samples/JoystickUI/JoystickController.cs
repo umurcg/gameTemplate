@@ -1,7 +1,7 @@
 using System;
-using Helpers;
+using CorePublic.Helpers;
+using CorePublic.Managers;
 using Lean.Touch;
-using Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 

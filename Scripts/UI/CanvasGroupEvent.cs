@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace UI
+namespace CorePublic.UI
 {
     public class CanvasGroupEvent : MonoBehaviour, ICanvasGroupListener
     {

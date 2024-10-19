@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Linq;
-using Core.Interfaces;
-using Helpers;
-using Managers;
+using CorePublic.Classes;
+using CorePublic.Helpers;
+using CorePublic.Interfaces;
+using CorePublic.Managers;
 using UnityEngine;
 
 namespace Puzzle

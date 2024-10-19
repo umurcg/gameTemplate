@@ -1,8 +1,6 @@
-using Managers;
-using UnityEngine;
-using UnityEngine.UI;
+using CorePublic.Managers;
 
-namespace UI
+namespace CorePublic.UI
 {
     
     public class ReloadButton: CoreButton

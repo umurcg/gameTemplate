@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace UI
+namespace CorePublic.UI
 {
     [RequireComponent(typeof(CanvasGroup))]
     public class CanvasGroupController : MonoBehaviour

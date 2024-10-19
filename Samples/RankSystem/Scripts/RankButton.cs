@@ -2,10 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Core.Managers;
-using Core.UI;
-using Managers;
-using UI;
+using CorePublic.Managers;
+using CorePublic.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;

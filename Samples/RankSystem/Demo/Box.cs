@@ -1,5 +1,5 @@
 using System;
-using Managers;
+using CorePublic.Managers;
 using UnityEngine;
 using UnityEngine.Events;
 

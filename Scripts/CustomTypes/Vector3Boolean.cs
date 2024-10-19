@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace CustomTypes
+namespace CorePublic.CustomTypes
 {
     [System.Serializable]
     public class Vector3Boolean

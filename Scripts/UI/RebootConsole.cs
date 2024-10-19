@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Helpers;
-using Managers;
+using CorePublic.Helpers;
+using CorePublic.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace CorePublic.UI
 {
     public class RebootConsole : Singleton<RebootConsole>
     {

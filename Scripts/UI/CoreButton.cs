@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace UI
+namespace CorePublic.UI
 {
     [RequireComponent(typeof(UnityEngine.UI.Button))]
     public abstract class CoreButton: MonoBehaviour

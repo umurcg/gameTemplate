@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.ExtensionMethods
 {
     public static class ColliderExtensions
     {

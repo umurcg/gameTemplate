@@ -3,7 +3,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Core.Editor
+namespace CorePublic.Editor
 {
     public class EditorCodeChecker
     {

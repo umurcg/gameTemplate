@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class FingerSimulator : MonoBehaviour
     {

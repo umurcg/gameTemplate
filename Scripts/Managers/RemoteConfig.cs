@@ -1,14 +1,13 @@
-using System;
 using System.Threading.Tasks;
-using Core.Interfaces;
-using Helpers;
-using ScriptableObjects;
+using CorePublic.Helpers;
+using CorePublic.Interfaces;
+using CorePublic.ScriptableObjects;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.RemoteConfig;
 using UnityEngine;
 
-namespace Managers
+namespace CorePublic.Managers
 {
     public class RemoteConfig : Singleton<RemoteConfig>, IStats, IPrerequisite
     {
@@ -179,10 +178,10 @@ namespace Managers
         
             var stats = "";
         
-            var properties = ConfigManager.appConfig.GetKeys();
+            var properties = RemoteConfigService.Instance.appConfig.GetKeys();
             foreach (var key in properties)
             {
-                stats += key + ": " + ConfigManager.appConfig.config.GetValue(key) + "\n";
+                stats += key + ": " + RemoteConfigService.Instance.appConfig.config.GetValue(key) + "\n";
             }
         
             return stats;

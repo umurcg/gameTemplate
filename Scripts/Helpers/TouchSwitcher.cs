@@ -1,7 +1,7 @@
 using Lean.Touch;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class TouchSwitcher : Touch
     {

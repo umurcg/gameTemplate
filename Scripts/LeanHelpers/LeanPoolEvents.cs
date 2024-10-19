@@ -2,7 +2,7 @@ using Lean.Pool;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace LeanHelpers
+namespace CorePublic.LeanHelpers
 {
     public class LeanPoolEvents: MonoBehaviour, IPoolable
     {

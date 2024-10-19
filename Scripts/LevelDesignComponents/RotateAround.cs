@@ -1,10 +1,10 @@
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #endif
-using Core.Enums;
+using CorePublic.Enums;
 using UnityEngine;
 
-namespace Core.HelperComponents
+namespace CorePublic.LevelDesignComponents
 {
     [AddComponentMenu("*Reboot/LevelDesign/Rotate Around")]
     public class RotateAround : MonoBehaviour

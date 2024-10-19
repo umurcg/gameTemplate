@@ -2,7 +2,7 @@ using System;
 using Cinemachine;
 using UnityEngine;
 
-namespace Classes
+namespace CorePublic.Classes
 {
     [Serializable]
     public class Tag

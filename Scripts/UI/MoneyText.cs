@@ -1,9 +1,7 @@
-﻿using Core.Managers;
-using Core.UI;
-using Managers;
+﻿using CorePublic.Managers;
 using UnityEngine;
 
-namespace UI
+namespace CorePublic.UI
 {
     public class MoneyText : TextController
     {

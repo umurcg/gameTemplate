@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Helpers;
-using Managers;
+using CorePublic.Helpers;
+using CorePublic.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;

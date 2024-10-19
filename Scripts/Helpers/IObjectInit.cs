@@ -1,4 +1,4 @@
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public interface IObjectInit
     {

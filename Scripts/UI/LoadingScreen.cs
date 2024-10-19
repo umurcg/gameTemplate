@@ -1,8 +1,9 @@
 ﻿// using DG.Tweening;
-using Helpers;
+
+using CorePublic.Helpers;
 using UnityEngine.UI;
 
-namespace UI
+namespace CorePublic.UI
 {
     public class LoadingScreen : Singleton<LoadingScreen>
     {

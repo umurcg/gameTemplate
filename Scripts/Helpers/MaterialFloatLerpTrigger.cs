@@ -1,8 +1,7 @@
-
 using System.Collections;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     [AddComponentMenu("*Reboot/ArtistTools/MaterialFloatLerpTrigger")]
     public class MaterialFloatLerpTrigger : MonoBehaviour

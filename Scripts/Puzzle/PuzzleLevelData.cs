@@ -1,4 +1,4 @@
-using ScriptableObjects;
+using CorePublic.ScriptableObjects;
 using UnityEngine;
 
 namespace Puzzle

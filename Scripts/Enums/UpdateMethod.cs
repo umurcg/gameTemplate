@@ -1,4 +1,4 @@
-namespace Core.Enums
+namespace CorePublic.Enums
 {
     public enum UpdateMethod
     {

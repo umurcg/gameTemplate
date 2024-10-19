@@ -1,4 +1,4 @@
-using CustomTypes;
+using CorePublic.CustomTypes;
 using UnityEngine;
 
 namespace Samples.StickmanPack

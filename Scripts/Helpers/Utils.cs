@@ -3,7 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     //Reboot Mono class contains common helper functions that works with MonoBehavior
     //Not that this script must be instantiated in the game.

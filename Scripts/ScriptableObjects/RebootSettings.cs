@@ -1,11 +1,9 @@
-using UnityEngine;
-#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Build;
-#endif
+using UnityEngine;
 
 
-namespace ScriptableObjects
+namespace CorePublic.ScriptableObjects
 {
     public class RebootSettings : ScriptableObject
     {

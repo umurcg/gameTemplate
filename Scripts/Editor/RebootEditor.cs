@@ -1,9 +1,9 @@
-using ScriptableObjects;
+using CorePublic.ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Core.Editor
+namespace CorePublic.Editor
 {
     public static class RebootEditor
     {

@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class AnimationEventController: MonoBehaviour
     {

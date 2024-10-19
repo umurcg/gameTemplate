@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class KeyEvent : MonoBehaviour
     {

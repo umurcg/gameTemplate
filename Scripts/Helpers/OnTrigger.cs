@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Cinemachine;
-using Classes;
+﻿using CorePublic.Classes;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
 
     public class OnTrigger : MonoBehaviour

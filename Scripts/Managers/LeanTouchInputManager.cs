@@ -1,9 +1,7 @@
-using System;
-using Core.Interfaces;
-using Lean.Touch;
+using CorePublic.Interfaces;
 using UnityEngine;
 
-namespace Managers
+namespace CorePublic.Managers
 {
     public abstract class LeanTouchInputManager : MonoBehaviour, IStats
     {

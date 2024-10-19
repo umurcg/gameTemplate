@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Linq;
-using Core.Interfaces;
-using Managers;
+using CorePublic.Interfaces;
+using CorePublic.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace CorePublic.UI
 {
     public class StatsManager : MonoBehaviour
     {

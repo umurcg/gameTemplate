@@ -1,8 +1,8 @@
-using Managers;
-using UnityEngine;
 using Coffee.UIExtensions;
+using CorePublic.Managers;
+using UnityEngine;
 
-namespace CurrencySystem
+namespace CorePublic.CurrencySystem
 {
     public class CurrencyRegisterer : MonoBehaviour
     {

@@ -1,8 +1,6 @@
-
-using System;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class Grid2D : MonoBehaviour
     {

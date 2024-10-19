@@ -1,7 +1,6 @@
-using Managers;
-using UnityEngine;
+using CorePublic.Managers;
 
-namespace UI
+namespace CorePublic.UI
 {
     public class NextLevelButton : CoreButton
     {

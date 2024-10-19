@@ -1,8 +1,8 @@
-namespace Helpers
-{
-    using UnityEngine;
-    using UnityEngine.AI;
+using UnityEngine;
+using UnityEngine.AI;
 
+namespace CorePublic.Helpers
+{
     [RequireComponent(typeof(MeshFilter))]
     [RequireComponent(typeof(MeshRenderer))]
     public class NavMeshVisualizer : MonoBehaviour

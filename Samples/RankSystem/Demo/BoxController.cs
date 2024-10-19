@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Core.HelperComponents;
-using Helpers;
+using CorePublic.Helpers;
 using Samples.Demo;
 using UnityEngine;
 

@@ -1,6 +1,7 @@
-using UnityEngine;
-
-public class LevelRemoteWrapper
+namespace CorePublic.Classes
 {
-    public string[] levelKeys;
+    public class LevelRemoteWrapper
+    {
+        public string[] levelKeys;
+    }
 }

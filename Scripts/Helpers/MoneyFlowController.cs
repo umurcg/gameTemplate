@@ -1,9 +1,8 @@
-
 using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class MoneyFlowController : Singleton<MoneyFlowController>
     {

@@ -1,66 +1,69 @@
 using System;
-using UnityEngine;
-using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
+using UnityEngine.Events;
 
-[Serializable] public class UnityEventFloat : UnityEvent<float> { }
-[Serializable] public class UnityEventString : UnityEvent<string> { }
-[Serializable] public class UnityEventInt : UnityEvent<int> { }
-
-[RequireComponent(typeof(MonoBehaviour))]
-public class ActionBinder : MonoBehaviour
+namespace CorePublic.Helpers
 {
-    [SerializeField] private List<UnityEvent> _unityEvents = new List<UnityEvent>();
-    [SerializeField] private List<UnityEventFloat> _unityEventsFloat = new List<UnityEventFloat>();
-    [SerializeField] private List<UnityEventString> _unityEventsString = new List<UnityEventString>();
-    [SerializeField] private List<UnityEventInt> _unityEventsInt = new List<UnityEventInt>();
+    [Serializable] public class UnityEventFloat : UnityEvent<float> { }
+    [Serializable] public class UnityEventString : UnityEvent<string> { }
+    [Serializable] public class UnityEventInt : UnityEvent<int> { }
 
-    private void Start()
+    [RequireComponent(typeof(MonoBehaviour))]
+    public class ActionBinder : MonoBehaviour
     {
-        BindActionsToEvents();
-    }
+        [SerializeField] private List<UnityEvent> _unityEvents = new List<UnityEvent>();
+        [SerializeField] private List<UnityEventFloat> _unityEventsFloat = new List<UnityEventFloat>();
+        [SerializeField] private List<UnityEventString> _unityEventsString = new List<UnityEventString>();
+        [SerializeField] private List<UnityEventInt> _unityEventsInt = new List<UnityEventInt>();
 
-    private void BindActionsToEvents()
-    {
-        var components = GetComponents<MonoBehaviour>();
-
-        foreach (var component in components)
+        private void Start()
         {
-            var type = component.GetType();
-            var methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            BindActionsToEvents();
+        }
 
-            foreach (var method in methods)
+        private void BindActionsToEvents()
+        {
+            var components = GetComponents<MonoBehaviour>();
+
+            foreach (var component in components)
             {
-                var parameters = method.GetParameters();
+                var type = component.GetType();
+                var methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
-                if (parameters.Length == 0 && method.ReturnType == typeof(void))
+                foreach (var method in methods)
                 {
-                    var unityEvent = new UnityEvent();
-                    unityEvent.AddListener(() => method.Invoke(component, null));
-                    _unityEvents.Add(unityEvent);
-                }
-                else if (parameters.Length == 1 && method.ReturnType == typeof(void))
-                {
-                    var parameterType = parameters[0].ParameterType;
+                    var parameters = method.GetParameters();
 
-                    if (parameterType == typeof(float))
+                    if (parameters.Length == 0 && method.ReturnType == typeof(void))
                     {
-                        var unityEventFloat = new UnityEventFloat();
-                        unityEventFloat.AddListener((float value) => method.Invoke(component, new object[] { value }));
-                        _unityEventsFloat.Add(unityEventFloat);
+                        var unityEvent = new UnityEvent();
+                        unityEvent.AddListener(() => method.Invoke(component, null));
+                        _unityEvents.Add(unityEvent);
                     }
-                    else if (parameterType == typeof(string))
+                    else if (parameters.Length == 1 && method.ReturnType == typeof(void))
                     {
-                        var unityEventString = new UnityEventString();
-                        unityEventString.AddListener((string value) => method.Invoke(component, new object[] { value }));
-                        _unityEventsString.Add(unityEventString);
-                    }
-                    else if (parameterType == typeof(int))
-                    {
-                        var unityEventInt = new UnityEventInt();
-                        unityEventInt.AddListener((int value) => method.Invoke(component, new object[] { value }));
-                        _unityEventsInt.Add(unityEventInt);
+                        var parameterType = parameters[0].ParameterType;
+
+                        if (parameterType == typeof(float))
+                        {
+                            var unityEventFloat = new UnityEventFloat();
+                            unityEventFloat.AddListener((float value) => method.Invoke(component, new object[] { value }));
+                            _unityEventsFloat.Add(unityEventFloat);
+                        }
+                        else if (parameterType == typeof(string))
+                        {
+                            var unityEventString = new UnityEventString();
+                            unityEventString.AddListener((string value) => method.Invoke(component, new object[] { value }));
+                            _unityEventsString.Add(unityEventString);
+                        }
+                        else if (parameterType == typeof(int))
+                        {
+                            var unityEventInt = new UnityEventInt();
+                            unityEventInt.AddListener((int value) => method.Invoke(component, new object[] { value }));
+                            _unityEventsInt.Add(unityEventInt);
+                        }
                     }
                 }
             }

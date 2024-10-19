@@ -1,7 +1,7 @@
-using ScriptableObjects;
+using CorePublic.ScriptableObjects;
 using UnityEngine;
 
-namespace Core.Editor
+namespace CorePublic.Editor
 {
     [UnityEditor.CustomEditor(typeof(RebootSettings))]
     public class RebootSettingsEditor: UnityEditor.Editor

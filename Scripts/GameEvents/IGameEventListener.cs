@@ -1,4 +1,4 @@
-namespace GameEvents
+namespace CorePublic.GameEvents
 {
     public interface IGameEventListener
     {

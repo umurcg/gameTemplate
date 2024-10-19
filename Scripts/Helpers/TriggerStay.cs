@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Cinemachine;
-using Classes;
+﻿using CorePublic.Classes;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class TriggerStay : MonoBehaviour
     {

@@ -1,14 +1,11 @@
-
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #endif
 
-namespace GameEvents
+namespace CorePublic.GameEvents
 {
     public class GameEventListener : MonoBehaviour, IGameEventListener
     {

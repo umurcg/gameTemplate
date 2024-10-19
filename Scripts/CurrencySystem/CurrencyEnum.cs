@@ -1,6 +1,6 @@
 using System;
 
-namespace CurrencySystem
+namespace CorePublic.CurrencySystem
 {
     [Serializable]
     public class CurrencyEnum

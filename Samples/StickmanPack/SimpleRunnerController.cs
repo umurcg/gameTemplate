@@ -1,8 +1,6 @@
 ﻿using System;
-using Core.Managers;
+using CorePublic.Managers;
 using Lean.Touch;
-using Managers;
-
 using UnityEngine;
 
 namespace RebootTemplate.Controllers

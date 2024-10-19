@@ -1,8 +1,7 @@
-
 using Lean.Pool;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Helpers
 {
     public class PrefabSpawner : MonoBehaviour
     {

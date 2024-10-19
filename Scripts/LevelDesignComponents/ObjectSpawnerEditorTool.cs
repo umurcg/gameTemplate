@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.LevelDesignComponents
 {
     [AddComponentMenu("*Reboot/LevelDesign/Object Spawner Editor Tool")]
     public class ObjectSpawnerEditorTool : MonoBehaviour

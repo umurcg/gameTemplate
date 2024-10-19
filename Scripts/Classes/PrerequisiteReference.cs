@@ -1,8 +1,8 @@
 using System;
-using Core.Interfaces;
+using CorePublic.Interfaces;
 using UnityEngine;
 
-namespace Helpers
+namespace CorePublic.Classes
 {
     [Serializable]
     public class PrerequisiteReference

@@ -1,4 +1,4 @@
-namespace Core.Interfaces
+namespace CorePublic.Interfaces
 {
     public interface IStats
     {

@@ -1,5 +1,5 @@
-using Managers;
-using UI;
+using CorePublic.Managers;
+using CorePublic.UI;
 
 namespace Puzzle.UI
 {
