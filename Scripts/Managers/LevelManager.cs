@@ -13,14 +13,8 @@ using Sirenix.OdinInspector;
 
 namespace CorePublic.Managers
 {
-    public class LevelManager : Singleton<LevelManager>, IStats
+    public abstract class LevelManager : Singleton<LevelManager>, IStats
     {
-        public enum LoadType
-        {
-            ScriptableObjectReference, ScriptableObjectResource, Prefab
-        }
-        
-        public LoadType loadType = LoadType.ScriptableObjectReference;
         
         [Tooltip("If checked, level manager will load last played level automatically when game is started")]
         public bool autoLoad = true;
@@ -32,50 +26,22 @@ namespace CorePublic.Managers
 
         protected CoreManager CoreManager;
 
-        public int NumberOfTotalLevels { get; protected set; }
-
+        public abstract int NumberOfTotalLevels { get; }
         
-        #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType),LoadType.Reference)]
-        #endif
-        [SerializeField]protected LevelData[] Levels;
         
-        #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType),LoadType.Reference)]
-        #endif
-        [SerializeField]protected LevelData[] AllLevels;
-        
-        #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType),LoadType.Prefab)]
-        #endif
-        [SerializeField] protected GameObject[] LevelPrefabs;
-        
-        #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType),LoadType.Resource)]
-        #endif
-        [SerializeField]
-        private string levelsFolder = "Levels";
-
-        #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType), LoadType.Resource)]
-        #endif
-        [SerializeField]protected string[] LevelDataNames;
 
 #if UNITY_EDITOR
-        public LevelData TestLevelData;
         public bool EnableDesignMode=true;
 #endif
         
-        public LevelData ActiveLevelData { get; protected set; }
-
         [Tooltip("Game will be tried to start with this level ignoring game data. This is useful for fast development")]
         public int TestLevelIndex = -1;
         public int DefaultRepeatLevelIndex = -1;
-        
+
         /// <summary>
         ///     Whether or not there are active loaded level in the scene
         /// </summary>
-        public bool LevelIsLoaded => ActiveLevelData != null || ActiveLevelObject != null;
+        public abstract bool LevelIsLoaded { get; }
 
         public GameObject ActiveLevelObject => transform.childCount > 0 ? transform.GetChild(0).gameObject : null;
 
@@ -96,28 +62,8 @@ namespace CorePublic.Managers
             base.Awake();
         }
 
-        protected IEnumerator Start()
+        protected virtual bool RunDesignModeLoad()
         {
-            CoreManager = CoreManager.Request();
-
-            if(loadType==LoadType.ScriptableObjectReference) 
-                RetrieveRemoteFunnel();
-
-            if (loadType == LoadType.ScriptableObjectReference)
-            {
-                NumberOfTotalLevels = Levels.Length;
-            }else if (loadType == LoadType.Prefab)
-            {
-                NumberOfTotalLevels = LevelPrefabs.Length;
-            }
-            else
-            {
-                NumberOfTotalLevels = LevelDataNames.Length;
-            }
-            
-            
-            yield return null;
-            
 #if UNITY_EDITOR
             if (Application.isEditor && EnableDesignMode)
             {
@@ -125,17 +71,17 @@ namespace CorePublic.Managers
                 {
                     InDesignMode = true;
                     GlobalActions.OnNewLevelLoaded.Invoke();
-                    yield break;
+                    return true;
                 }
             }
-
-            if (loadType == LoadType.ScriptableObjectReference && TestLevelData)
-            {
-                LoadLevel(TestLevelData);
-                GlobalActions.OnGameWin += GameWin;
-                yield break;
-            }
 #endif
+
+            return false;
+        }
+        
+        protected virtual IEnumerator Start()
+        {
+            CoreManager = CoreManager.Request();
             
             //Error protection
             if (NumberOfTotalLevels == 0)
@@ -145,134 +91,29 @@ namespace CorePublic.Managers
                 Destroy(gameObject);
                 yield break;
             }
+            
+            GlobalActions.OnGameWin += GameWin;
+            GlobalActions.OnGameExit += ClearLoadedLevel;
 
+            yield return null;
+            
+        }
 
-            //If auto load is checked load level with current level automatically when game is started
+        protected virtual void RunAutoLoad()
+        {
             if (autoLoad)
             {
                 LoadLevel(CoreManager.Level);
                 GlobalActions.OnLevelChanged += (LoadLevel);
             }
-
-            GlobalActions.OnGameWin += GameWin;
-            GlobalActions.OnGameExit += ClearLoadedLevel;
         }
-
+        
         private void GameWin()
         {
             if (LastRandomLevelIndex >= 0) LastRandomLevelWon = true;
         }
 
-        private void RetrieveRemoteFunnel()
-        {
-            if (RemoteConfig.Instance==null) return;
-            string levelKeysJson = RemoteConfig.Instance.GetJson("levelFunnel");
-            var remote = JsonUtility.FromJson<LevelRemoteWrapper>(levelKeysJson);
-
-            var key_levels = new Dictionary<string, LevelData>();
-            foreach (var level in AllLevels)
-            {
-                var levelKey = level.levelName;
-                if (levelKey == "")
-                {
-                    Debug.LogError("There is not defined key for level " + level.name);
-                    return;
-                }
-
-                key_levels.Add(levelKey, level);
-            }
-
-            var remoteLevels = new List<LevelData>();
-            foreach (var key in remote.levelKeys)
-            {
-                if (key_levels.ContainsKey(key) == false)
-                {
-                    Debug.LogWarning("There is no level defined with key " + key);
-                    return;
-                }
-
-                remoteLevels.Add(key_levels[key]);
-            }
-
-            Levels = remoteLevels.ToArray();
-        }
-
-        private void OnNewSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            Debug.Log("new scene is laoded!");
-            GlobalActions.OnNewLevelLoaded?.Invoke();
-        }
-
-        public virtual void LoadLevel(int levelIndex)
-        {
-            //First try to load test levels if in editor
-#if UNITY_EDITOR
-            if (TestLevelIndex > 0)
-            {
-                if (loadType == LoadType.ScriptableObjectReference)
-                {
-                    if (TestLevelIndex > Levels.Length)
-                    {
-                        Debug.LogError("Test level index is out of range of levels array");
-                        return;
-                    }
-                    var level = Levels[TestLevelIndex - 1];
-                    LoadLevel(level);
-                }
-                else if(loadType==LoadType.Prefab)
-                {
-                    if (TestLevelIndex > LevelPrefabs.Length)
-                    {
-                        Debug.LogError("Test level index is out of range of levels array");
-                        return;
-                    }
-                    var levelPrefab = LevelPrefabs[TestLevelIndex - 1];
-                    LoadLevel(levelPrefab);
-                }
-                
-                return;
-            }
-#endif
-
-            if (loadType is LoadType.ScriptableObjectReference or LoadType.ScriptableObjectResource)
-            {
-                //If level index is in range of level array capacity
-                if (levelIndex < Levels.Length)
-                {
-                    LevelData level;
-                    if (loadType == LoadType.ScriptableObjectReference)
-                    {
-                        level = Levels[levelIndex];
-                    }
-                    else
-                    {
-                        level = Resources.Load<LevelData>(levelsFolder + "/" + LevelDataNames[levelIndex]);
-                        if (level == null)
-                        {
-                            Debug.LogError("Level with name " + LevelDataNames[levelIndex] + " is not found in " +
-                                           levelsFolder);
-                            return;
-                        }
-                    }
-
-                    LoadLevel(level);
-                }
-                else
-                {
-                    LoadRepeatLevel();
-                }
-            }else if (loadType == LoadType.Prefab)
-            {
-                if (levelIndex < LevelPrefabs.Length)
-                {
-                    LoadLevel(LevelPrefabs[levelIndex]);
-                }
-                else
-                {
-                    LoadRepeatLevel();
-                }
-            }
-        }
+        public abstract void LoadLevel(int levelIndex);
 
         protected virtual void LoadRepeatLevel()
         {
@@ -313,12 +154,7 @@ namespace CorePublic.Managers
             }
         }
 
-#if UNITY_EDITOR
-        public void LoadTestLevel()
-        {
-            LoadLevel(TestLevelData);
-        }
-#endif
+
         public virtual void LoadLevel(LevelData levelData)
         {
             ClearLoadedLevel();
