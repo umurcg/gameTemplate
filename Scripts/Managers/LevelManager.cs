@@ -370,11 +370,6 @@ namespace CorePublic.Managers
         
         protected virtual void LoadLevelPrefab(GameObject levelPrefab)
         {
-            if (ActiveLevelObject != null)
-            {
-                Destroy(ActiveLevelObject);
-            }
-            
             Instantiate(levelPrefab, transform);
         }
 
