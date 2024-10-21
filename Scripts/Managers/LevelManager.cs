@@ -346,15 +346,15 @@ namespace CorePublic.Managers
         {
             if (LevelIsLoaded)
             {
-                //Clear all children object while all related objects will be spawned under this object
-                for (var i = 0; i < transform.childCount; i++)
+                if (transform.childCount > 0)
                 {
+                    GameObject child = transform.GetChild(0).gameObject;
                     if (immediate)
-                        DestroyImmediate(transform.GetChild(i).gameObject);
+                        DestroyImmediate(child.gameObject);
                     else
-                        Destroy(transform.GetChild(i).gameObject);
+                        Destroy(child.gameObject);
                 }
-
+                
                 ActiveLevelData = null;
                 GlobalActions.OnLevelDestroyed?.Invoke();
             }
