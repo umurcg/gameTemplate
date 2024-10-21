@@ -158,6 +158,11 @@ namespace CorePublic.Managers
             GlobalActions.OnGameExit += ClearLoadedLevel;
         }
 
+        private void ClearLoadedLevel()
+        {
+            ClearLoadedLevel(true);
+        }
+
         private void GameWin()
         {
             if (LastRandomLevelIndex >= 0) LastRandomLevelWon = true;
@@ -321,14 +326,14 @@ namespace CorePublic.Managers
 #endif
         public virtual void LoadLevel(LevelData levelData)
         {
-            ClearLoadedLevel();
+            ClearLoadedLevel(true);
             LoadLevelWithData(levelData);
             GlobalActions.OnNewLevelLoaded?.Invoke();
         }
 
         public virtual void LoadLevel(GameObject levelPrefab)
         {
-            ClearLoadedLevel();
+            ClearLoadedLevel(false);
             LoadLevelPrefab(levelPrefab);
             GlobalActions.OnNewLevelLoaded?.Invoke();
         }
@@ -337,13 +342,18 @@ namespace CorePublic.Managers
         /// <summary>
         ///     Clears active if level if there is loaded one
         /// </summary>
-        public virtual void ClearLoadedLevel()
+        public virtual void ClearLoadedLevel(bool immediate)
         {
             if (LevelIsLoaded)
             {
                 //Clear all children object while all related objects will be spawned under this object
                 for (var i = 0; i < transform.childCount; i++)
-                    DestroyImmediate(transform.GetChild(i).gameObject);
+                {
+                    if (immediate)
+                        DestroyImmediate(transform.GetChild(i).gameObject);
+                    else
+                        Destroy(transform.GetChild(i).gameObject);
+                }
 
                 ActiveLevelData = null;
                 GlobalActions.OnLevelDestroyed?.Invoke();
