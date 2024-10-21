@@ -17,15 +17,14 @@ namespace CorePublic.Managers
     {
         public enum LoadType
         {
-            Reference, Resource
+            ScriptableObjectReference, ScriptableObjectResource, Prefab
         }
         
-        public LoadType loadType = LoadType.Reference;
+        public LoadType loadType = LoadType.ScriptableObjectReference;
         
         [Tooltip("If checked, level manager will load last played level automatically when game is started")]
-        public bool AutoLoad = true;
-
-
+        public bool autoLoad = true;
+        
         /// <summary>
         /// If true, it means the level is loaded in design mode which means it was already in scene in editor and that level will be used as loaded level.
         /// </summary>
@@ -45,6 +44,11 @@ namespace CorePublic.Managers
         [ShowIf(nameof(loadType),LoadType.Reference)]
         #endif
         [SerializeField]protected LevelData[] AllLevels;
+        
+        #if ODIN_INSPECTOR
+        [ShowIf(nameof(loadType),LoadType.Prefab)]
+        #endif
+        [SerializeField] protected GameObject[] LevelPrefabs;
         
         #if ODIN_INSPECTOR
         [ShowIf(nameof(loadType),LoadType.Resource)]
@@ -71,9 +75,9 @@ namespace CorePublic.Managers
         /// <summary>
         ///     Whether or not there are active loaded level in the scene
         /// </summary>
-        public bool LevelIsLoaded => ActiveLevelData != null;
+        public bool LevelIsLoaded => ActiveLevelData != null || ActiveLevelObject != null;
 
-        public GameObject ActiveLevelObject => transform.GetChild(0).gameObject;
+        public GameObject ActiveLevelObject => transform.childCount > 0 ? transform.GetChild(0).gameObject : null;
 
         private int LastRandomLevelIndex
         {
@@ -96,11 +100,24 @@ namespace CorePublic.Managers
         {
             CoreManager = CoreManager.Request();
 
-            RetrieveRemoteFunnel();
+            if(loadType==LoadType.ScriptableObjectReference) 
+                RetrieveRemoteFunnel();
 
-            NumberOfTotalLevels = loadType == LoadType.Reference ? Levels.Length : LevelDataNames.Length;
+            if (loadType == LoadType.ScriptableObjectReference)
+            {
+                NumberOfTotalLevels = Levels.Length;
+            }else if (loadType == LoadType.Prefab)
+            {
+                NumberOfTotalLevels = LevelPrefabs.Length;
+            }
+            else
+            {
+                NumberOfTotalLevels = LevelDataNames.Length;
+            }
+            
             
             yield return null;
+            
 #if UNITY_EDITOR
             if (Application.isEditor && EnableDesignMode)
             {
@@ -111,8 +128,9 @@ namespace CorePublic.Managers
                     yield break;
                 }
             }
-            
-            if(TestLevelData){
+
+            if (loadType == LoadType.ScriptableObjectReference && TestLevelData)
+            {
                 LoadLevel(TestLevelData);
                 GlobalActions.OnGameWin += GameWin;
                 yield break;
@@ -130,7 +148,7 @@ namespace CorePublic.Managers
 
 
             //If auto load is checked load level with current level automatically when game is started
-            if (AutoLoad)
+            if (autoLoad)
             {
                 LoadLevel(CoreManager.Level);
                 GlobalActions.OnLevelChanged += (LoadLevel);
@@ -189,36 +207,70 @@ namespace CorePublic.Managers
         {
             //First try to load test levels if in editor
 #if UNITY_EDITOR
-            if (TestLevelIndex > 0 && loadType==LoadType.Reference)
+            if (TestLevelIndex > 0)
             {
-                var level=Levels[TestLevelIndex-1];
-                LoadLevel(level);
+                if (loadType == LoadType.ScriptableObjectReference)
+                {
+                    if (TestLevelIndex > Levels.Length)
+                    {
+                        Debug.LogError("Test level index is out of range of levels array");
+                        return;
+                    }
+                    var level = Levels[TestLevelIndex - 1];
+                    LoadLevel(level);
+                }
+                else if(loadType==LoadType.Prefab)
+                {
+                    if (TestLevelIndex > LevelPrefabs.Length)
+                    {
+                        Debug.LogError("Test level index is out of range of levels array");
+                        return;
+                    }
+                    var levelPrefab = LevelPrefabs[TestLevelIndex - 1];
+                    LoadLevel(levelPrefab);
+                }
+                
                 return;
             }
 #endif
-            //If level index is in range of level array capacity
-            if (levelIndex < Levels.Length)
+
+            if (loadType is LoadType.ScriptableObjectReference or LoadType.ScriptableObjectResource)
             {
-                LevelData level;
-                if (loadType == LoadType.Reference)
+                //If level index is in range of level array capacity
+                if (levelIndex < Levels.Length)
                 {
-                    level = Levels[levelIndex];
+                    LevelData level;
+                    if (loadType == LoadType.ScriptableObjectReference)
+                    {
+                        level = Levels[levelIndex];
+                    }
+                    else
+                    {
+                        level = Resources.Load<LevelData>(levelsFolder + "/" + LevelDataNames[levelIndex]);
+                        if (level == null)
+                        {
+                            Debug.LogError("Level with name " + LevelDataNames[levelIndex] + " is not found in " +
+                                           levelsFolder);
+                            return;
+                        }
+                    }
+
+                    LoadLevel(level);
                 }
                 else
                 {
-                    level = Resources.Load<LevelData>(levelsFolder + "/" + LevelDataNames[levelIndex]);
-                    if (level == null)
-                    {
-                        Debug.LogError("Level with name " + LevelDataNames[levelIndex] + " is not found in " + levelsFolder);
-                        return;
-                    }
+                    LoadRepeatLevel();
                 }
-                
-                LoadLevel(level);
-            }
-            else
+            }else if (loadType == LoadType.Prefab)
             {
-                LoadRepeatLevel();
+                if (levelIndex < LevelPrefabs.Length)
+                {
+                    LoadLevel(LevelPrefabs[levelIndex]);
+                }
+                else
+                {
+                    LoadRepeatLevel();
+                }
             }
         }
 
@@ -274,6 +326,13 @@ namespace CorePublic.Managers
             GlobalActions.OnNewLevelLoaded?.Invoke();
         }
 
+        public virtual void LoadLevel(GameObject levelPrefab)
+        {
+            ClearLoadedLevel();
+            LoadLevelPrefab(levelPrefab);
+            GlobalActions.OnNewLevelLoaded?.Invoke();
+        }
+        
 
         /// <summary>
         ///     Clears active if level if there is loaded one
@@ -301,18 +360,27 @@ namespace CorePublic.Managers
         protected virtual void LoadLevelWithData(LevelData levelData)
         {
             ActiveLevelData = levelData;
-
             //Try to instantiate level prefab if exists
             if (levelData.levelPrefab)
             {
-                Instantiate(levelData.levelPrefab, transform);
+                LoadLevelPrefab(levelData.levelPrefab);
             }
             
+        }
+        
+        protected virtual void LoadLevelPrefab(GameObject levelPrefab)
+        {
+            if (ActiveLevelObject != null)
+            {
+                Destroy(ActiveLevelObject);
+            }
+            
+            Instantiate(levelPrefab, transform);
         }
 
         private void OnDestroy()
         {
-            if (AutoLoad)
+            if (autoLoad)
             {
                 GlobalActions.OnLevelChanged -= LoadLevel;
             }
