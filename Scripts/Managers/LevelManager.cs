@@ -36,12 +36,12 @@ namespace CorePublic.Managers
 
         
         #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType),LoadType.Reference)]
+        [ShowIf(nameof(loadType),LoadType.ScriptableObjectReference)]
         #endif
         [SerializeField]protected LevelData[] Levels;
         
         #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType),LoadType.Reference)]
+        [ShowIf(nameof(loadType),LoadType.ScriptableObjectReference)]
         #endif
         [SerializeField]protected LevelData[] AllLevels;
         
@@ -51,13 +51,13 @@ namespace CorePublic.Managers
         [SerializeField] protected GameObject[] LevelPrefabs;
         
         #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType),LoadType.Resource)]
+        [ShowIf(nameof(loadType),LoadType.ScriptableObjectResource)]
         #endif
         [SerializeField]
         private string levelsFolder = "Levels";
 
         #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType), LoadType.Resource)]
+        [ShowIf(nameof(loadType), LoadType.ScriptableObjectResource)]
         #endif
         [SerializeField]protected string[] LevelDataNames;
 
@@ -393,7 +393,7 @@ namespace CorePublic.Managers
         #if UNITY_EDITOR
 
         #if ODIN_INSPECTOR
-        [Button,ShowIf(nameof(loadType), LoadType.Resource)]
+        [Button,ShowIf(nameof(loadType), LoadType.ScriptableObjectResource)]
         #else
         [ContextMenu("Read Levels")]
         #endif
