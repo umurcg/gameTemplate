@@ -11,6 +11,7 @@ namespace CorePublic.Managers
         public void Start()
         {
             GlobalActions.OnGameStarted += ActivateInput;
+            GlobalActions.OnGameRevived += ActivateInput;
             GlobalActions.OnGameEnded += DeactivateInput;
         }
 
