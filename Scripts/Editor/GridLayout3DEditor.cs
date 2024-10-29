@@ -1,3 +1,4 @@
+using CorePublic.Helpers;
 using CorePublic.LevelDesignComponents;
 using UnityEditor;
 using UnityEngine;
@@ -19,47 +20,54 @@ namespace CorePublic.Editor
             GridLayout3D gridLayout = (GridLayout3D)target;
             EditorGUI.BeginChangeCheck();
 
-            gridLayout._cellSize = EditorGUILayout.Vector3Field("Cell Size", gridLayout._cellSize);
-            gridLayout._spacing = EditorGUILayout.Vector3Field("Spacing", gridLayout._spacing);
+            gridLayout.cellSize = EditorGUILayout.Vector3Field("Cell Size", gridLayout.cellSize);
+            gridLayout.cellSize = EditorGUILayout.Vector3Field("Spacing", gridLayout.spacing);
 
             // Constraints
             EditorGUILayout.LabelField("Constraints");
             EditorGUI.indentLevel++;
 
-            EditorGUI.BeginDisabledGroup(gridLayout._fixedRow && gridLayout._fixedLayer);
-            gridLayout._fixedColumn = EditorGUILayout.Toggle("Fixed Column", gridLayout._fixedColumn);
-            if (gridLayout._fixedColumn)
+            EditorGUI.BeginDisabledGroup(gridLayout.fixedRow && gridLayout.fixedLayer);
+            gridLayout.fixedColumn = EditorGUILayout.Toggle("Fixed Column", gridLayout.fixedColumn);
+            if (gridLayout.fixedColumn)
             {
-                gridLayout._columnCount = EditorGUILayout.IntField("Column Count", gridLayout._columnCount);
+                gridLayout.columnCount = EditorGUILayout.IntField("Column Count", gridLayout.columnCount);
             }
             EditorGUI.EndDisabledGroup();
 
-            EditorGUI.BeginDisabledGroup(gridLayout._fixedColumn && gridLayout._fixedLayer);
-            gridLayout._fixedRow = EditorGUILayout.Toggle("Fixed Row", gridLayout._fixedRow);
-            if (gridLayout._fixedRow)
+            EditorGUI.BeginDisabledGroup(gridLayout.fixedColumn && gridLayout.fixedLayer);
+            gridLayout.fixedRow = EditorGUILayout.Toggle("Fixed Row", gridLayout.fixedRow);
+            if (gridLayout.fixedRow)
             {
-                gridLayout._rowCount = EditorGUILayout.IntField("Row Count", gridLayout._rowCount);
+                gridLayout.rowCount = EditorGUILayout.IntField("Row Count", gridLayout.rowCount);
             }
             EditorGUI.EndDisabledGroup();
 
-            EditorGUI.BeginDisabledGroup(gridLayout._fixedColumn && gridLayout._fixedRow);
-            gridLayout._fixedLayer = EditorGUILayout.Toggle("Fixed Layer", gridLayout._fixedLayer);
-            if (gridLayout._fixedLayer)
+            EditorGUI.BeginDisabledGroup(gridLayout.fixedColumn && gridLayout.fixedRow);
+            gridLayout.fixedLayer = EditorGUILayout.Toggle("Fixed Layer", gridLayout.fixedLayer);
+            if (gridLayout.fixedLayer)
             {
-                gridLayout._layerCount = EditorGUILayout.IntField("Layer Count", gridLayout._layerCount);
+                gridLayout.layerCount = EditorGUILayout.IntField("Layer Count", gridLayout.layerCount);
             }
             EditorGUI.EndDisabledGroup();
 
             EditorGUI.indentLevel--;
+            
+            gridLayout.runtimeUpdateMode = (LayoutController.RuntimeUpdateMode)EditorGUILayout.EnumPopup("Runtime Update Mode", gridLayout.runtimeUpdateMode);
 
-            gridLayout._gizmoColor = EditorGUILayout.ColorField("Gizmo Color", gridLayout._gizmoColor);
-            gridLayout._showGizmos = EditorGUILayout.Toggle("Show Gizmos", gridLayout._showGizmos);
+            gridLayout.gizmoColor = EditorGUILayout.ColorField("Gizmo Color", gridLayout.gizmoColor);
+            gridLayout.showGizmos = EditorGUILayout.Toggle("Show Gizmos", gridLayout.showGizmos);
+            gridLayout.updateOnAwake = EditorGUILayout.Toggle("Update On Awake", gridLayout.updateOnAwake);
+            gridLayout.updateOnStart = EditorGUILayout.Toggle("Update On Start", gridLayout.updateOnStart);
+            gridLayout.updateOnValidate = EditorGUILayout.Toggle("Update On Validate", gridLayout.updateOnValidate);
             gridLayout.destroyOnPlay = EditorGUILayout.Toggle("Destroy On Play", gridLayout.destroyOnPlay);
+            
+            
 
             if (EditorGUI.EndChangeCheck())
             {
                 serializedObject.ApplyModifiedProperties();
-                gridLayout.UpdateGrid();
+                gridLayout.UpdateChildrenPosition();
             }
 
             int currentChildCount = gridLayout.transform.childCount;
@@ -67,12 +75,12 @@ namespace CorePublic.Editor
             if (currentChildCount != _previousChildCount)
             {
                 _previousChildCount = currentChildCount;
-                gridLayout.UpdateGrid();
+                gridLayout.UpdateChildrenPosition();
             }
         
             if (GUILayout.Button("Update Grid"))
             {
-                gridLayout.UpdateGrid();
+                gridLayout.UpdateChildrenPosition();
             }
         }
     }
