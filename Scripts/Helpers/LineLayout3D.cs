@@ -7,10 +7,8 @@ namespace CorePublic.Helpers
         [SerializeField] protected float spacing = 1;
         [SerializeField] protected bool alignToMiddle = true;
         [SerializeField] protected Vector3 direction = Vector3.forward;
-        [SerializeField] protected bool localDirection = true;
         [SerializeField] protected int gizmoCount = 10;
         [SerializeField] protected Color gizmoColor = Color.white;
-        
         
         public float GetLength()
         {
@@ -33,14 +31,14 @@ namespace CorePublic.Helpers
 
         public Vector3 GetPosition(int index, int childrenCount)
         {
-            Vector3 dir = localDirection ? transform.TransformDirection(direction) : direction;
-            
             if (alignToMiddle)
             {
-                return dir * index * spacing - direction * (childrenCount - 1) * spacing / 2;
+                return direction * index * spacing - direction * (childrenCount - 1) * spacing / 2;
             }
-
-            return dir * index * spacing;
+            else
+            {
+                return direction * index * spacing;
+            }
         }
 
         private void OnDrawGizmos()
