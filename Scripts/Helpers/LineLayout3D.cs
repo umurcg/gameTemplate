@@ -4,9 +4,9 @@ namespace CorePublic.Helpers
 {
     public class LineLayout3D : LayoutController
     {
-        [SerializeField] protected float spacing = 1;
-        [SerializeField] protected bool alignToMiddle = true;
-        [SerializeField] protected Vector3 direction = Vector3.forward;
+        [SerializeField] public float spacing = 1;
+        [SerializeField] public bool alignToMiddle = true;
+        [SerializeField] public Vector3 direction = Vector3.forward;
         [SerializeField] protected int gizmoCount = 10;
         [SerializeField] protected Color gizmoColor = Color.white;
         
