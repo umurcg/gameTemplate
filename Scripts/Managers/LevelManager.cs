@@ -166,8 +166,15 @@ namespace CorePublic.Managers
         private void RetrieveRemoteFunnel()
         {
             if (RemoteConfig.Instance==null) return;
+            if(RemoteConfig.Instance.HasKey("levelFunnel")==false) return;
+            
             string levelKeysJson = RemoteConfig.Instance.GetJson("levelFunnel");
             var remote = JsonUtility.FromJson<LevelRemoteWrapper>(levelKeysJson);
+            if (remote == null)
+            {
+                Debug.LogError("Remote level funnel is not defined correctly");
+                return;
+            }
 
             var key_levels = new Dictionary<string, LevelData>();
             foreach (var level in AllLevels)
