@@ -9,6 +9,7 @@ namespace CorePublic.Managers
         public static Action OnNewLevelLoaded;
         public static Action OnLevelDestroyed;
         public static Action OnGameLost;
+        public static Action OnGameLostConfirmed;
         public static Action OnGameWin;
         public static Action OnGameExit;
         public static Action OnGameRestarted;

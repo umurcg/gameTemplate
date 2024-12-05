@@ -9,15 +9,17 @@ namespace CorePublic.Managers
     [AddComponentMenu("*Reboot/Managers/Core Manager")]
     public sealed class CoreManager : Singleton<CoreManager>, IStats
     {
+        
         private const string LevelSaveKey = "GameLevel";
 
         [SerializeField] private bool saveEnabled = true;
 
         [Tooltip("If checked, start state will be triggered automatically when a level loaded")] [SerializeField]
         private bool autoStart = true;
+        
+        public GameStates GameState { get; private set; } = GameStates.Idle;
 
-        public bool IsGameStarted { private set; get; }
-        public bool IsLost { private set; get; }
+        public bool IsGameStarted => GameState == GameStates.InGame;
         
         private bool _hasLevelManager;
 
@@ -117,8 +119,7 @@ namespace CorePublic.Managers
                 return;
             }
 
-            IsLost = false;
-            IsGameStarted = true;
+            GameState = GameStates.InGame;
             GlobalActions.OnGameStarted?.Invoke();
         }
         
@@ -148,7 +149,7 @@ namespace CorePublic.Managers
 
             GlobalActions.OnGameWin?.Invoke();
             GlobalActions.OnGameEnded?.Invoke();
-            IsGameStarted = false;
+            GameState = GameStates.Win;
         }
 
         public void LostGame()
@@ -159,10 +160,22 @@ namespace CorePublic.Managers
                 return;
             }
 
-            IsGameStarted = false;
-            IsLost = true;
+            
+            GameState = GameStates.Lost;
             GlobalActions.OnGameLost?.Invoke();
             GlobalActions.OnGameEnded?.Invoke();
+        }
+
+        public void ConfirmLost()
+        {
+            if (GameState != GameStates.Lost)
+            {
+                Debug.LogError("Game is not lost you can not confirm lost");
+                return;
+            }
+            
+            GameState = GameStates.DefiniteLost;
+            GlobalActions.OnGameLostConfirmed?.Invoke();
         }
 
         public void ExitGame()
@@ -173,8 +186,7 @@ namespace CorePublic.Managers
                 return;
             }
             
-            IsGameStarted = false;
-            IsLost = false;
+            GameState = GameStates.Idle;
             
             GlobalActions.OnGameExit?.Invoke();
             GlobalActions.OnGameEnded?.Invoke();
@@ -243,14 +255,13 @@ namespace CorePublic.Managers
                 return;
             }
 
-            if (!IsLost)
+            if (GameState!=GameStates.Lost)
             {
-                Debug.LogError("Game is not lost you can not revive");
+                Debug.LogError("Game state is not Lost. You can not revive the game");
                 return;
             }
             
-            IsLost = false;
-            IsGameStarted = true;
+            GameState = GameStates.InGame;
             GlobalActions.OnGameRevived?.Invoke();
         }
         
@@ -273,7 +284,7 @@ namespace CorePublic.Managers
         public string GetStats()
         {
             var versionStats = "v " + Application.version;
-            var gamePlayStats = "Game Started: " + IsGameStarted;
+            var gamePlayStats = "Game State: " + GameState;
             var level = "Level: " + Level;
             var money = "Money: " + GameMoney;
             return versionStats + "\n" + gamePlayStats + "\n" + level + "\n" + money;
