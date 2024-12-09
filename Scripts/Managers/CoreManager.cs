@@ -223,7 +223,8 @@ namespace CorePublic.Managers
                 Debug.LogError("Gameplay is continuing You can not increase level during a gameplay");
                 return;
             }
-
+            
+            GlobalActions.OnPreLevelIncrease?.Invoke();
             Level++;
             GlobalActions.OnLevelChanged?.Invoke(Level);
         }

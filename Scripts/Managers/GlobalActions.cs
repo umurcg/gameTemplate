@@ -14,6 +14,7 @@ namespace CorePublic.Managers
         public static Action OnGameExit;
         public static Action OnGameRestarted;
         public static Action OnGameRevived;
+        public static Action OnPreLevelIncrease;
         public static Action<int> OnLevelChanged;
         public static Action<float> OnGameMoneyChanged;
         public static Action<float> OnLevelMoneyChanged;
