@@ -7,11 +7,11 @@ namespace CorePublic.Helpers.ObjectSpawner
 {
     public class Spawner : MonoBehaviour
     {
-        [SerializeField] private SpawnableObject objectToSpawn;
-        [SerializeField] private Transform spawnParent;
-        [SerializeField] private bool poolObject;
-        [SerializeField] private bool autoSpawn;
-        [SerializeField] private float spawnDelay;
+        public SpawnableObject objectToSpawn;
+        [SerializeField] protected Transform spawnParent;
+        [SerializeField] protected bool poolObject;
+        [SerializeField] protected bool autoSpawn;
+        [SerializeField] protected float spawnDelay;
 
         public SpawnableObject CurrentSpawnedObject => _spawnedObject;
         private SpawnableObject _spawnedObject;
@@ -33,6 +33,12 @@ namespace CorePublic.Helpers.ObjectSpawner
 
         }
 
+        public void SpawnObject(SpawnableObject objToSpawn)
+        {
+            objectToSpawn = objToSpawn;
+            SpawnObject();
+        }
+        
         public void SpawnObject()
         {
             if (_spawnedObject != null)
