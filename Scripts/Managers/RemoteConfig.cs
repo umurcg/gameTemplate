@@ -22,7 +22,6 @@ namespace CorePublic.Managers
         }
     
         [SerializeField] protected bool showDebugLogs;
-        [SerializeField] private string environmentID;
     
         protected bool IsReady;
 
@@ -42,6 +41,8 @@ namespace CorePublic.Managers
 
             var rebootSettings = Resources.Load<RebootSettings>("RebootSettings");
 
+            string environmentID = "";
+            
             if (rebootSettings)
             {
                 if (Debug.isDebugBuild)
@@ -52,6 +53,11 @@ namespace CorePublic.Managers
                 {
                     environmentID = rebootSettings.remoteConfigEnvironmentID;    
                 }
+            }
+            else
+            {
+                Debug.LogError("RebootSettings not found!");
+                return;
             }
         
             RemoteConfigService.Instance.SetEnvironmentID(environmentID);
