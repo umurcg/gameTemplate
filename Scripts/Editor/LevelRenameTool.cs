@@ -1,3 +1,4 @@
+using CorePublic.Managers;
 using CorePublic.ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
@@ -31,12 +32,23 @@ namespace CorePublic.Editor
             EditorGUILayout.Space();
             namePrefix = EditorGUILayout.TextField("Name Prefix", namePrefix);
             EditorGUILayout.Space();
+            if (GUILayout.Button("Get Levels"))
+            {
+                GetLevelsFromLevelManager();
+            }
+            
             if (GUILayout.Button("Rename"))
             {
                 RenameLevels();
             }
         }
 
+        public void GetLevelsFromLevelManager()
+        {
+            LevelManager levelManager = FindObjectOfType<LevelManager>();
+            levels = levelManager.GetLevels();
+        }
+        
         private void RenameLevels()
         {
             //First rename files to temp names to avoid conflicts
