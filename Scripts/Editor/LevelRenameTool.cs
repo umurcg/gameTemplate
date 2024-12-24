@@ -11,6 +11,7 @@ namespace CorePublic.Editor
         
         public string namePrefix;
         public LevelData[] levels;
+        public int startIndex;
         
         [MenuItem("Reboot/Tools/Level Rename Tool")]
         public static void OpenWindow()
@@ -23,6 +24,7 @@ namespace CorePublic.Editor
             EditorGUILayout.LabelField("Rename Levels", EditorStyles.boldLabel);
             EditorGUILayout.Space();
             
+            
             //Draw gameobject array
             SerializedObject so = new SerializedObject(this);
             SerializedProperty levelsProperty = so.FindProperty("levels");
@@ -32,6 +34,10 @@ namespace CorePublic.Editor
             EditorGUILayout.Space();
             namePrefix = EditorGUILayout.TextField("Name Prefix", namePrefix);
             EditorGUILayout.Space();
+            
+            startIndex = EditorGUILayout.IntField("Start Index", startIndex);
+            EditorGUILayout.Space();
+            
             if (GUILayout.Button("Get Levels"))
             {
                 GetLevelsFromLevelManager();
@@ -73,7 +79,7 @@ namespace CorePublic.Editor
                 string path = AssetDatabase.GetAssetPath(level);
 
                 //Rename the level
-                string newName = namePrefix + " " + index;
+                string newName = namePrefix + (index + startIndex);
                 AssetDatabase.RenameAsset(path, newName);
 
                 //Save the changes
