@@ -192,24 +192,27 @@ namespace CorePublic.Managers
             GlobalActions.OnGameEnded?.Invoke();
         }
         
-        public void EarnMoney(float amount)
+        public void EarnMoney(float amount, string reason="")
         {
             GameMoney += amount;
             GlobalActions.OnGameMoneyChanged?.Invoke(GameMoney);
+            GlobalActions.OnGameCurrencyEarn?.Invoke(reason, amount);
         }
-
-        public bool SpendMoney(float amount)
+        
+        public void SpendMoney(float amount, string reason="")
         {
-            if (amount <= GameMoney)
+            if (amount > GameMoney)
             {
-                GameMoney -= amount;
-                GlobalActions.OnGameMoneyChanged?.Invoke(GameMoney);
-                return true;
+                Debug.LogError("Not enough money to spend");
+                return;
             }
 
-            return false;
+            GameMoney -= amount;
+            GlobalActions.OnGameMoneyChanged?.Invoke(GameMoney);
+            GlobalActions.OnGameCurrencySpend?.Invoke(reason, amount);
         }
 
+        
         public void ClearSaveData()
         {
             Debug.Log("Save data cleared!");
