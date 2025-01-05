@@ -7,6 +7,7 @@ namespace CorePublic.CurrencySystem
     public class CurrencyRegisterer : MonoBehaviour
     {
         public int currencyAmount = 1;
+        public string earnReason = "";
     
         // Start is called before the first frame update
         void Start()
@@ -21,7 +22,7 @@ namespace CorePublic.CurrencySystem
 
         private void RegisterCurrency()
         {
-            CoreManager.Instance.EarnMoney(currencyAmount);
+            CoreManager.Instance.EarnMoney(currencyAmount,earnReason);
         }
     
     }
