@@ -17,14 +17,16 @@ namespace CorePublic.Managers
     {
         public enum LoadType
         {
-            ScriptableObjectReference, ScriptableObjectResource, Prefab
+            ScriptableObjectReference,
+            ScriptableObjectResource,
+            Prefab
         }
-        
+
         public LoadType loadType = LoadType.ScriptableObjectReference;
-        
+
         [Tooltip("If checked, level manager will load last played level automatically when game is started")]
         public bool autoLoad = true;
-        
+
         /// <summary>
         /// If true, it means the level is loaded in design mode which means it was already in scene in editor and that level will be used as loaded level.
         /// </summary>
@@ -34,44 +36,44 @@ namespace CorePublic.Managers
 
         public int NumberOfTotalLevels { get; protected set; }
 
-        
-        #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType),LoadType.ScriptableObjectReference)]
-        #endif
-        [SerializeField]protected LevelData[] Levels;
-        
-        #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType),LoadType.ScriptableObjectReference)]
-        #endif
-        [SerializeField]protected LevelData[] AllLevels;
-        
-        #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType),LoadType.Prefab)]
-        #endif
-        [SerializeField] protected GameObject[] LevelPrefabs;
-        
-        #if ODIN_INSPECTOR
-        [ShowIf(nameof(loadType),LoadType.ScriptableObjectResource)]
-        #endif
-        [SerializeField]
-        private string levelsFolder = "Levels";
 
-        #if ODIN_INSPECTOR
+#if ODIN_INSPECTOR
+        [ShowIf(nameof(loadType),LoadType.ScriptableObjectReference)]
+#endif
+        [SerializeField] protected LevelData[] Levels;
+
+#if ODIN_INSPECTOR
+        [ShowIf(nameof(loadType),LoadType.ScriptableObjectReference)]
+#endif
+        [SerializeField] protected LevelData[] AllLevels;
+
+#if ODIN_INSPECTOR
+        [ShowIf(nameof(loadType),LoadType.Prefab)]
+#endif
+        [SerializeField] protected GameObject[] LevelPrefabs;
+
+#if ODIN_INSPECTOR
+        [ShowIf(nameof(loadType),LoadType.ScriptableObjectResource)]
+#endif
+        [SerializeField] private string levelsFolder = "Levels";
+
+#if ODIN_INSPECTOR
         [ShowIf(nameof(loadType), LoadType.ScriptableObjectResource)]
-        #endif
-        [SerializeField]protected string[] LevelDataNames;
+#endif
+        [SerializeField] protected string[] LevelDataNames;
 
 #if UNITY_EDITOR
         public LevelData TestLevelData;
-        public bool EnableDesignMode=true;
+        public bool EnableDesignMode = true;
 #endif
-        
+
         public LevelData ActiveLevelData { get; protected set; }
 
         [Tooltip("Game will be tried to start with this level ignoring game data. This is useful for fast development")]
         public int TestLevelIndex = -1;
+
         public int DefaultRepeatLevelIndex = -1;
-        
+
         /// <summary>
         ///     Whether or not there are active loaded level in the scene
         /// </summary>
@@ -91,6 +93,18 @@ namespace CorePublic.Managers
             set => PlayerPrefs.SetInt("LastLoadedLevelWon", value ? 1 : 0);
         }
 
+        private int RepeatStartLevelIndex
+        {
+            get
+            {
+                int repeatStartLevelIndex = DefaultRepeatLevelIndex;
+                if (RemoteConfig.Instance)
+                    repeatStartLevelIndex =
+                        RemoteConfig.Instance.GetInt("repeatStartLevelIndex", repeatStartLevelIndex);
+                return repeatStartLevelIndex;
+            }
+        }
+
         protected new void Awake()
         {
             base.Awake();
@@ -100,13 +114,14 @@ namespace CorePublic.Managers
         {
             CoreManager = CoreManager.Request();
 
-            if(loadType==LoadType.ScriptableObjectReference) 
+            if (loadType == LoadType.ScriptableObjectReference)
                 RetrieveRemoteFunnel();
 
             if (loadType == LoadType.ScriptableObjectReference)
             {
                 NumberOfTotalLevels = Levels.Length;
-            }else if (loadType == LoadType.Prefab)
+            }
+            else if (loadType == LoadType.Prefab)
             {
                 NumberOfTotalLevels = LevelPrefabs.Length;
             }
@@ -114,10 +129,10 @@ namespace CorePublic.Managers
             {
                 NumberOfTotalLevels = LevelDataNames.Length;
             }
-            
-            
+
+
             yield return null;
-            
+
 #if UNITY_EDITOR
             if (Application.isEditor && EnableDesignMode)
             {
@@ -136,7 +151,7 @@ namespace CorePublic.Managers
                 yield break;
             }
 #endif
-            
+
             //Error protection
             if (NumberOfTotalLevels == 0)
             {
@@ -165,9 +180,9 @@ namespace CorePublic.Managers
 
         private void RetrieveRemoteFunnel()
         {
-            if (RemoteConfig.Instance==null) return;
-            if(RemoteConfig.Instance.HasKey("levelFunnel")==false) return;
-            
+            if (RemoteConfig.Instance == null) return;
+            if (RemoteConfig.Instance.HasKey("levelFunnel") == false) return;
+
             string levelKeysJson = RemoteConfig.Instance.GetJson("levelFunnel");
             var remote = JsonUtility.FromJson<LevelRemoteWrapper>(levelKeysJson);
             if (remote == null)
@@ -223,20 +238,22 @@ namespace CorePublic.Managers
                         Debug.LogError("Test level index is out of range of levels array");
                         return;
                     }
+
                     var level = Levels[TestLevelIndex - 1];
                     LoadLevel(level);
                 }
-                else if(loadType==LoadType.Prefab)
+                else if (loadType == LoadType.Prefab)
                 {
                     if (TestLevelIndex > LevelPrefabs.Length)
                     {
                         Debug.LogError("Test level index is out of range of levels array");
                         return;
                     }
+
                     var levelPrefab = LevelPrefabs[TestLevelIndex - 1];
                     LoadLevel(levelPrefab);
                 }
-                
+
                 return;
             }
 #endif
@@ -268,7 +285,8 @@ namespace CorePublic.Managers
                 {
                     LoadRepeatLevel();
                 }
-            }else if (loadType == LoadType.Prefab)
+            }
+            else if (loadType == LoadType.Prefab)
             {
                 if (levelIndex < LevelPrefabs.Length)
                 {
@@ -283,10 +301,7 @@ namespace CorePublic.Managers
 
         protected virtual void LoadRepeatLevel()
         {
-            int repeatStartLevelIndex = DefaultRepeatLevelIndex;
-            if (RemoteConfig.Instance) 
-                repeatStartLevelIndex=RemoteConfig.Instance.GetInt("repeatStartLevelIndex", repeatStartLevelIndex);
-            
+            int repeatStartLevelIndex = RepeatStartLevelIndex;
             var isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
 
             if (isRandomRepeating)
@@ -315,9 +330,35 @@ namespace CorePublic.Managers
                 var deltaLevelIndex = CoreManager.Instance.Level - NumberOfTotalLevels;
                 var repeatLevelIndex =
                     repeatStartLevelIndex +
-                    deltaLevelIndex % (NumberOfTotalLevels- repeatStartLevelIndex);
+                    deltaLevelIndex % (NumberOfTotalLevels - repeatStartLevelIndex);
                 LoadLevel(repeatLevelIndex);
             }
+        }
+
+#if ODIN_INSPECTOR
+    [Button]
+#endif
+        public int GetCurrentLevelOccurenceCount()
+        {
+            int repeatStartLevelIndex = RepeatStartLevelIndex;
+            bool isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
+
+            if (isRandomRepeating)
+            {
+                Debug.LogWarning("Current level occurence count is not valid for random repeating levels");
+                return -1;
+            }
+
+            int occurenceCount = 1;
+            bool isRepeating = CoreManager.Instance.Level >= NumberOfTotalLevels;
+            if (isRepeating)
+            {
+                occurenceCount = (CoreManager.Instance.Level - NumberOfTotalLevels) /
+                    (NumberOfTotalLevels - repeatStartLevelIndex) + 2;
+            }
+
+            Debug.Log("Current level occurence count: " + occurenceCount);
+            return occurenceCount;
         }
 
 #if UNITY_EDITOR
@@ -339,7 +380,7 @@ namespace CorePublic.Managers
             LoadLevelPrefab(levelPrefab);
             GlobalActions.OnNewLevelLoaded?.Invoke();
         }
-        
+
 
         /// <summary>
         ///     Clears active if level if there is loaded one
@@ -372,9 +413,8 @@ namespace CorePublic.Managers
             {
                 LoadLevelPrefab(levelData.levelPrefab);
             }
-            
         }
-        
+
         protected virtual void LoadLevelPrefab(GameObject levelPrefab)
         {
             Instantiate(levelPrefab, transform);
@@ -391,29 +431,29 @@ namespace CorePublic.Managers
             TestLevelData = null;
 #endif
         }
-        
-        #if UNITY_EDITOR
 
-        #if ODIN_INSPECTOR
+#if UNITY_EDITOR
+
+#if ODIN_INSPECTOR
         [Button,ShowIf(nameof(loadType), LoadType.ScriptableObjectResource)]
-        #else
+#else
         [ContextMenu("Read Levels")]
-        #endif
+#endif
         private void ReadLevels()
         {
             List<string> levelNames = new List<string>();
-            
+
             var levels = Resources.LoadAll<LevelData>("Levels");
             foreach (var level in levels)
             {
                 levelNames.Add(level.name);
             }
-            
+
             LevelDataNames = levelNames.ToArray();
             UnityEditor.EditorUtility.SetDirty(this);
         }
-        
-        #endif
+
+#endif
 
 #if ODIN_INSPECTOR
 [Button]
@@ -422,9 +462,9 @@ namespace CorePublic.Managers
         {
             Levels = Resources.LoadAll<LevelData>("Levels");
             AllLevels = Resources.LoadAll<LevelData>("Levels");
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(this);
-            #endif
+#endif
         }
 
         public string GetStats()
@@ -436,6 +476,7 @@ namespace CorePublic.Managers
             {
                 stats += "Active Level: " + ActiveLevelData.levelName;
             }
+
             return stats;
         }
     }
