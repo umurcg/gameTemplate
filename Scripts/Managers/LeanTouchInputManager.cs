@@ -8,7 +8,7 @@ namespace CorePublic.Managers
         public bool IsInputActive { get; protected set; }
 
 
-        public void Start()
+        public virtual void Start()
         {
             GlobalActions.OnGameStarted += ActivateInput;
             GlobalActions.OnGameRevived += ActivateInput;
@@ -32,13 +32,13 @@ namespace CorePublic.Managers
         protected abstract void BindEvents();
         protected abstract void UnbindEvents();
 
-        protected void OnDestroy()
+        protected virtual void OnDestroy()
         {
             if (IsInputActive)
                 DeactivateInput();
         }
 
-        public string GetStats()
+        public virtual string GetStats()
         {
             return $"IsInputActive: {IsInputActive}";
         }
