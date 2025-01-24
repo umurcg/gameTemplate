@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using CorePublic.Classes;
 using CorePublic.Helpers;
 using CorePublic.Interfaces;
@@ -81,6 +82,8 @@ namespace CorePublic.Managers
 
         public GameObject ActiveLevelObject => transform.childCount > 0 ? transform.GetChild(0).gameObject : null;
 
+        [SerializeField] private string levelFunnelRemoteKey = "levelFunnel";
+
         private int LastRandomLevelIndex
         {
             get => PlayerPrefs.GetInt("LastLoadedLevelIndex", -1);
@@ -114,8 +117,9 @@ namespace CorePublic.Managers
         {
             CoreManager = CoreManager.Request();
 
-            if (loadType == LoadType.ScriptableObjectReference)
+            if (loadType == LoadType.ScriptableObjectReference){
                 RetrieveRemoteFunnel();
+            }
 
             if (loadType == LoadType.ScriptableObjectReference)
             {
@@ -181,9 +185,9 @@ namespace CorePublic.Managers
         private void RetrieveRemoteFunnel()
         {
             if (RemoteConfig.Instance == null) return;
-            if (RemoteConfig.Instance.HasKey("levelFunnel") == false) return;
+            if (RemoteConfig.Instance.HasKey(levelFunnelRemoteKey) == false) return;
 
-            string levelKeysJson = RemoteConfig.Instance.GetJson("levelFunnel");
+            string levelKeysJson = RemoteConfig.Instance.GetJson(levelFunnelRemoteKey);
             var remote = JsonUtility.FromJson<LevelRemoteWrapper>(levelKeysJson);
             if (remote == null)
             {
@@ -337,6 +341,8 @@ namespace CorePublic.Managers
 
 #if ODIN_INSPECTOR
     [Button]
+#else
+        [ContextMenu("GetCurrentLevelOccurenceCount")]
 #endif
         public int GetCurrentLevelOccurenceCount()
         {
@@ -457,6 +463,8 @@ namespace CorePublic.Managers
 
 #if ODIN_INSPECTOR
 [Button]
+#else
+        [ContextMenu("Load Level Data From Resources")]
 #endif
         public void LoadLevelDataFromResources()
         {
@@ -466,6 +474,56 @@ namespace CorePublic.Managers
             UnityEditor.EditorUtility.SetDirty(this);
 #endif
         }
+
+// #if UNITY_EDITOR
+//         public string LoadPath="Assets/Levels";
+//         #if ODIN_INSPECTOR
+//         [Button]
+//         #else
+//         [ContextMenu("Load Levels From Path")]
+//         #endif
+//         public void LoadLevelsFromPath()
+//         {
+//             var assets=UnityEditor.AssetDatabase.LoadAllAssetsAtPath(LoadPath);
+//             Levels = assets.Cast<LevelData>().ToArray();
+//             AllLevels = Levels.ToArray();
+//             UnityEditor.EditorUtility.SetDirty(this);
+//         }
+// #endif
+
+
+#if UNITY_EDITOR
+        #if ODIN_INSPECTOR
+        [Button]
+        #else
+        [ContextMenu("Log Current Level Funnel")]
+        #endif
+        public void LogCurrentLevelFunnel()
+        {
+            //Debug log current level funnel as json for remote input
+            var wrapper = new LevelRemoteWrapper
+            {
+                levelKeys = Levels.Select(level => level.levelName).ToArray()
+            };
+            
+            string json = JsonUtility.ToJson(wrapper, true);
+            Debug.Log($"Current Level Funnel JSON for Remote Config key '{levelFunnelRemoteKey}':\n{json}");
+            
+            // Save to file
+            string folderPath = "Assets/RemoteConfigs";
+            if (!System.IO.Directory.Exists(folderPath))
+            {
+                System.IO.Directory.CreateDirectory(folderPath);
+            }
+            
+            string filePath = $"{folderPath}/level_funnel.json";
+            System.IO.File.WriteAllText(filePath, json);
+            UnityEditor.AssetDatabase.Refresh();
+            
+            Debug.Log($"Saved level funnel JSON to: {filePath}");
+        }
+#endif
+
 
         public string GetStats()
         {
