@@ -221,6 +221,12 @@ namespace CorePublic.Managers
             }
 
             Levels = remoteLevels.ToArray();
+
+            string log="Remote level funnel:";
+            foreach(var level in Levels){
+                log+=level.levelName+", ";
+            }
+            Debug.Log(log);
         }
 
         private void OnNewSceneLoaded(Scene scene, LoadSceneMode mode)
