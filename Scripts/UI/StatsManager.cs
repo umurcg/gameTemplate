@@ -61,6 +61,9 @@ namespace CorePublic.UI
                 
                 debugSwitchButton.transition = Selectable.Transition.ColorTint;
                 debugSwitchButton.targetGraphic = image;
+                debugSwitchButton.onClick.AddListener(() => {
+                    _text.enabled = !_text.enabled;
+                });
                 
             }
             
