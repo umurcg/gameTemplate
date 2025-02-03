@@ -19,7 +19,7 @@ namespace CorePublic.UI
 
         private Camera _mainCamera;
         
-        private void Start()
+        protected void Start()
         {
             _coreManager = CoreManager.Request();
             _gameManager = GameManager.Request();
@@ -45,7 +45,7 @@ namespace CorePublic.UI
         }
         
 
-        private void MoneyIsChanged(float amount)
+        protected virtual void MoneyIsChanged(float amount)
         {
             if (type == Types.GameMoney)
             {
