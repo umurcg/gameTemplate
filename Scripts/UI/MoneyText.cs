@@ -68,5 +68,22 @@ namespace CorePublic.UI
             Vector3 pos2D=new Vector3(transform.position.x,transform.position.y,20);
             return _mainCamera.ScreenToWorldPoint(pos2D);   
         }
+
+        void OnDestroy()
+        {
+            if (type == Types.GameMoney)
+            {
+                GlobalActions.OnGameMoneyChanged -= MoneyIsChanged;
+            }
+            else if (type == Types.LevelMoney)
+            {
+                GlobalActions.OnLevelMoneyChanged -= MoneyIsChanged;
+            }
+            else if (type == Types.TotalMoney)
+            {
+                GlobalActions.OnLevelMoneyChanged -= MoneyIsChanged;
+                GlobalActions.OnGameMoneyChanged -= MoneyIsChanged;
+            }
+        }
     }
 }
