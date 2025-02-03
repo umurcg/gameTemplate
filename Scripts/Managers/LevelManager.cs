@@ -170,11 +170,18 @@ namespace CorePublic.Managers
             if (autoLoad)
             {
                 LoadLevel(CoreManager.Level);
-                GlobalActions.OnLevelChanged += (LoadLevel);
+                GlobalActions.OnLevelChanged += LoadLevel;
+                GlobalActions.OnGameRestarted += ReloadLevel;
             }
 
             GlobalActions.OnGameWin += GameWin;
             GlobalActions.OnGameExit += ClearLoadedLevel;
+            
+        }
+
+        public void ReloadLevel()
+        {
+            LoadLevel(CoreManager.Level);
         }
 
         private void GameWin()

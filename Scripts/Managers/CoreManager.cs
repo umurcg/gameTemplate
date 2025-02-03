@@ -239,15 +239,14 @@ namespace CorePublic.Managers
                 GlobalActions.OnLevelChanged?.Invoke(Level);
         }
 
-        public void ReloadLevel()
+        public void RestartGame()
         {
             if (IsGameStarted)
             {
                 Debug.LogError("Gameplay is continuing You can not increase level during a gameplay");
                 return;
             }
-
-            GlobalActions.OnLevelChanged?.Invoke(Level);
+        
             GlobalActions.OnGameRestarted?.Invoke();
         }
 
