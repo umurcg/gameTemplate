@@ -72,5 +72,12 @@ namespace CorePublic.CurrencySystem
             NonRegisteredValue = 0;
             OnNonRegisteredValueChanged?.Invoke(0);
         }
+
+        public void ClearValue()
+        {
+            PlayerPrefs.DeleteKey(name);
+            OnValueChanged?.Invoke(0);
+        }   
+    
     }
 }
