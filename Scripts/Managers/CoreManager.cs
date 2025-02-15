@@ -62,6 +62,11 @@ namespace CorePublic.Managers
             private set => PlayerPrefsX.SetBool("IsFirstSession", value);
         }
 
+        /// <summary>
+        /// The number of times the game has been lost in current level.
+        /// </summary>
+        public int LostCounter { get; private set; }
+
         protected override void Awake()
         {
             base.Awake();
@@ -119,6 +124,7 @@ namespace CorePublic.Managers
                 return;
             }
 
+            LostCounter = 0;
             GameState = GameStates.InGame;
             GlobalActions.OnGameStarted?.Invoke();
         }
@@ -160,7 +166,7 @@ namespace CorePublic.Managers
                 return;
             }
 
-            
+            LostCounter++;
             GameState = GameStates.Lost;
             GlobalActions.OnGameLost?.Invoke();
             GlobalActions.OnGameEnded?.Invoke();
