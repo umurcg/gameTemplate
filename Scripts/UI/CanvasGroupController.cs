@@ -6,13 +6,23 @@ namespace CorePublic.UI
     [RequireComponent(typeof(CanvasGroup))]
     public class CanvasGroupController : MonoBehaviour
     {
-
+        public CanvasGroup CanvasGroup{
+            get{
+                if (_canvasGroup==null)
+                    _canvasGroup = GetComponent<CanvasGroup>();
+                return _canvasGroup;
+            }
+        }
         protected CanvasGroup _canvasGroup;
         public UnityEvent OnActivate;
         public UnityEvent OnDeactivate;
 
+        public bool IsActive=>CanvasGroup.alpha>0.5f;
+
 #if ODIN_INSPECTOR
 [Sirenix.OdinInspector.ShowInInspector]
+#else
+[ContextMenu("Activate")]
 #endif
         public virtual void Activate()
         {
@@ -22,22 +32,20 @@ namespace CorePublic.UI
 
 #if ODIN_INSPECTOR
         [Sirenix.OdinInspector.Button]
+#else
+        [ContextMenu("Deactivate")]
 #endif
         public virtual void Deactivate()
         {
-            SetEnable(false);
-            
-        
+            SetEnable(false);            
         }
         
 
         public void SetEnable(bool enable)
         {
-            if (_canvasGroup == null)
-                _canvasGroup = GetComponent<CanvasGroup>();
-            _canvasGroup.alpha = enable ? 1 : 0;
-            _canvasGroup.interactable = enable;
-            _canvasGroup.blocksRaycasts = enable;
+            CanvasGroup.alpha = enable ? 1 : 0;
+            CanvasGroup.interactable = enable;
+            CanvasGroup.blocksRaycasts = enable;
 
             if (Application.isPlaying)
             {
@@ -46,20 +54,18 @@ namespace CorePublic.UI
                 else
                     OnDeactivate?.Invoke();
                 
-                var canvasGroupListeners = GetComponentsInChildren<ICanvasGroupListener>();
+                var canvasGroupListeners = GetComponentsInChildren<CanvasGroupListener>(true);
                 foreach (var listener in canvasGroupListeners)
                 {
                     if (enable)
-                        listener.OnActivate();
+                        listener.CheckActivation();
                     else
                         listener.OnDeactivate();
                 }
-            }
-            
-   
+            }            
             
 #if UNITY_EDITOR
-            UnityEditor.EditorUtility.SetDirty(_canvasGroup);
+            UnityEditor.EditorUtility.SetDirty(CanvasGroup);
 #endif
         }
     }
