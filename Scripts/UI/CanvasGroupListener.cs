@@ -22,7 +22,7 @@ namespace CorePublic.UI
 
         public void CheckActivation()
         {
-            if (_parentCanvasGroupControllers.Length == 0)
+            if (_parentCanvasGroupControllers==null || _parentCanvasGroupControllers.Length == 0)
                 return;
 
             if (IsActive())
