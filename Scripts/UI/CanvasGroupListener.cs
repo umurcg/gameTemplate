@@ -43,11 +43,11 @@ namespace CorePublic.UI
 
         public virtual void OnActivate()
         {
-            OnActivateEvent.Invoke();
+            OnActivateEvent?.Invoke();
         }
         public virtual void OnDeactivate()
         {
-            OnDeactivateEvent.Invoke();
+            OnDeactivateEvent?.Invoke();
         }
         
     }
