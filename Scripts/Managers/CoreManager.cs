@@ -16,7 +16,12 @@ namespace CorePublic.Managers
 
         [Tooltip("If checked, start state will be triggered automatically when a level loaded")] [SerializeField]
         private bool autoStart = true;
-        
+
+        public GameStates LastSavedGameState{
+            get => PlayerPrefsX.GetEnum<GameStates>("LastSavedGameState", GameStates.Idle);
+            private set => PlayerPrefsX.SetEnum("LastSavedGameState", value);
+        }        
+
         public GameStates GameState { get; private set; } = GameStates.Idle;
 
         public bool IsGameStarted => GameState == GameStates.InGame;
@@ -126,6 +131,7 @@ namespace CorePublic.Managers
 
             LostCounter = 0;
             GameState = GameStates.InGame;
+            LastSavedGameState = GameState;
             GlobalActions.OnGameStarted?.Invoke();
         }
         
@@ -156,6 +162,7 @@ namespace CorePublic.Managers
             GlobalActions.OnGameWin?.Invoke();
             GlobalActions.OnGameEnded?.Invoke();
             GameState = GameStates.Win;
+            LastSavedGameState = GameState;
         }
 
         public void LostGame()
@@ -168,6 +175,7 @@ namespace CorePublic.Managers
 
             LostCounter++;
             GameState = GameStates.Lost;
+            LastSavedGameState = GameState;
             GlobalActions.OnGameLost?.Invoke();
             GlobalActions.OnGameEnded?.Invoke();
         }
@@ -181,6 +189,7 @@ namespace CorePublic.Managers
             }
             
             GameState = GameStates.DefiniteLost;
+            LastSavedGameState = GameState;
             GlobalActions.OnGameLostConfirmed?.Invoke();
         }
 
@@ -193,7 +202,8 @@ namespace CorePublic.Managers
             }
             
             GameState = GameStates.Idle;
-            
+            LastSavedGameState = GameState;
+
             GlobalActions.OnGameExit?.Invoke();
             GlobalActions.OnGameEnded?.Invoke();
         }
@@ -271,6 +281,7 @@ namespace CorePublic.Managers
             }
             
             GameState = GameStates.InGame;
+            LastSavedGameState = GameState;
             GlobalActions.OnGameRevived?.Invoke();
         }
         
