@@ -18,7 +18,7 @@ namespace CorePublic.Managers
         private bool autoStart = true;
 
         public GameStates LastSavedGameState{
-            get => PlayerPrefs.GetInt("LastSavedGameState", (int)GameStates.Idle);
+            get => (GameStates)PlayerPrefs.GetInt("LastSavedGameState", (int)GameStates.Idle);
             private set => PlayerPrefs.SetInt("LastSavedGameState", (int)value);
         }        
 
