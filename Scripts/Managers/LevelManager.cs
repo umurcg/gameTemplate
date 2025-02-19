@@ -422,6 +422,26 @@ namespace CorePublic.Managers
             return Levels;
         }
 
+        public LevelData GetLevel(int index)
+        {
+            if(index < Levels.Length){
+                return Levels[index];
+            }
+            else{
+                
+                int repeatStartLevelIndex = RepeatStartLevelIndex;
+                var isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
+
+                if(isRandomRepeating) return null;
+
+                var deltaLevelIndex = CoreManager.Instance.Level - NumberOfTotalLevels;
+                var repeatLevelIndex =
+                    repeatStartLevelIndex +
+                    deltaLevelIndex % (NumberOfTotalLevels - repeatStartLevelIndex);
+                return Levels[repeatLevelIndex];
+            }
+        }
+
 
         //This can be edited according to needs!!
         protected virtual void LoadLevelWithData(LevelData levelData)
