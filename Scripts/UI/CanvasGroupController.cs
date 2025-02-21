@@ -17,7 +17,7 @@ namespace CorePublic.UI
         public UnityEvent OnActivate;
         public UnityEvent OnDeactivate;
 
-        public bool IsActive {get ; private set;}
+        public bool IsActive=>CanvasGroup.blocksRaycasts;
 
 #if ODIN_INSPECTOR
 [Sirenix.OdinInspector.ShowInInspector]
@@ -46,8 +46,7 @@ namespace CorePublic.UI
             CanvasGroup.alpha = enable ? 1 : 0;
             CanvasGroup.interactable = enable;
             CanvasGroup.blocksRaycasts = enable;
-            IsActive = enable;
-            
+
             if (Application.isPlaying)
             {
                 if (enable)
