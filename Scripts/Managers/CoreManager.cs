@@ -21,7 +21,7 @@ namespace CorePublic.Managers
 
         public static GameStates LastSavedGameState{
             get => (GameStates)PlayerPrefs.GetInt(LastSavedGameStateKey, (int)GameStates.Idle);
-            private set => PlayerPrefs.SetInt(LastSavedGameStateKey, (int)value);
+            set => PlayerPrefs.SetInt(LastSavedGameStateKey, (int)value);
         }        
 
         public GameStates GameState { get; private set; } = GameStates.Idle;
