@@ -205,8 +205,7 @@ namespace CorePublic.Managers
                 return;
             }
             
-            GameState = GameStates.Idle;
-            LastSavedGameState = GameState;
+            SetStateToIdle();
 
             GlobalActions.OnGameExit?.Invoke();
             GlobalActions.OnGameEnded?.Invoke();
@@ -219,6 +218,13 @@ namespace CorePublic.Managers
             GlobalActions.OnGameCurrencyEarn?.Invoke(reason, amount);
         }
         
+
+        public void SetStateToIdle()
+        {
+            GameState = GameStates.Idle;
+            LastSavedGameState = GameState;
+        }
+
         public void SpendMoney(float amount, string reason="")
         {
             if (amount > GameMoney)
