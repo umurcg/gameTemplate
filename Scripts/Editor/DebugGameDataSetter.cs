@@ -29,7 +29,7 @@ namespace CorePublic.Editor
         private void SetGameData()
         {
             CoreManager coreManager = FindObjectOfType<CoreManager>();
-            coreManager.SetLevel(levelToSet,true);
+            CoreManager.SetLevel(levelToSet,true);
             float moneyDif = moneyToSet - coreManager.GameMoney;
             if (moneyDif > 0)
             {

@@ -56,8 +56,10 @@ namespace CorePublic.Managers
             }
         }
 
-   
-        public int Level
+        
+        public int Level => GameLevel;
+        
+        public static int GameLevel
         {
             get => PlayerPrefs.GetInt(LevelSaveKey, 0);
             private set => PlayerPrefs.SetInt(LevelSaveKey, value);
@@ -231,30 +233,30 @@ namespace CorePublic.Managers
         }
 
         
-        public void ClearSaveData()
+        public static void ClearSaveData()
         {
             Debug.Log("Save data cleared!");
             PlayerPrefs.DeleteAll();
         }
 
-        public void IncreaseLevel()
+        public static void IncreaseLevel()
         {
-            if (IsGameStarted)
+            if (CoreManager.Instance && CoreManager.Instance.IsGameStarted)
             {
                 Debug.LogError("Gameplay is continuing You can not increase level during a gameplay");
                 return;
             }
             
             GlobalActions.OnPreLevelIncrease?.Invoke();
-            Level++;
-            GlobalActions.OnLevelChanged?.Invoke(Level);
+            GameLevel++;
+            GlobalActions.OnLevelChanged?.Invoke(GameLevel);
         }
 
-        public void SetLevel(int levelIndex, bool preventCallback = false)
+        public static void SetLevel(int levelIndex, bool preventCallback = false)
         {
-            Level = levelIndex;
+            GameLevel = levelIndex;
             if (!preventCallback)
-                GlobalActions.OnLevelChanged?.Invoke(Level);
+                GlobalActions.OnLevelChanged?.Invoke(GameLevel);
         }
 
         public void RestartGame()

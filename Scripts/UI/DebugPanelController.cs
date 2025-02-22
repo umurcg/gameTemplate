@@ -25,8 +25,8 @@ namespace CorePublic.UI
         public void ResetGameData()
         {
             if (_coreManager.IsGameStarted) _coreManager.WinGame();
-            _coreManager.ClearSaveData();
-            _coreManager.SetLevel(0);
+            CoreManager.ClearSaveData();
+            CoreManager.SetLevel(0);
             debugLevelLabel.text = 0.ToString();
         }
 
@@ -45,7 +45,7 @@ namespace CorePublic.UI
             if (int.TryParse(debugLevelLabel.text, out var result))
             {
                 if (_coreManager.IsGameStarted) _coreManager.WinGame();
-                _coreManager.SetLevel(result);
+                CoreManager.SetLevel(result);
             }
         }
     }
