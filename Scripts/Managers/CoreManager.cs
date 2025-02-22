@@ -10,16 +10,18 @@ namespace CorePublic.Managers
     public sealed class CoreManager : Singleton<CoreManager>, IStats
     {
         
-        private const string LevelSaveKey = "GameLevel";
+        private static string LevelSaveKey = "GameLevel";
+        private static string LastSavedGameStateKey = "LastSavedGameState";
+        private static string IsFirstSessionKey = "IsFirstSession";
 
         [SerializeField] private bool saveEnabled = true;
 
         [Tooltip("If checked, start state will be triggered automatically when a level loaded")] [SerializeField]
         private bool autoStart = true;
 
-        public GameStates LastSavedGameState{
-            get => (GameStates)PlayerPrefs.GetInt("LastSavedGameState", (int)GameStates.Idle);
-            private set => PlayerPrefs.SetInt("LastSavedGameState", (int)value);
+        public static GameStates LastSavedGameState{
+            get => (GameStates)PlayerPrefs.GetInt(LastSavedGameStateKey, (int)GameStates.Idle);
+            private set => PlayerPrefs.SetInt(LastSavedGameStateKey, (int)value);
         }        
 
         public GameStates GameState { get; private set; } = GameStates.Idle;
@@ -61,10 +63,10 @@ namespace CorePublic.Managers
             private set => PlayerPrefs.SetInt(LevelSaveKey, value);
         }
 
-        public bool IsFirstSession
+        public static bool IsFirstSession
         {
-            get => PlayerPrefsX.GetBool("IsFirstSession", true);
-            private set => PlayerPrefsX.SetBool("IsFirstSession", value);
+            get => PlayerPrefsX.GetBool(IsFirstSessionKey, true);
+            private set => PlayerPrefsX.SetBool(IsFirstSessionKey, value);
         }
 
         /// <summary>
