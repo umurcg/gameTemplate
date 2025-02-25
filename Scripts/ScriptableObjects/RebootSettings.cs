@@ -13,7 +13,8 @@ namespace CorePublic.ScriptableObjects
         public Texture2D gameIcon;
         public string bundleID;
         public string bundleVersion = "0.0.01";
-        public int bundleVersionCode = 1;
+        public int iosBuildNumber = 1;
+        public int androidVersionCode = 1;
         public string remoteConfigEnvironmentID = "xxx_rel_xxx";
         public string remoteConfigEnvironmentIDDebug = "xxx_dev_xxx";
 
@@ -26,9 +27,9 @@ namespace CorePublic.ScriptableObjects
             PlayerSettings.productName = gameName;
             PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, bundleID);
             PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, bundleID);
-            PlayerSettings.Android.bundleVersionCode = bundleVersionCode;
             PlayerSettings.bundleVersion = bundleVersion;
-            PlayerSettings.iOS.buildNumber = bundleVersionCode.ToString();
+            PlayerSettings.Android.bundleVersionCode = androidVersionCode;            
+            PlayerSettings.iOS.buildNumber = iosBuildNumber.ToString();
             PlayerSettings.SetIcons(NamedBuildTarget.Unknown, new[] { gameIcon }, IconKind.Any);
 
             Debug.Log("Project settings updated");
@@ -37,7 +38,7 @@ namespace CorePublic.ScriptableObjects
         public bool ReadyToBuild(out string error)
         {
             error = "";
-            bool fieldsFull = gameName != "" && bundleID != "" && bundleVersionCode >= 0 &&
+            bool fieldsFull = gameName != "" && bundleID != "" && iosBuildNumber >= 0 &&
                               remoteConfigEnvironmentID != "";
             if (!fieldsFull)
             {
@@ -49,8 +50,8 @@ namespace CorePublic.ScriptableObjects
                 PlayerSettings.productName != gameName ||
                 PlayerSettings.GetApplicationIdentifier(BuildTargetGroup.iOS) != bundleID ||
                 PlayerSettings.GetApplicationIdentifier(BuildTargetGroup.Android) != bundleID ||
-                PlayerSettings.Android.bundleVersionCode != bundleVersionCode ||
-                PlayerSettings.iOS.buildNumber != bundleVersionCode.ToString() ||
+                PlayerSettings.Android.bundleVersionCode != iosBuildNumber ||
+                PlayerSettings.iOS.buildNumber != iosBuildNumber.ToString() ||
                 PlayerSettings.bundleVersion != bundleVersion ||
                 PlayerSettings.GetIconsForTargetGroup(BuildTargetGroup.Unknown)[0] != gameIcon)
             {
