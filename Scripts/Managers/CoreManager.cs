@@ -295,7 +295,7 @@ namespace CorePublic.Managers
             GlobalActions.OnGameRevived?.Invoke();
         }
         
-        public Currency GetMainCurrency()
+        public static Currency GetMainCurrency()
         {
             var currencyData = CurrencyData.Instance;
             if(currencyData == null) return null;
