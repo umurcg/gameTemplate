@@ -50,7 +50,7 @@ namespace CorePublic.ScriptableObjects
                 PlayerSettings.productName != gameName ||
                 PlayerSettings.GetApplicationIdentifier(BuildTargetGroup.iOS) != bundleID ||
                 PlayerSettings.GetApplicationIdentifier(BuildTargetGroup.Android) != bundleID ||
-                PlayerSettings.Android.bundleVersionCode != iosBuildNumber ||
+                PlayerSettings.Android.bundleVersionCode != androidVersionCode ||
                 PlayerSettings.iOS.buildNumber != iosBuildNumber.ToString() ||
                 PlayerSettings.bundleVersion != bundleVersion ||
                 PlayerSettings.GetIconsForTargetGroup(BuildTargetGroup.Unknown)[0] != gameIcon)
