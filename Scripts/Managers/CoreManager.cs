@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using CorePublic.CurrencySystem;
 using CorePublic.Helpers;
@@ -169,7 +170,7 @@ namespace CorePublic.Managers
             LastSavedGameState = GameState;
         }
 
-        public void LostGame()
+        public void LostGame(Enum reason)
         {
             if (!IsGameStarted)
             {
@@ -181,6 +182,7 @@ namespace CorePublic.Managers
             GameState = GameStates.Lost;
             LastSavedGameState = GameState;
             GlobalActions.OnGameLost?.Invoke();
+            GlobalActions.OnGameLostWithReason?.Invoke(reason);
             GlobalActions.OnGameEnded?.Invoke();
         }
 

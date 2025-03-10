@@ -52,7 +52,7 @@ namespace Puzzle
         {
             if (!CanBuyMoves())
             {
-                CoreManager.Instance.LostGame();
+                CoreManager.Instance.LostGame(_puzzleManager.LostReason);
             }
             else
             {

@@ -9,6 +9,7 @@ namespace CorePublic.Managers
         public static Action OnNewLevelLoaded;
         public static Action OnLevelDestroyed;
         public static Action OnGameLost;
+        public static Action<Enum> OnGameLostWithReason;
         public static Action OnGameLostConfirmed;
         public static Action OnGameWin;
         public static Action OnGameExit;
@@ -31,6 +32,7 @@ namespace CorePublic.Managers
             OnNewLevelLoaded = null;
             OnLevelDestroyed = null;
             OnGameLost = null;
+            OnGameLostWithReason = null;
             OnGameWin = null;
             OnGameRestarted = null;
             OnGameRevived = null;

@@ -28,6 +28,8 @@ namespace Puzzle
 
         public Action LostCallFinished;
 
+        public Enum LostReason;
+
         public new void Awake()
         {
             base.Awake();
@@ -74,7 +76,9 @@ namespace Puzzle
             }
 
             LostCallFinished?.Invoke();
-            if (CanCallGameLost) CoreManager.Instance.LostGame();
+            if (CanCallGameLost){
+                CoreManager.Instance.LostGame(LostReason);
+            } 
         }
 
         private IEnumerator WaitForLost()
