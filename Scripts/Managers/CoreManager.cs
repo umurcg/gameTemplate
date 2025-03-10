@@ -211,6 +211,32 @@ namespace CorePublic.Managers
             GlobalActions.OnGameEnded?.Invoke();
         }
         
+        public void PauseGame()
+        {
+            if(GameState != GameStates.InGame)
+            {
+                Debug.LogError("Game is not in game you can not pause the game");
+                return;
+            }
+
+            GameState = GameStates.Pause;
+            LastSavedGameState = GameState;
+            GlobalActions.OnGamePaused?.Invoke();
+        }
+
+        public void ResumeGame()
+        {
+            if(GameState != GameStates.Pause)
+            {
+                Debug.LogError("Game is not paused you can not resume the game");
+                return;
+            }
+
+            GameState = GameStates.InGame;
+            LastSavedGameState = GameState;
+            GlobalActions.OnGameResumed?.Invoke();
+        }
+
         public void EarnMoney(float amount, string reason="")
         {
             GameMoney += amount;

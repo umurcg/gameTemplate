@@ -21,8 +21,9 @@ namespace CorePublic.Managers
         public static Action<string, float> OnGameCurrencySpend;
         public static Action<string, float> OnGameCurrencyEarn;
 
-        
-        
+        public static Action OnGamePaused;
+        public static Action OnGameResumed;
+
         public static void Reset()
         {
             OnGameStarted = null;
@@ -39,6 +40,8 @@ namespace CorePublic.Managers
             OnLevelMoneyChanged = null;
             OnGameCurrencySpend = null;
             OnGameCurrencyEarn = null;
+            OnGamePaused = null;
+            OnGameResumed = null;
         }
     }
 }

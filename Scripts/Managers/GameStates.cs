@@ -6,6 +6,7 @@ namespace CorePublic.Managers
         InGame,
         Win,
         Lost,
-        DefiniteLost
+        DefiniteLost,
+        Pause,
     }
 }
