@@ -316,6 +316,15 @@ namespace CorePublic.Managers
             }
         }
 
+        public int GetNextLevelIndex(int levelIndex)
+        {
+            if(levelIndex<NumberOfTotalLevels-1){
+                return levelIndex;
+            }
+            else{
+                return GetRepeatingLevelIndex();
+            }
+        }
         protected virtual void LoadRepeatLevel()
         {
             int repeatLevelIndex = GetRepeatingLevelIndex(); 
