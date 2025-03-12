@@ -84,19 +84,19 @@ namespace CorePublic.Managers
 
         [SerializeField] private string levelFunnelRemoteKey = "levelFunnel";
 
-        private int LastRandomLevelIndex
+        public int LastRandomLevelIndex
         {
             get => PlayerPrefs.GetInt("LastLoadedLevelIndex", -1);
-            set => PlayerPrefs.SetInt("LastLoadedLevelIndex", value);
+            private set => PlayerPrefs.SetInt("LastLoadedLevelIndex", value);
         }
 
-        private bool LastRandomLevelWon
+        public bool LastRandomLevelWon
         {
             get => PlayerPrefs.GetInt("LastLoadedLevelWon", 0) == 1;
-            set => PlayerPrefs.SetInt("LastLoadedLevelWon", value ? 1 : 0);
+            private set => PlayerPrefs.SetInt("LastLoadedLevelWon", value ? 1 : 0);
         }
 
-        private int RepeatStartLevelIndex
+        public int RepeatStartLevelIndex
         {
             get
             {
@@ -318,14 +318,34 @@ namespace CorePublic.Managers
 
         protected virtual void LoadRepeatLevel()
         {
+            int repeatLevelIndex = GetRepeatingLevelIndex(); 
+        
             int repeatStartLevelIndex = RepeatStartLevelIndex;
             var isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
 
             if (isRandomRepeating)
             {
+                if (LastRandomLevelIndex < 0 || LastRandomLevelWon)
+                {
+                    LastRandomLevelIndex = repeatLevelIndex;
+                    LastRandomLevelWon = false;
+                }              
+            }   
+
+            LoadLevel(repeatLevelIndex);        
+            
+        }
+
+        public int GetRepeatingLevelIndex(){
+            
+            int repeatStartLevelIndex = RepeatStartLevelIndex;
+            bool isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
+
+             if (isRandomRepeating)
+            {
                 if (LastRandomLevelIndex > -1 && !LastRandomLevelWon)
                 {
-                    LoadLevel(LastRandomLevelIndex);
+                    return LastRandomLevelIndex;
                 }
                 else
                 {
@@ -337,9 +357,7 @@ namespace CorePublic.Managers
                     }
 
                     int randomLevelIndex = randomLevelIndexes[Random.Range(0, randomLevelIndexes.Count)];
-                    LoadLevel(randomLevelIndex);
-                    LastRandomLevelIndex = randomLevelIndex;
-                    LastRandomLevelWon = false;
+                    return randomLevelIndex;
                 }
             }
             else
@@ -348,8 +366,9 @@ namespace CorePublic.Managers
                 var repeatLevelIndex =
                     repeatStartLevelIndex +
                     deltaLevelIndex % (NumberOfTotalLevels - repeatStartLevelIndex);
-                LoadLevel(repeatLevelIndex);
+                return repeatLevelIndex;
             }
+            
         }
 
 #if ODIN_INSPECTOR
@@ -507,22 +526,6 @@ namespace CorePublic.Managers
             UnityEditor.EditorUtility.SetDirty(this);
 #endif
         }
-
-// #if UNITY_EDITOR
-//         public string LoadPath="Assets/Levels";
-//         #if ODIN_INSPECTOR
-//         [Button]
-//         #else
-//         [ContextMenu("Load Levels From Path")]
-//         #endif
-//         public void LoadLevelsFromPath()
-//         {
-//             var assets=UnityEditor.AssetDatabase.LoadAllAssetsAtPath(LoadPath);
-//             Levels = assets.Cast<LevelData>().ToArray();
-//             AllLevels = Levels.ToArray();
-//             UnityEditor.EditorUtility.SetDirty(this);
-//         }
-// #endif
 
 
 #if UNITY_EDITOR
