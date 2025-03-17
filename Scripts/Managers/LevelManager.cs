@@ -327,12 +327,8 @@ namespace CorePublic.Managers
         }
         protected virtual void LoadRepeatLevel()
         {
-            int repeatLevelIndex = GetRepeatingLevelIndex(); 
-        
-            int repeatStartLevelIndex = RepeatStartLevelIndex;
-            var isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
-
-            if (isRandomRepeating)
+            int repeatLevelIndex = GetRepeatingLevelIndex();         
+            if (IsRandomRepeating())
             {
                 if (LastRandomLevelIndex < 0 || LastRandomLevelWon)
                 {
@@ -345,12 +341,16 @@ namespace CorePublic.Managers
             
         }
 
-        public int GetRepeatingLevelIndex(){
+        private bool IsRandomRepeating(){
+            int repeatStartLevelIndex = RepeatStartLevelIndex;
+            return repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
+        }
+
+        public virtual int GetRepeatingLevelIndex(){
             
             int repeatStartLevelIndex = RepeatStartLevelIndex;
-            bool isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
 
-             if (isRandomRepeating)
+             if (IsRandomRepeating())
             {
                 if (LastRandomLevelIndex > -1 && !LastRandomLevelWon)
                 {
