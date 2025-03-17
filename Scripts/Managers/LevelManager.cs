@@ -96,7 +96,7 @@ namespace CorePublic.Managers
             private set => PlayerPrefs.SetInt("LastLoadedLevelWon", value ? 1 : 0);
         }
 
-        public int RepeatStartLevelIndex
+        public virtual int RepeatStartLevelIndex
         {
             get
             {
