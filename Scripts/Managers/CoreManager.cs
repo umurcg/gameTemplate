@@ -201,9 +201,9 @@ namespace CorePublic.Managers
 
         public void ExitGame()
         {
-            if (!IsGameStarted)
+            if (GameState!=GameStates.InGame && GameState!=GameStates.Pause)
             {
-                Debug.LogError("Gameplay is not started you can not exit the game");
+                Debug.LogError("Gameplay is not started or paused you can not exit the game");
                 return;
             }
             
