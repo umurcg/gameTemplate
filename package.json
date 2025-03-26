@@ -1,6 +1,6 @@
 {
   "name": "com.reboot.core",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "displayName": "Core",
   "description": "Core package of the template",
   "unity": "2021.3",
@@ -94,11 +94,6 @@
       "displayName": "JoystickUI",
         "description": "Contains assets that can be used for joystick UI.",
         "path": "Samples/JoystickUI"
-    },
-    {
-      "displayName": "Fonts",
-        "description": "Contains fonts that can be used for the game.",
-        "path": "Samples/Fonts"
     },
     {
       "displayName": "AutoQualitySetter",
