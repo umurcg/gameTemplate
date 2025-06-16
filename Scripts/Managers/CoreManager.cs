@@ -63,7 +63,10 @@ namespace CorePublic.Managers
         public static int GameLevel
         {
             get => PlayerPrefs.GetInt(LevelSaveKey, 0);
-            private set => PlayerPrefs.SetInt(LevelSaveKey, value);
+            private set => {
+                PlayerPrefs.SetInt(LevelSaveKey, value);
+                PlayerPrefs.Save();
+            }
         }
 
         public static bool IsFirstSession

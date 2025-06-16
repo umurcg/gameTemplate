@@ -26,6 +26,7 @@ namespace CorePublic.CurrencySystem
             var newValue = Value - amount;
             newValue = Mathf.Max(0, newValue);
             PlayerPrefs.SetFloat(name, newValue);
+            PlayerPrefs.Save();
             OnValueChanged?.Invoke(newValue);
             return true;
         }
@@ -36,6 +37,7 @@ namespace CorePublic.CurrencySystem
             {
                 var newValue = Value + amount;
                 PlayerPrefs.SetFloat(name, newValue);
+                PlayerPrefs.Save();
                 OnValueChanged?.Invoke(newValue);
             }
             else
