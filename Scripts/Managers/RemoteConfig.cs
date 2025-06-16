@@ -39,7 +39,7 @@ namespace CorePublic.Managers
         
             RemoteConfigService.Instance.FetchCompleted += ApplyRemoteConfig;
 
-            var rebootSettings = Resources.Load<RebootSettings>("RebootSettings");
+            var rebootSettings = RebootSettings.Instance;
 
             string environmentID = "";
             

@@ -11,7 +11,7 @@ namespace CorePublic.Editor
 
         public void OnPreprocessBuild(BuildReport report)
         {
-            var rebootSettings = Resources.Load<RebootSettings>("RebootSettings");
+            var rebootSettings = RebootSettings.Instance;
             if (!rebootSettings)
             {
                 throw new BuildFailedException("Reboot Settings does not exist!");

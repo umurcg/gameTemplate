@@ -25,23 +25,7 @@ namespace CorePublic.Editor
         [MenuItem("Reboot/Edit Settings")]
         public static void EditSettings()
         {
-            var settings = Resources.Load<RebootSettings>("RebootSettings");
-
-            if (settings == null)
-            {
-                settings = ScriptableObject.CreateInstance<RebootSettings>();
-
-                var path = "Assets/Resources";
-
-                if (!AssetDatabase.IsValidFolder(path))
-                    AssetDatabase.CreateFolder("Assets", "Resources");
-
-                var assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(path + "/RebootSettings.asset");
-
-                AssetDatabase.CreateAsset(settings, assetPathAndName);
-                AssetDatabase.SaveAssets();
-                AssetDatabase.Refresh();
-            }
+            var settings = RebootSettings.Instance;
 
             EditorUtility.FocusProjectWindow();
             Selection.activeObject = settings;

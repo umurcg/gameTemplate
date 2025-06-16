@@ -4,11 +4,100 @@ using UnityEditor.Build;
 #endif
 using UnityEngine;
 
-
 namespace CorePublic.ScriptableObjects
 {
     public class RebootSettings : ScriptableObject
     {
+        private const string SettingsPath = "Assets/Settings/RebootSettings.asset";
+        private const string SettingsDirectory = "Assets/Settings";
+        
+        private static RebootSettings _instance;
+        
+        public static RebootSettings Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+#if UNITY_EDITOR
+                    _instance = AssetDatabase.LoadAssetAtPath<RebootSettings>(SettingsPath);
+                    if (_instance == null)
+                    {
+                        _instance = CreateAndSaveInstance();
+                    }
+#else
+                    // For runtime, we'll use the preloaded asset approach
+                    _instance = FindSettingsInPreloadedAssets();
+                    if (_instance == null)
+                    {
+                        Debug.LogError("RebootSettings not found in preloaded assets! Make sure to add it to Player Settings > Preloaded Assets.");
+                    }
+#endif
+                }
+                return _instance;
+            }
+        }
+
+#if UNITY_EDITOR
+        private static RebootSettings CreateAndSaveInstance()
+        {
+            var settings = CreateInstance<RebootSettings>();
+            
+            if (!AssetDatabase.IsValidFolder(SettingsDirectory))
+            {
+                AssetDatabase.CreateFolder("Assets", "Settings");
+            }
+            
+            AssetDatabase.CreateAsset(settings, SettingsPath);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            
+            Debug.Log($"Created RebootSettings at {SettingsPath}");
+            return settings;
+        }
+        
+        public static void EnsureInPreloadedAssets()
+        {
+            var preloadedAssets = PlayerSettings.GetPreloadedAssets();
+            var settingsAsset = Instance;
+            
+            bool alreadyPreloaded = false;
+            foreach (var asset in preloadedAssets)
+            {
+                if (asset == settingsAsset)
+                {
+                    alreadyPreloaded = true;
+                    break;
+                }
+            }
+            
+            if (!alreadyPreloaded)
+            {
+                var newPreloadedAssets = new Object[preloadedAssets.Length + 1];
+                for (int i = 0; i < preloadedAssets.Length; i++)
+                {
+                    newPreloadedAssets[i] = preloadedAssets[i];
+                }
+                newPreloadedAssets[preloadedAssets.Length] = settingsAsset;
+                PlayerSettings.SetPreloadedAssets(newPreloadedAssets);
+                Debug.Log("Added RebootSettings to preloaded assets");
+            }
+        }
+#endif
+        
+        private static RebootSettings FindSettingsInPreloadedAssets()
+        {
+            var preloadedAssets = PlayerSettings.GetPreloadedAssets();
+            foreach (var asset in preloadedAssets)
+            {
+                if (asset is RebootSettings rebootSettings)
+                {
+                    return rebootSettings;
+                }
+            }
+            return null;
+        }
+
         public string gameName;
         public Texture2D gameIcon;
         public string bundleID;
@@ -18,9 +107,7 @@ namespace CorePublic.ScriptableObjects
         public string remoteConfigEnvironmentID = "xxx_rel_xxx";
         public string remoteConfigEnvironmentIDDebug = "xxx_dev_xxx";
 
-
 #if UNITY_EDITOR
-
         public void UpdateProjectSettings()
         {
             PlayerSettings.companyName = "Reboot Interactive";
@@ -31,6 +118,9 @@ namespace CorePublic.ScriptableObjects
             PlayerSettings.Android.bundleVersionCode = androidVersionCode;            
             PlayerSettings.iOS.buildNumber = iosBuildNumber.ToString();
             PlayerSettings.SetIcons(NamedBuildTarget.Unknown, new[] { gameIcon }, IconKind.Any);
+
+            // Ensure this settings asset is in preloaded assets for runtime access
+            EnsureInPreloadedAssets();
 
             Debug.Log("Project settings updated");
         }
