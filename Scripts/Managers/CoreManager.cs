@@ -63,7 +63,7 @@ namespace CorePublic.Managers
         public static int GameLevel
         {
             get => PlayerPrefs.GetInt(LevelSaveKey, 0);
-            private set => {
+            private set {
                 PlayerPrefs.SetInt(LevelSaveKey, value);
                 PlayerPrefs.Save();
             }
