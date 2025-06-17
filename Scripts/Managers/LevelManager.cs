@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 
 namespace CorePublic.Managers
 {
-    public class LevelManager : Singleton<LevelManager>, IStats
+    public class LevelManager : BaseManager<LevelManager>, IStats
     {
 
         [Tooltip("If checked, level manager will load last played level automatically when game is started")]

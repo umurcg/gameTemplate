@@ -29,6 +29,8 @@ namespace CorePublic.Helpers
             }
         }
 
+        public bool dontDestroyOnLoad = true;
+
         #endregion
 
         #region Methods
@@ -38,10 +40,15 @@ namespace CorePublic.Helpers
         /// </summary>
         protected virtual void Awake()
         {
-            if (_instance == null)
+            if (_instance == null){
                 _instance = this as T;
-            // DontDestroyOnLoad ( gameObject );
-            else if (_instance != this) Destroy(this);
+                if (dontDestroyOnLoad) DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Debug.LogWarning($"There is already an instance of {typeof(T).Name} in the scene. Destroying the new instance.");
+                Destroy(this);
+            }
         }
 
         public static T Request()

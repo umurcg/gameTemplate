@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace CorePublic.Managers
 {
-    public class RemoteConfig : Singleton<RemoteConfig>, IStats, IPrerequisite
+    public class RemoteConfig : BaseManager<RemoteConfig>, IStats, IPrerequisite
     {
         private struct UserAttributes {
             public bool expansionFlag;

@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CorePublic.Managers
 {
     [AddComponentMenu("*Reboot/Managers/Core Manager")]
-    public sealed class CoreManager : Singleton<CoreManager>, IStats
+    public sealed class CoreManager : BaseManager<CoreManager>, IStats
     {
         
         private static string LevelSaveKey = "GameLevel";

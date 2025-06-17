@@ -29,7 +29,7 @@ public class RankButton : RankGuid
 
     private float CurrentMoney => moneyType == MoneyType.GameMoney
         ? CoreManager.Instance.GameMoney
-        : GameManager.Instance.LevelMoney; 
+        : LevelMoneyManager.Instance.LevelMoney; 
         
     void Start()
     {
@@ -63,7 +63,7 @@ public class RankButton : RankGuid
         if (moneyType == MoneyType.GameMoney)
             CoreManager.Instance.SpendMoney(_rank.GetNextLevelPrice());
         else
-            GameManager.Instance.LevelMoney -= _rank.GetNextLevelPrice();
+            LevelMoneyManager.Instance.LevelMoney -= _rank.GetNextLevelPrice();
         
         _rank.BuyNextLevel();
     }

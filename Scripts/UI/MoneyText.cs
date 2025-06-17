@@ -15,14 +15,14 @@ namespace CorePublic.UI
 
         public Types type;
         private CoreManager _coreManager;
-        private GameManager _gameManager;
+        private LevelMoneyManager _gameManager;
 
         private Camera _mainCamera;
         
         protected void Start()
         {
             _coreManager = CoreManager.Request();
-            _gameManager = GameManager.Request();
+            _gameManager = LevelMoneyManager.Request();
 
             _mainCamera = Camera.main;
             

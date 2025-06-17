@@ -22,7 +22,7 @@ namespace CorePublic.Helpers
         [ContextMenu("Set Camera Targets")]
         private void Set()
         {
-            var cameraManager = CameraManager.Instance;
+            var cameraManager = CinemachineManager.Instance;
             foreach (var cameraStatus in cameraStatuses)
             {
                 if (setAsTarget)

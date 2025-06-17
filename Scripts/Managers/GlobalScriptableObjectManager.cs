@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CorePublic.Managers
 {
-    public class GlobalScriptableObjectManager : Singleton<GlobalScriptableObjectManager>
+    public class GlobalScriptableObjectManager : BaseManager<GlobalScriptableObjectManager>
     {
         public List<ScriptableObject> GlobalScriptableObjects;
 

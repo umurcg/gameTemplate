@@ -14,7 +14,7 @@ namespace CorePublic.Managers
         
         public string[] GetCameraStatuses()
         {
-            CameraManager cameraManager = CameraManager.Instance;
+            CinemachineManager cameraManager = CinemachineManager.Instance;
             if (!cameraManager)
                 return null;
 
