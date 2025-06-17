@@ -27,7 +27,7 @@ namespace CorePublic.Managers
 
         protected void Start()
         {
-            InitializeRemoteService();
+            _ = InitializeRemoteService();
         }
 
         protected virtual async Task InitializeRemoteService()
