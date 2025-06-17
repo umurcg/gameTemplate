@@ -248,6 +248,10 @@ namespace CorePublic.Managers
             GlobalActions.OnGameMoneyChanged?.Invoke(GameMoney);
             GlobalActions.OnGameCurrencyEarn?.Invoke(reason, amount);
         }
+
+        public void EarnMoney(float amount){
+            EarnMoney(amount, "N/A");
+        }
         
 
         public void SetStateToIdle()

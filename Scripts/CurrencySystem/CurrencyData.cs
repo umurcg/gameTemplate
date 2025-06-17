@@ -4,7 +4,7 @@ using UnityEngine;
 namespace CorePublic.CurrencySystem
 {
     [CreateAssetMenu(fileName = "CurrencyData", menuName = "Reboot/CurrencyData")]
-    public class CurrencyData: ResourceBase<CurrencyData>
+    public class CurrencyData: GlobalSO<CurrencyData>
     {
         protected override string RemoteConfigKey { get; }
         public Currency[] currencies;

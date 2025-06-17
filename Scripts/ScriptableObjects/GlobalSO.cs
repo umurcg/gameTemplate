@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CorePublic.ScriptableObjects
 {
-    public abstract class ResourceBase<T> : ScriptableObject where T : ResourceBase<T>
+    public abstract class GlobalSO<T> : ScriptableObject where T : GlobalSO<T>
     {
         private static T _instance;
 
@@ -14,7 +14,21 @@ namespace CorePublic.ScriptableObjects
             {
                 if (_instance == null)
                 {
-                    _instance = Resources.Load<T>(typeof(T).Name);
+                    GlobalScriptableObjectManager goManager = null;
+                    
+                    if(Application.isPlaying==false)
+                        goManager = FindObjectOfType<GlobalScriptableObjectManager>();
+                    else
+                        goManager = GlobalScriptableObjectManager.Instance;
+                    
+
+                    if(goManager == null)
+                    {
+                        Debug.LogError($"GlobalScriptableObjectManager not found. Please ensure you have created a GlobalScriptableObjectManager in the scene.");
+                        return null;
+                    }
+
+                    _instance = goManager.FindGlobalSO<T>();
                     if (_instance == null)
                     {
                         Debug.LogWarning($"Failed to load settings for {typeof(T).Name}. Please ensure you have created a settings asset. To handle the issue, a new instance of the settings will be created.");
@@ -59,8 +73,6 @@ namespace CorePublic.ScriptableObjects
                 }
             }
 
-            // If remote config failed or wasn't available, we're already using the ScriptableObject 
-            // loaded from Resources, so no need to do anything else here.
         }
     }
 }
