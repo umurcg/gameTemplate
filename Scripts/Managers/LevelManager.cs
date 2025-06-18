@@ -34,7 +34,7 @@ namespace CorePublic.Managers
         public int DefaultRepeatLevelIndex = -1;
 
         /// <summary>
-        ///     Whether or not there are active loaded level in the scene
+        ///  Whether or not there are active loaded level in the scene
         /// </summary>
         public bool LevelIsLoaded => ActiveLevelData != null || ActiveLevelObject != null;
 
@@ -67,13 +67,9 @@ namespace CorePublic.Managers
 
 #if UNITY_EDITOR
         public LevelData TestLevelData;
+        [Tooltip("If checked, level manager will load level in design mode which means it will not load from Level Data, but it will behave as if there is a level loaded.")]
         public bool EnableDesignMode = true;
 #endif
-
-        protected new void Awake()
-        {
-            base.Awake();
-        }
 
         protected IEnumerator Start()
         {
@@ -84,12 +80,9 @@ namespace CorePublic.Managers
 #if UNITY_EDITOR
             if (Application.isEditor && EnableDesignMode)
             {
-                if (transform.childCount > 0)
-                {
-                    InDesignMode = true;
-                    GlobalActions.OnNewLevelLoaded.Invoke();
-                    yield break;
-                }
+                InDesignMode = true;
+                GlobalActions.OnNewLevelLoaded.Invoke();
+                yield break;
             }
 
             if (TestLevelData)

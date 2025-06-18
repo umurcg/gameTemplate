@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace CorePublic.ScriptableObjects
 {
+    [CreateAssetMenu(fileName = "LevelFunnelLibrary", menuName = "Reboot/LevelFunnelLibrary", order = 1)]
     public class LevelFunnelLibrary : GlobalSO<LevelFunnelLibrary>
     {
         public new string RemoteConfigKey = "level_funnel_library";

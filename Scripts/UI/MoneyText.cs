@@ -15,14 +15,12 @@ namespace CorePublic.UI
 
         public Types type;
         private CoreManager _coreManager;
-        private LevelMoneyManager _gameManager;
 
         private Camera _mainCamera;
         
         protected void Start()
         {
             _coreManager = CoreManager.Request();
-            _gameManager = LevelMoneyManager.Request();
 
             _mainCamera = Camera.main;
             
@@ -31,16 +29,16 @@ namespace CorePublic.UI
                 GlobalActions.OnGameMoneyChanged+=MoneyIsChanged;
                 MoneyIsChanged(_coreManager.GameMoney);
             }
-            else if(type==Types.LevelMoney)
+            else if(type==Types.LevelMoney && LevelMoneyManager.Instance!=null)
             {
                 GlobalActions.OnLevelMoneyChanged+=MoneyIsChanged;
-                MoneyIsChanged(_gameManager.LevelMoney);
+                MoneyIsChanged(LevelMoneyManager.Instance.LevelMoney);
                 
-            }else if(type==Types.TotalMoney)
+            }else if(type==Types.TotalMoney && LevelMoneyManager.Instance!=null)
             {
                 GlobalActions.OnLevelMoneyChanged += MoneyIsChanged;
                 GlobalActions.OnGameMoneyChanged += MoneyIsChanged;
-                MoneyIsChanged(_gameManager.LevelMoney+_coreManager.GameMoney);
+                MoneyIsChanged(LevelMoneyManager.Instance.LevelMoney+_coreManager.GameMoney);
             }
         }
         
@@ -51,13 +49,13 @@ namespace CorePublic.UI
             {
                 SetText(_coreManager.GameMoney);
             }
-            else if (type == Types.LevelMoney)
+            else if (type == Types.LevelMoney && LevelMoneyManager.Instance!=null)
             {
-                SetText(_gameManager.LevelMoney);
+                SetText(LevelMoneyManager.Instance.LevelMoney);
             }
-            else if (type == Types.TotalMoney)
+            else if (type == Types.TotalMoney && LevelMoneyManager.Instance!=null)
             {
-                SetText((_gameManager.LevelMoney + _coreManager.GameMoney));
+                SetText((LevelMoneyManager.Instance.LevelMoney + _coreManager.GameMoney));
             }
         }
 
@@ -75,11 +73,11 @@ namespace CorePublic.UI
             {
                 GlobalActions.OnGameMoneyChanged -= MoneyIsChanged;
             }
-            else if (type == Types.LevelMoney)
+            else if (type == Types.LevelMoney && LevelMoneyManager.Instance!=null)
             {
                 GlobalActions.OnLevelMoneyChanged -= MoneyIsChanged;
             }
-            else if (type == Types.TotalMoney)
+            else if (type == Types.TotalMoney && LevelMoneyManager.Instance!=null)
             {
                 GlobalActions.OnLevelMoneyChanged -= MoneyIsChanged;
                 GlobalActions.OnGameMoneyChanged -= MoneyIsChanged;
