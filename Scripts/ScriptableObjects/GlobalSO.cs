@@ -49,7 +49,11 @@ namespace CorePublic.ScriptableObjects
             return _instance;
         }
         
-        protected abstract string RemoteConfigKey { get; }
+        /// <summary>
+        /// If not null, it will be used to load settings from remote config. If null, it means this settings will not be loaded from remote config.
+        /// To enable remote config, fill the RemoteConfigKey at the child class.
+        /// </summary>
+        protected virtual string RemoteConfigKey { get; } = null;
 
         protected virtual void LoadSettings()
         {

@@ -27,12 +27,10 @@ namespace CorePublic.Managers
 
         public int NumberOfTotalLevels { get; protected set; }
 
-        [SerializeField] protected LevelData[] Levels;
+        [SerializeField] protected LevelFunnelLibrary LevelFunnelLibrary;
 
         public LevelData ActiveLevelData { get; protected set; }
 
-        [Tooltip("Game will be tried to start with this level ignoring game data. This is useful for fast development")]
-        public int TestLevelIndex = -1;
         public int DefaultRepeatLevelIndex = -1;
 
         /// <summary>
@@ -80,7 +78,7 @@ namespace CorePublic.Managers
         protected IEnumerator Start()
         {
             CoreManager = CoreManager.Request();
-            NumberOfTotalLevels = Levels.Length;
+            NumberOfTotalLevels = LevelFunnelLibrary.GetNumberOfTotalLevelsOfCurrentFunnel();
             yield return null;
 
 #if UNITY_EDITOR
@@ -145,29 +143,11 @@ namespace CorePublic.Managers
 
         public virtual void LoadLevel(int levelIndex)
         {
-            //First try to load test levels if in editor
-#if UNITY_EDITOR
-            if (TestLevelIndex > 0)
-            {
-
-                if (TestLevelIndex > Levels.Length)
-                {
-                    Debug.LogError("Test level index is out of range of levels array");
-                    return;
-                }
-
-                var level = Levels[TestLevelIndex - 1];
-                LoadLevel(level);
-                return;
-            }
-#endif
-
-
             //If level index is in range of level array capacity
-            if (levelIndex < Levels.Length)
+            if (levelIndex < NumberOfTotalLevels)
             {
                 LevelData level;
-                level = Levels[levelIndex];
+                level = LevelFunnelLibrary.GetLevel(levelIndex);
                 LoadLevel(level);
             }
         }
@@ -241,7 +221,6 @@ namespace CorePublic.Managers
         }
 
 
-
         [ContextMenu("GetCurrentLevelOccurenceCount")]
         public int GetCurrentLevelOccurenceCount()
         {
@@ -303,16 +282,11 @@ namespace CorePublic.Managers
             }
         }
 
-        public LevelData[] GetLevels()
-        {
-            return Levels;
-        }
-
         public LevelData GetLevel(int index)
         {
-            if (index < Levels.Length)
+            if (index < NumberOfTotalLevels)
             {
-                return Levels[index];
+                return LevelFunnelLibrary.GetLevel(index);
             }
             else
             {
@@ -326,7 +300,7 @@ namespace CorePublic.Managers
                 var repeatLevelIndex =
                     repeatStartLevelIndex +
                     deltaLevelIndex % (NumberOfTotalLevels - repeatStartLevelIndex);
-                return Levels[repeatLevelIndex];
+                return LevelFunnelLibrary.GetLevel(repeatLevelIndex);
             }
         }
 
