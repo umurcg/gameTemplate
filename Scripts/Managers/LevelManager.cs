@@ -25,13 +25,11 @@ namespace CorePublic.Managers
 
         protected CoreManager CoreManager;
 
-        public int NumberOfTotalLevels { get; protected set; }
+        public int NumberOfTotalLevels => LevelFunnelLibrary.GetNumberOfTotalLevelsOfCurrentFunnel();
 
         [SerializeField] protected LevelFunnelLibrary LevelFunnelLibrary;
 
         public LevelData ActiveLevelData { get; protected set; }
-
-        public int DefaultRepeatLevelIndex = -1;
 
         /// <summary>
         ///  Whether or not there are active loaded level in the scene
@@ -53,17 +51,6 @@ namespace CorePublic.Managers
             private set => PlayerPrefs.SetInt("LastLoadedLevelWon", value ? 1 : 0);
         }
 
-        public virtual int RepeatStartLevelIndex
-        {
-            get
-            {
-                int repeatStartLevelIndex = DefaultRepeatLevelIndex;
-                if (RemoteConfig.Instance)
-                    repeatStartLevelIndex =
-                        RemoteConfig.Instance.GetInt("repeatStartLevelIndex", repeatStartLevelIndex);
-                return repeatStartLevelIndex;
-            }
-        }
 
 #if UNITY_EDITOR
         public LevelData TestLevelData;
@@ -74,7 +61,6 @@ namespace CorePublic.Managers
         protected IEnumerator Start()
         {
             CoreManager = CoreManager.Request();
-            NumberOfTotalLevels = LevelFunnelLibrary.GetNumberOfTotalLevelsOfCurrentFunnel();
             yield return null;
 
 #if UNITY_EDITOR
@@ -106,8 +92,8 @@ namespace CorePublic.Managers
             //If auto load is checked load level with current level automatically when game is started
             if (autoLoad)
             {
-                LoadLevel(CoreManager.Level);
-                GlobalActions.OnLevelChanged += LoadLevel;
+                LoadCurrentLevel();
+                GlobalActions.OnLevelChanged += OnLevelChanged;
                 GlobalActions.OnGameRestarted += ReloadLevel;
             }
 
@@ -116,9 +102,14 @@ namespace CorePublic.Managers
 
         }
 
+        private void OnLevelChanged(int levelIndex)
+        {
+            LoadCurrentLevel();
+        }
+
         public void ReloadLevel()
         {
-            LoadLevel(CoreManager.Level);
+            LoadCurrentLevel();
         }
 
         private void GameWin()
@@ -134,15 +125,30 @@ namespace CorePublic.Managers
             GlobalActions.OnNewLevelLoaded?.Invoke();
         }
 
-        public virtual void LoadLevel(int levelIndex)
+        public virtual void LoadCurrentLevel()
         {
+            int levelIndex = GetCurrentLevelIndex();
+
             //If level index is in range of level array capacity
             if (levelIndex < NumberOfTotalLevels)
             {
                 LevelData level;
                 level = LevelFunnelLibrary.GetLevel(levelIndex);
                 LoadLevel(level);
+            }else{
+                Debug.LogError("Level index is out of range");
             }
+        }
+
+        private int GetCurrentLevelIndex()
+        {
+            int levelIndex = CoreManager.Level;
+            if(levelIndex<NumberOfTotalLevels){
+                return levelIndex;
+            }else{
+                return GetRepeatingLevelIndex();
+            }
+
         }
 
         public int GetNextLevelIndex(int levelIndex)
@@ -156,34 +162,12 @@ namespace CorePublic.Managers
                 return GetRepeatingLevelIndex();
             }
         }
-        protected virtual void LoadRepeatLevel()
-        {
-            int repeatLevelIndex = GetRepeatingLevelIndex();
-            if (IsRandomRepeating())
-            {
-                if (LastRandomLevelIndex < 0 || LastRandomLevelWon)
-                {
-                    LastRandomLevelIndex = repeatLevelIndex;
-                    LastRandomLevelWon = false;
-                }
-            }
 
-            LoadLevel(repeatLevelIndex);
-
-        }
-
-        private bool IsRandomRepeating()
-        {
-            int repeatStartLevelIndex = RepeatStartLevelIndex;
-            return repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
-        }
-
+    
         public virtual int GetRepeatingLevelIndex()
         {
-
-            int repeatStartLevelIndex = RepeatStartLevelIndex;
-
-            if (IsRandomRepeating())
+        
+            if (LevelFunnelLibrary.GetCurrentLevelFunnel().RandomizeLevelsAfterFunnelFinished)
             {
                 if (LastRandomLevelIndex > -1 && !LastRandomLevelWon)
                 {
@@ -204,6 +188,7 @@ namespace CorePublic.Managers
             }
             else
             {
+                int repeatStartLevelIndex = LevelFunnelLibrary.GetCurrentLevelFunnel().DefaultRepeatStartLevelIndex;
                 var deltaLevelIndex = CoreManager.Instance.Level - NumberOfTotalLevels;
                 var repeatLevelIndex =
                     repeatStartLevelIndex +
@@ -214,30 +199,7 @@ namespace CorePublic.Managers
         }
 
 
-        [ContextMenu("GetCurrentLevelOccurenceCount")]
-        public int GetCurrentLevelOccurenceCount()
-        {
-            int repeatStartLevelIndex = RepeatStartLevelIndex;
-            bool isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
-
-            if (isRandomRepeating)
-            {
-                Debug.LogWarning("Current level occurence count is not valid for random repeating levels");
-                return -1;
-            }
-
-            int occurenceCount = 1;
-            bool isRepeating = CoreManager.Instance.Level >= NumberOfTotalLevels;
-            if (isRepeating)
-            {
-                occurenceCount = (CoreManager.Instance.Level - NumberOfTotalLevels) /
-                    (NumberOfTotalLevels - repeatStartLevelIndex) + 2;
-            }
-
-            Debug.Log("Current level occurence count: " + occurenceCount);
-            return occurenceCount;
-        }
-
+      
 #if UNITY_EDITOR
         public void LoadTestLevel()
         {
@@ -275,7 +237,7 @@ namespace CorePublic.Managers
             }
         }
 
-        public LevelData GetLevel(int index)
+        public LevelData GetLevelWithRepeatingLogic(int index)
         {
             if (index < NumberOfTotalLevels)
             {
@@ -283,17 +245,7 @@ namespace CorePublic.Managers
             }
             else
             {
-
-                int repeatStartLevelIndex = RepeatStartLevelIndex;
-                var isRandomRepeating = repeatStartLevelIndex == -1 || repeatStartLevelIndex >= NumberOfTotalLevels;
-
-                if (isRandomRepeating) return null;
-
-                var deltaLevelIndex = CoreManager.Instance.Level - NumberOfTotalLevels;
-                var repeatLevelIndex =
-                    repeatStartLevelIndex +
-                    deltaLevelIndex % (NumberOfTotalLevels - repeatStartLevelIndex);
-                return LevelFunnelLibrary.GetLevel(repeatLevelIndex);
+                return LevelFunnelLibrary.GetLevel(GetRepeatingLevelIndex());
             }
         }
 
@@ -302,9 +254,9 @@ namespace CorePublic.Managers
         {
             ActiveLevelData = levelData;
             //Try to instantiate level prefab if exists
-            if (levelData.levelPrefab)
+            if (levelData.LevelPrefab)
             {
-                LoadLevelPrefab(levelData.levelPrefab);
+                LoadLevelPrefab(levelData.LevelPrefab);
             }
         }
 
@@ -317,7 +269,8 @@ namespace CorePublic.Managers
         {
             if (autoLoad)
             {
-                GlobalActions.OnLevelChanged -= LoadLevel;
+                GlobalActions.OnLevelChanged -= OnLevelChanged;
+                GlobalActions.OnGameRestarted -= ReloadLevel;
             }
 
 #if UNITY_EDITOR
@@ -332,7 +285,7 @@ namespace CorePublic.Managers
             stats += "Level Manager Design Mode: " + InDesignMode + "\n";
             if (ActiveLevelData)
             {
-                stats += "Active Level: " + ActiveLevelData.levelName;
+                stats += "Active Level: " + ActiveLevelData.LevelName;
             }
 
             return stats;

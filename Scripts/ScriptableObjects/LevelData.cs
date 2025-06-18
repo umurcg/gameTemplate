@@ -4,31 +4,32 @@ using UnityEngine;
 
 namespace CorePublic.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "Data", menuName = "Reboot/LevelData", order = 1),Serializable]
+    [CreateAssetMenu(fileName = "Data", menuName = "Reboot/LevelData", order = 1), Serializable]
     public class LevelData : ScriptableObject
     {
-        public string levelName=> name;
-        public GameObject levelPrefab;
+        public string LevelName => name;
+        public GameObject LevelPrefab;
+        public bool SkipOnRepeat = false;
 
 #if UNITY_EDITOR
-        
-        #if ODIN_INSPECTOR
+
+#if ODIN_INSPECTOR
         [Sirenix.OdinInspector.Button]
-        #else
+#else
         [ContextMenu("Play Level")]
-        #endif
+#endif
         public void PlayLevel()
         {
             //Start editor play mode
             UnityEditor.EditorApplication.isPlaying = true;
-            var levelManager=FindObjectOfType<LevelManager>();
+            var levelManager = FindObjectOfType<LevelManager>();
             if (levelManager == null)
             {
                 Debug.LogError("Level Manager not found in scene");
                 return;
             }
-            levelManager.TestLevelData=this;
-            
+            levelManager.TestLevelData = this;
+
         }
 #endif
     }

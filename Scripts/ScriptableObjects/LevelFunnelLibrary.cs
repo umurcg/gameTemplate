@@ -8,8 +8,14 @@ namespace CorePublic.ScriptableObjects
     public class LevelFunnelLibrary : GlobalSO<LevelFunnelLibrary>
     {
         public new string RemoteConfigKey = "level_funnel_library";
-        public int DefaultLevelFunnelIndex = 0;
+        public int LevelFunnelIndex = 0;
         public LevelFunnel[] LevelFunnels;
+
+
+        public LevelFunnel GetCurrentLevelFunnel()
+        {
+            return GetLevelFunnel(LevelFunnelIndex);
+        }
 
         public LevelFunnel GetLevelFunnel(int index)
         {
@@ -23,7 +29,7 @@ namespace CorePublic.ScriptableObjects
         
         public int GetNumberOfTotalLevelsOfCurrentFunnel()
         {
-            var levelFunnel = GetLevelFunnel(DefaultLevelFunnelIndex);
+            var levelFunnel = GetCurrentLevelFunnel();
             if (levelFunnel == null)
             {
                 Debug.LogError("Default level funnel is not valid");
@@ -34,7 +40,7 @@ namespace CorePublic.ScriptableObjects
 
         public LevelData GetLevel(int index)
         {
-            var levelFunnel = GetLevelFunnel(DefaultLevelFunnelIndex);
+            var levelFunnel = GetCurrentLevelFunnel();
             if (levelFunnel == null)
             {
                 Debug.LogError("Default level funnel is not valid");
@@ -58,7 +64,7 @@ namespace CorePublic.ScriptableObjects
                 Debug.LogError("Level funnel library is not valid");
                 return;
             }
-            DefaultLevelFunnelIndex = remoteFunnelLibrary.DefaultLevelFunnelIndex;
+            LevelFunnelIndex = remoteFunnelLibrary.LevelFunnelIndex;
             
         }
         
