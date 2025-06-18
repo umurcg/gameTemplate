@@ -8,7 +8,6 @@ namespace CorePublic.ScriptableObjects
     [CreateAssetMenu(fileName = "LevelFunnel", menuName = "Reboot/LevelFunnel", order = 1)]
     public class LevelFunnel : GlobalSO<LevelFunnel>
     {
-        public bool RandomizeLevelsAfterFunnelFinished = false;
         public int DefaultRepeatStartLevelIndex = -1;
 
         public LevelData[] Levels;
@@ -67,7 +66,6 @@ namespace CorePublic.ScriptableObjects
                 Debug.LogError("Level funnel library is not valid");
                 return;
             }
-            RandomizeLevelsAfterFunnelFinished = remoteFunnel.RandomizeLevelsAfterFunnelFinished;
             DefaultRepeatStartLevelIndex = remoteFunnel.DefaultRepeatStartLevelIndex;
         }
     }

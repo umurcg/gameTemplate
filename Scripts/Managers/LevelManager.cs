@@ -39,19 +39,6 @@ namespace CorePublic.Managers
         public GameObject ActiveLevelObject => transform.childCount > 0 ? transform.GetChild(0).gameObject : null;
 
 
-        public int LastRandomLevelIndex
-        {
-            get => PlayerPrefs.GetInt("LastLoadedLevelIndex", -1);
-            private set => PlayerPrefs.SetInt("LastLoadedLevelIndex", value);
-        }
-
-        public bool LastRandomLevelWon
-        {
-            get => PlayerPrefs.GetInt("LastLoadedLevelWon", 0) == 1;
-            private set => PlayerPrefs.SetInt("LastLoadedLevelWon", value ? 1 : 0);
-        }
-
-
 #if UNITY_EDITOR
         public LevelData TestLevelData;
         [Tooltip("If checked, level manager will load level in design mode which means it will not load from Level Data, but it will behave as if there is a level loaded.")]
@@ -74,7 +61,6 @@ namespace CorePublic.Managers
             if (TestLevelData)
             {
                 LoadLevel(TestLevelData);
-                GlobalActions.OnGameWin += GameWin;
                 yield break;
             }
 #endif
@@ -97,7 +83,6 @@ namespace CorePublic.Managers
                 GlobalActions.OnGameRestarted += ReloadLevel;
             }
 
-            GlobalActions.OnGameWin += GameWin;
             GlobalActions.OnGameExit += ClearLoadedLevel;
 
         }
@@ -111,12 +96,6 @@ namespace CorePublic.Managers
         {
             LoadCurrentLevel();
         }
-
-        private void GameWin()
-        {
-            if (LastRandomLevelIndex >= 0) LastRandomLevelWon = true;
-        }
-
 
 
         private void OnNewSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -135,7 +114,9 @@ namespace CorePublic.Managers
                 LevelData level;
                 level = LevelFunnelLibrary.GetLevel(levelIndex);
                 LoadLevel(level);
-            }else{
+            }
+            else
+            {
                 Debug.LogError("Level index is out of range");
             }
         }
@@ -143,9 +124,12 @@ namespace CorePublic.Managers
         private int GetCurrentLevelIndex()
         {
             int levelIndex = CoreManager.Level;
-            if(levelIndex<NumberOfTotalLevels){
+            if (levelIndex < NumberOfTotalLevels)
+            {
                 return levelIndex;
-            }else{
+            }
+            else
+            {
                 return GetRepeatingLevelIndex();
             }
 
@@ -163,43 +147,20 @@ namespace CorePublic.Managers
             }
         }
 
-    
+
         public virtual int GetRepeatingLevelIndex()
         {
-        
-            if (LevelFunnelLibrary.GetCurrentLevelFunnel().RandomizeLevelsAfterFunnelFinished)
-            {
-                if (LastRandomLevelIndex > -1 && !LastRandomLevelWon)
-                {
-                    return LastRandomLevelIndex;
-                }
-                else
-                {
-                    List<int> randomLevelIndexes = new List<int>();
-                    for (int i = 0; i < NumberOfTotalLevels; i++)
-                    {
-                        if (LastRandomLevelIndex >= 0 && i == LastRandomLevelIndex) continue;
-                        randomLevelIndexes.Add(i);
-                    }
 
-                    int randomLevelIndex = randomLevelIndexes[Random.Range(0, randomLevelIndexes.Count)];
-                    return randomLevelIndex;
-                }
-            }
-            else
-            {
-                int repeatStartLevelIndex = LevelFunnelLibrary.GetCurrentLevelFunnel().DefaultRepeatStartLevelIndex;
-                var deltaLevelIndex = CoreManager.Instance.Level - NumberOfTotalLevels;
-                var repeatLevelIndex =
-                    repeatStartLevelIndex +
-                    deltaLevelIndex % (NumberOfTotalLevels - repeatStartLevelIndex);
-                return repeatLevelIndex;
-            }
-
+            int repeatStartLevelIndex = LevelFunnelLibrary.GetCurrentLevelFunnel().DefaultRepeatStartLevelIndex;
+            var deltaLevelIndex = CoreManager.Instance.Level - NumberOfTotalLevels;
+            var repeatLevelIndex =
+                repeatStartLevelIndex +
+                deltaLevelIndex % (NumberOfTotalLevels - repeatStartLevelIndex);
+            return repeatLevelIndex;
         }
 
 
-      
+
 #if UNITY_EDITOR
         public void LoadTestLevel()
         {
