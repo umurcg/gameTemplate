@@ -45,9 +45,18 @@ namespace CorePublic.Managers
         public bool EnableDesignMode = true;
 #endif
 
+        /// <summary>
+        /// Cache of valid repeating level indices to avoid recalculating every time
+        /// </summary>
+        private List<int> _validRepeatingLevelIndices;
+        private int _cachedRepeatStartIndex = -1;
+        private int _cachedTotalLevels = -1;
+
         protected IEnumerator Start()
         {
             CoreManager = CoreManager.Request();
+            LevelFunnelLibrary = LevelFunnelLibrary.LoadRemoteSettings();
+            
             yield return null;
 
 #if UNITY_EDITOR
@@ -150,16 +159,75 @@ namespace CorePublic.Managers
 
         public virtual int GetRepeatingLevelIndex()
         {
-
             int repeatStartLevelIndex = LevelFunnelLibrary.GetCurrentLevelFunnel().DefaultRepeatStartLevelIndex;
-            var deltaLevelIndex = CoreManager.Instance.Level - NumberOfTotalLevels;
-            var repeatLevelIndex =
-                repeatStartLevelIndex +
-                deltaLevelIndex % (NumberOfTotalLevels - repeatStartLevelIndex);
-            return repeatLevelIndex;
+            int totalLevels = NumberOfTotalLevels;
+            
+            // Validate repeat start index
+            if (repeatStartLevelIndex < 0)
+            {
+                repeatStartLevelIndex = 0;
+            }
+            
+            if (repeatStartLevelIndex >= totalLevels)
+            {
+                Debug.LogWarning($"DefaultRepeatStartLevelIndex ({repeatStartLevelIndex}) is greater than or equal to total levels ({totalLevels}). Using 0 as repeat start index.");
+                repeatStartLevelIndex = 0;
+            }
+            
+            // Check if we need to rebuild the cache
+            if (_validRepeatingLevelIndices == null || 
+                _cachedRepeatStartIndex != repeatStartLevelIndex || 
+                _cachedTotalLevels != totalLevels)
+            {
+                BuildValidRepeatingLevelIndicesCache(repeatStartLevelIndex, totalLevels);
+            }
+            
+            // If no valid levels found (all are marked to skip), fall back to the repeat start index
+            if (_validRepeatingLevelIndices.Count == 0)
+            {
+                Debug.LogWarning("All levels in the repeat range are marked as SkipOnRepeat. Falling back to repeat start index.");
+                return repeatStartLevelIndex;
+            }
+            
+            // Calculate which level in the repeat cycle we should be on
+            int deltaLevelIndex = CoreManager.Instance.Level - totalLevels;
+            int validLevelIndex = deltaLevelIndex % _validRepeatingLevelIndices.Count;
+            
+            return _validRepeatingLevelIndices[validLevelIndex];
         }
-
-
+        
+        /// <summary>
+        /// Builds a cache of valid level indices that can be used during repetition
+        /// </summary>
+        private void BuildValidRepeatingLevelIndicesCache(int repeatStartIndex, int totalLevels)
+        {
+            _validRepeatingLevelIndices = new List<int>();
+            _cachedRepeatStartIndex = repeatStartIndex;
+            _cachedTotalLevels = totalLevels;
+            
+            // Collect all valid levels from repeat start to end
+            for (int i = repeatStartIndex; i < totalLevels; i++)
+            {
+                LevelData levelData = LevelFunnelLibrary.GetLevel(i);
+                if (levelData != null && !levelData.SkipOnRepeat)
+                {
+                    _validRepeatingLevelIndices.Add(i);
+                }
+            }
+            
+            Debug.Log($"Built valid repeating level indices cache: {string.Join(", ", _validRepeatingLevelIndices)} " +
+                     $"(from {_validRepeatingLevelIndices.Count} valid levels out of {totalLevels - repeatStartIndex} total repeat levels)");
+        }
+        
+        /// <summary>
+        /// Clears the valid repeating level indices cache. Call this when level funnel changes.
+        /// </summary>
+        public void ClearRepeatingLevelCache()
+        {
+            _validRepeatingLevelIndices = null;
+            _cachedRepeatStartIndex = -1;
+            _cachedTotalLevels = -1;
+        }
 
 #if UNITY_EDITOR
         public void LoadTestLevel()
@@ -233,6 +301,9 @@ namespace CorePublic.Managers
                 GlobalActions.OnLevelChanged -= OnLevelChanged;
                 GlobalActions.OnGameRestarted -= ReloadLevel;
             }
+
+            // Clear cache when object is destroyed
+            ClearRepeatingLevelCache();
 
 #if UNITY_EDITOR
             TestLevelData = null;

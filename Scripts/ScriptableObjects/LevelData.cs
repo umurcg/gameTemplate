@@ -9,6 +9,10 @@ namespace CorePublic.ScriptableObjects
     {
         public string LevelName => name;
         public GameObject LevelPrefab;
+        
+        /// <summary>
+        /// If checked, level will be skipped if the levelfunnel is being repeated.
+        /// </summary>
         public bool SkipOnRepeat = false;
 
 #if UNITY_EDITOR

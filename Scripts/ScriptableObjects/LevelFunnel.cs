@@ -6,9 +6,9 @@ using System.Linq;
 namespace CorePublic.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "LevelFunnel", menuName = "Reboot/LevelFunnel", order = 1)]
-    public class LevelFunnel : GlobalSO<LevelFunnel>
+    public class LevelFunnel : ScriptableObject
     {
-        public int DefaultRepeatStartLevelIndex = -1;
+        [Min(0)] public int DefaultRepeatStartLevelIndex = 0;
 
         public LevelData[] Levels;
 
@@ -50,23 +50,5 @@ namespace CorePublic.ScriptableObjects
 #endif
         }
 
-        protected override void LoadSettings()
-        {
-            var json = RemoteConfig.Instance.GetJson(RemoteConfigKey);
-            if (string.IsNullOrEmpty(json))
-            {
-                Debug.LogError("Level funnel is not set");
-                return;
-            }
-
-            //Just get RandomizeLevelsAfterFunnelFinished and DefaultRepeatStartLevelIndex from json
-            var remoteFunnel = JsonUtility.FromJson<LevelFunnel>(json);
-            if (remoteFunnel == null)
-            {
-                Debug.LogError("Level funnel library is not valid");
-                return;
-            }
-            DefaultRepeatStartLevelIndex = remoteFunnel.DefaultRepeatStartLevelIndex;
-        }
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 namespace CorePublic.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "LevelFunnelLibrary", menuName = "Reboot/LevelFunnelLibrary", order = 1)]
-    public class LevelFunnelLibrary : GlobalSO<LevelFunnelLibrary>
+    public class LevelFunnelLibrary : ScriptableObject
     {
-        public new string RemoteConfigKey = "level_funnel_library";
+        public string FunnelIndexRemoteConfigKey = "level_funnel_index";
         public int LevelFunnelIndex = 0;
         public LevelFunnel[] LevelFunnels;
 
@@ -26,7 +26,7 @@ namespace CorePublic.ScriptableObjects
             }
             return LevelFunnels[index];
         }
-        
+
         public int GetNumberOfTotalLevelsOfCurrentFunnel()
         {
             var levelFunnel = GetCurrentLevelFunnel();
@@ -49,24 +49,16 @@ namespace CorePublic.ScriptableObjects
             return levelFunnel.GetLevel(index);
         }
 
-        protected override void LoadSettings(){
-            var json = RemoteConfig.Instance.GetJson(RemoteConfigKey);
-            if (string.IsNullOrEmpty(json))
+        public LevelFunnelLibrary LoadRemoteSettings()
+        {
+            if (RemoteConfig.Instance)
             {
-                Debug.LogError("Level funnel library is not set");
-                return;
+                //Create a new instance of the scriptable object to avoid modifying the original one
+                var newInstance = CreateInstance<LevelFunnelLibrary>();
+                newInstance.LevelFunnelIndex = RemoteConfig.Instance.GetInt(FunnelIndexRemoteConfigKey, LevelFunnelIndex);
+                return newInstance;
             }
-
-            //Just get DefaultLevelFunnelIndex from json
-            var remoteFunnelLibrary = JsonUtility.FromJson<LevelFunnelLibrary>(json);
-            if (remoteFunnelLibrary == null)
-            {
-                Debug.LogError("Level funnel library is not valid");
-                return;
-            }
-            LevelFunnelIndex = remoteFunnelLibrary.LevelFunnelIndex;
-            
+            return this;
         }
-        
     }
 }
