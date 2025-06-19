@@ -158,7 +158,10 @@ namespace CorePublic.Managers
 
         public virtual int GetRepeatingLevelIndex()
         {
-            if(CoreManager.Level <)
+            if(CoreManager.Level < NumberOfTotalLevels)
+            {
+                return CoreManager.Level;
+            }
 
             int repeatStartLevelIndex = LevelFunnelLibrary.GetCurrentLevelFunnel().DefaultRepeatStartLevelIndex;
             int totalLevels = NumberOfTotalLevels;
