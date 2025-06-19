@@ -27,6 +27,8 @@ namespace CorePublic.Managers
 
         public int NumberOfTotalLevels => LevelFunnelLibrary.GetNumberOfTotalLevelsOfCurrentFunnel();
 
+        public LevelFunnelLibrary FunnelLibrary => LevelFunnelLibrary;
+        
         [SerializeField] protected LevelFunnelLibrary LevelFunnelLibrary;
 
         public LevelData ActiveLevelData { get; protected set; }
