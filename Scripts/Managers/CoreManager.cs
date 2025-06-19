@@ -348,11 +348,18 @@ namespace CorePublic.Managers
 
         public string GetStats()
         {
-            var versionStats = "v " + Application.version;
-            var gamePlayStats = "Game State: " + GameState;
-            var level = "Level: " + Level;
-            var money = "Money: " + GameMoney;
-            return versionStats + "\n" + gamePlayStats + "\n" + level + "\n" + money;
+            var stats = "";
+            stats += "v " + Application.version;
+            stats += "\nGame State: " + GameState;
+            stats += "\nLevel: " + Level;
+            
+            if(CurrencyData.Instance){
+                stats += "\nCurrencies:";
+                foreach(var currency in CurrencyData.Instance.currencies){
+                    stats += "\n" + currency.name + ": " + currency.Value;
+                }
+            }
+            return stats;
         }
     }
 }
