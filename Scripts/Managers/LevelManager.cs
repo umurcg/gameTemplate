@@ -107,12 +107,6 @@ namespace CorePublic.Managers
         }
 
 
-        private void OnNewSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            Debug.Log("new scene is laoded!");
-            GlobalActions.OnNewLevelLoaded?.Invoke();
-        }
-
         public virtual void LoadCurrentLevel()
         {
             int levelIndex = GetCurrentLevelIndex();
@@ -128,6 +122,11 @@ namespace CorePublic.Managers
             {
                 Debug.LogError("Level index is out of range");
             }
+        }
+
+        public LevelData GetCurrentLevelData()
+        {
+            return LevelFunnelLibrary.GetLevel(GetCurrentLevelIndex());
         }
 
         private int GetCurrentLevelIndex()
@@ -159,6 +158,8 @@ namespace CorePublic.Managers
 
         public virtual int GetRepeatingLevelIndex()
         {
+            if(CoreManager.Level <)
+
             int repeatStartLevelIndex = LevelFunnelLibrary.GetCurrentLevelFunnel().DefaultRepeatStartLevelIndex;
             int totalLevels = NumberOfTotalLevels;
             
