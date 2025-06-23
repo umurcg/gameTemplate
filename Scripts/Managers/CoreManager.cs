@@ -176,6 +176,11 @@ namespace CorePublic.Managers
             LastSavedGameState = GameState;
         }
 
+        public void LostGame()
+        {
+            LostGame(null);
+        }
+
         public void LostGame(Enum reason)
         {
             if (!IsGameStarted)

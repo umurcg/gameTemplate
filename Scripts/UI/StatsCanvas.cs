@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using CorePublic.Interfaces;
 using CorePublic.Managers;
@@ -12,14 +13,51 @@ namespace CorePublic.UI
     [RequireComponent(typeof(Canvas))]
     public class StatsCanvas : MonoBehaviour
     {
+        private static StatsCanvas _instance;
+        private static HashSet<IStats> _registeredStats = new HashSet<IStats>();
+        private static bool _needsUpdate = false;
+        
         private Text _text;
         private Button debugSwitchButton;
-        private IStats[] _allStats;
         private bool _initialized = false;
+        private string _cachedStatsText = "";
 
+        public static StatsCanvas Instance => _instance;
+
+        /// <summary>
+        /// Register a stats object. Call this when your object becomes active or in Start/Awake.
+        /// </summary>
+        public static void RegisterStats(IStats stats)
+        {
+            if (stats != null && _registeredStats.Add(stats))
+            {
+                _needsUpdate = true;
+                Debug.Log($"Registered stats: {stats.GetType().Name}");
+            }
+        }
+
+        /// <summary>
+        /// Unregister a stats object. Call this in OnDestroy or when your object becomes inactive.
+        /// </summary>
+        public static void UnregisterStats(IStats stats)
+        {
+            if (stats != null && _registeredStats.Remove(stats))
+            {
+                _needsUpdate = true;
+                Debug.Log($"Unregistered stats: {stats.GetType().Name}");
+            }
+        }
 
         public IEnumerator Start()
         {
+            // Ensure singleton
+            if (_instance != null && _instance != this)
+            {
+                Destroy(gameObject);
+                yield break;
+            }
+            
+            _instance = this;
             DontDestroyOnLoad(gameObject);
 
             if (!Application.isEditor)
@@ -94,46 +132,112 @@ namespace CorePublic.UI
                 {
                     _text.enabled = !_text.enabled;
                 });
-
             }
 
-            _allStats = FindObjectsOfType<MonoBehaviour>().OfType<IStats>().ToArray();
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            // Clean up any null references that might exist
+            CleanupDestroyedStats();
+            _needsUpdate = true;
         }
 
-        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        /// <summary>
+        /// Clean up any destroyed objects from the registered stats
+        /// </summary>
+        private void CleanupDestroyedStats()
         {
-            //Look for new stats
-            _allStats = FindObjectsOfType<MonoBehaviour>().OfType<IStats>().ToArray();
+            var toRemove = new List<IStats>();
+            foreach (var stat in _registeredStats)
+            {
+                // Check if the object implementing IStats has been destroyed
+                if (stat is MonoBehaviour mb && mb == null)
+                {
+                    toRemove.Add(stat);
+                }
+            }
+
+            foreach (var stat in toRemove)
+            {
+                _registeredStats.Remove(stat);
+            }
+
+            if (toRemove.Count > 0)
+            {
+                _needsUpdate = true;
+            }
         }
 
+        /// <summary>
+        /// Legacy method for backward compatibility
+        /// </summary>
         public void AddStats(IStats stats)
         {
-            var list = _allStats.ToList();
-            list.Add(stats);
-            _allStats = list.ToArray();
+            RegisterStats(stats);
         }
 
+        /// <summary>
+        /// Legacy method for backward compatibility
+        /// </summary>
         public void RemoveStats(IStats stats)
         {
-            var list = _allStats.ToList();
-            list.Remove(stats);
-            _allStats = list.ToArray();
+            UnregisterStats(stats);
         }
 
         private void Update()
         {
-            if (_allStats == null) return;
-            string textString = "";
-            foreach (var stat in _allStats)
+            if (!_initialized) return;
+
+            // Periodically clean up destroyed objects (every 60 frames to avoid performance hit)
+            if (Time.frameCount % 60 == 0)
             {
-                var stats = stat.GetStats();
-                if (stats != null)
-                    textString += stat.GetStats() + "\n---------------------------------\n";
+                CleanupDestroyedStats();
             }
 
-            _text.text = textString;
+            // Only update text when needed to improve performance
+            if (_needsUpdate || Time.frameCount % 30 == 0) // Update every 30 frames for real-time stats
+            {
+                UpdateStatsText();
+                _needsUpdate = false;
+            }
+        }
 
+        private void UpdateStatsText()
+        {
+            if (_registeredStats.Count == 0)
+            {
+                _cachedStatsText = "No stats registered";
+                _text.text = _cachedStatsText;
+                return;
+            }
+
+            string textString = "";
+            foreach (var stat in _registeredStats)
+            {
+                try
+                {
+                    // Skip if the MonoBehaviour has been destroyed
+                    if (stat is MonoBehaviour mb && mb == null)
+                        continue;
+
+                    var stats = stat.GetStats();
+                    if (!string.IsNullOrEmpty(stats))
+                        textString += stats + "\n---------------------------------\n";
+                }
+                catch (System.Exception e)
+                {
+                    // Handle cases where GetStats() might throw exceptions
+                    textString += $"[Error getting stats from {stat.GetType().Name}]: {e.Message}\n---------------------------------\n";
+                }
+            }
+
+            _cachedStatsText = textString;
+            _text.text = _cachedStatsText;
+        }
+
+        private void OnDestroy()
+        {
+            if (_instance == this)
+            {
+                _instance = null;
+            }
         }
     }
 }
