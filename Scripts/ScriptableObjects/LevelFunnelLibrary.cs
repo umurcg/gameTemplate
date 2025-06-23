@@ -19,6 +19,12 @@ namespace CorePublic.ScriptableObjects
 
         public LevelFunnel GetLevelFunnel(int index)
         {
+            if (LevelFunnels == null || LevelFunnels.Length == 0)
+            {
+                Debug.LogError("Level funnels are not valid");
+                return null;
+            }
+            
             if (index < 0 || index >= LevelFunnels.Length)
             {
                 Debug.LogError($"Level funnel index is out of range: {index}");
