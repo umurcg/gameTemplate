@@ -24,7 +24,7 @@ namespace CorePublic.ScriptableObjects
                 Debug.LogError("Level funnels are not valid");
                 return null;
             }
-            
+
             if (index < 0 || index >= LevelFunnels.Length)
             {
                 Debug.LogError($"Level funnel index is out of range: {index}");
@@ -61,6 +61,9 @@ namespace CorePublic.ScriptableObjects
             {
                 //Create a new instance of the scriptable object to avoid modifying the original one
                 var newInstance = CreateInstance<LevelFunnelLibrary>();
+                newInstance.name = name;
+                newInstance.LevelFunnels = LevelFunnels;
+                newInstance.FunnelIndexRemoteConfigKey = FunnelIndexRemoteConfigKey;
                 newInstance.LevelFunnelIndex = RemoteConfig.Instance.GetInt(FunnelIndexRemoteConfigKey, LevelFunnelIndex);
                 return newInstance;
             }
