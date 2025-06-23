@@ -23,6 +23,7 @@ namespace CorePublic.UI
         private string _cachedStatsText = "";
 
         public static StatsCanvas Instance => _instance;
+        public float panelWidth = 100;
 
         /// <summary>
         /// Register a stats object. Call this when your object becomes active or in Start/Awake.
@@ -82,7 +83,7 @@ namespace CorePublic.UI
             if (_initialized) return;
             _initialized = true;
 
-            float width = Screen.width * .2f;
+
 
             if (!_text)
             {
@@ -91,11 +92,11 @@ namespace CorePublic.UI
                 textRectTransform.transform.localScale = Vector3.one;
                 textRectTransform.anchorMin = new Vector2(1, 0);
                 textRectTransform.anchorMax = new Vector2(1, 0);
-                textRectTransform.offsetMax = new Vector2(-width, -width);
-                textRectTransform.offsetMin = new Vector2(width, width);
+                textRectTransform.offsetMax = new Vector2(-panelWidth, -panelWidth);
+                textRectTransform.offsetMin = new Vector2(panelWidth, panelWidth);
 
-                textRectTransform.sizeDelta = new Vector2(width, width);
-                textRectTransform.anchoredPosition = new Vector2(-width / 2, width / 2);
+                textRectTransform.sizeDelta = new Vector2(panelWidth, panelWidth);
+                textRectTransform.anchoredPosition = new Vector2(-panelWidth / 2, panelWidth / 2);
 
                 _text = textRectTransform.gameObject.AddComponent<Text>();
                 _text.alignment = TextAnchor.LowerRight;
@@ -123,8 +124,8 @@ namespace CorePublic.UI
                 buttonRectTransform.anchorMin = new Vector2(1, 0);
                 buttonRectTransform.anchorMax = new Vector2(1, 0);
                 
-                buttonRectTransform.sizeDelta = new Vector2(width, width);
-                buttonRectTransform.anchoredPosition = new Vector2(-width / 2, width / 2);
+                buttonRectTransform.sizeDelta = new Vector2(panelWidth, panelWidth);
+                buttonRectTransform.anchoredPosition = new Vector2(-panelWidth / 2, panelWidth / 2);
 
                 debugSwitchButton.transition = Selectable.Transition.ColorTint;
                 debugSwitchButton.targetGraphic = image;
