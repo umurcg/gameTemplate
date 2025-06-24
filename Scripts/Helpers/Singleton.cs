@@ -30,6 +30,7 @@ namespace CorePublic.Helpers
         }
 
         public bool dontDestroyOnLoad = true;
+        public bool destroyGameObjectOnDestroy = true;
 
         #endregion
 
@@ -47,7 +48,8 @@ namespace CorePublic.Helpers
             else
             {
                 Debug.LogWarning($"There is already an instance of {typeof(T).Name} in the scene. Destroying the new instance.");
-                Destroy(this);
+                if (destroyGameObjectOnDestroy) Destroy(gameObject);
+                else Destroy(this);
             }
         }
 
