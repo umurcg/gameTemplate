@@ -3,8 +3,10 @@ using UnityEngine;
 
 namespace CorePublic.UI
 {
-    public class MoneyText : TextController
+    public class MoneyText : MonoBehaviour
     {
+        [SerializeField] private TextController textController;
+
         public enum Types
         {
             GameMoney,
@@ -45,25 +47,22 @@ namespace CorePublic.UI
         {
              if (type == Types.GameMoney)
             {
-                SetText(CoreManager.Instance.GameMoney+offset);
+                textController.SetText(CoreManager.Instance.GameMoney+offset);
             }
             else if(type==Types.LevelMoney && LevelMoneyManager.Instance!=null)
             {
-                SetText(LevelMoneyManager.Instance.LevelMoney+offset);
+                textController.SetText(LevelMoneyManager.Instance.LevelMoney+offset);
                 
             }else if(type==Types.TotalMoney && LevelMoneyManager.Instance!=null)
             {
-                SetText(LevelMoneyManager.Instance.LevelMoney+CoreManager.Instance.GameMoney+offset);
+                textController.SetText(LevelMoneyManager.Instance.LevelMoney+CoreManager.Instance.GameMoney+offset);
             }            
         }
-
 
         protected virtual void OnMoneyChanged(float amount)
         {
             UpdateMoneyText();
-        }
-
-  
+        }  
 
         void OnDestroy()
         {
