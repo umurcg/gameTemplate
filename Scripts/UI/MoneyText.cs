@@ -14,15 +14,10 @@ namespace CorePublic.UI
         }
 
         public Types type;
-        private CoreManager _coreManager;
-        private Camera _mainCamera;
         private float offset;
 
         protected void Start()
         {
-            _coreManager = CoreManager.Request();
-            _mainCamera = Camera.main;
-            
             if (type == Types.GameMoney)
             {
                 GlobalActions.OnGameMoneyChanged+=OnMoneyChanged;
@@ -50,7 +45,7 @@ namespace CorePublic.UI
         {
              if (type == Types.GameMoney)
             {
-                SetText(_coreManager.GameMoney+offset);
+                SetText(CoreManager.Instance.GameMoney+offset);
             }
             else if(type==Types.LevelMoney && LevelMoneyManager.Instance!=null)
             {
@@ -58,7 +53,7 @@ namespace CorePublic.UI
                 
             }else if(type==Types.TotalMoney && LevelMoneyManager.Instance!=null)
             {
-                SetText(LevelMoneyManager.Instance.LevelMoney+_coreManager.GameMoney+offset);
+                SetText(LevelMoneyManager.Instance.LevelMoney+CoreManager.Instance.GameMoney+offset);
             }            
         }
 
@@ -69,12 +64,6 @@ namespace CorePublic.UI
         }
 
   
-
-        public Vector3 GetWorldPoint()
-        {
-            Vector3 pos2D=new Vector3(transform.position.x,transform.position.y,20);
-            return _mainCamera.ScreenToWorldPoint(pos2D);   
-        }
 
         void OnDestroy()
         {
