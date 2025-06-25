@@ -170,10 +170,10 @@ namespace CorePublic.Managers
                 return;
             }
 
-            GlobalActions.OnGameWin?.Invoke();
-            GlobalActions.OnGameEnded?.Invoke();
             GameState = GameStates.Win;
             LastSavedGameState = GameState;
+            GlobalActions.OnGameWin?.Invoke();
+            GlobalActions.OnGameEnded?.Invoke();            
         }
 
         public void LostGame()
