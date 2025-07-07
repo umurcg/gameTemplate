@@ -13,6 +13,7 @@ namespace CorePublic.UI
     [RequireComponent(typeof(Canvas))]
     public class StatsCanvas : MonoBehaviour
     {
+        [SerializeField] private int updatePeriod = 30;
         private static StatsCanvas _instance;
         private static HashSet<IStats> _registeredStats = new HashSet<IStats>();
         private static bool _needsUpdate = false;
@@ -193,7 +194,7 @@ namespace CorePublic.UI
             }
 
             // Only update text when needed to improve performance
-            if (_needsUpdate || Time.frameCount % 30 == 0) // Update every 30 frames for real-time stats
+            if (_needsUpdate || Time.frameCount % updatePeriod == 0) // Update every 30 frames for real-time stats
             {
                 UpdateStatsText();
                 _needsUpdate = false;
