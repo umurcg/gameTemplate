@@ -12,7 +12,7 @@ namespace CorePublic.Managers
         public List<ScriptableObject> GlobalScriptableObjects;
 
 
-#if UNITY_EDITOR
+
 
         public T FindGlobalSO<T>() where T : GlobalSO<T>
         {
@@ -24,6 +24,8 @@ namespace CorePublic.Managers
             }
             return globalSO as T;
         }
+        
+#if UNITY_EDITOR
 
 #if ODIN_INSPECTOR
         [Sirenix.OdinInspector.Button]

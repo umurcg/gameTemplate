@@ -87,6 +87,7 @@ namespace CorePublic.ScriptableObjects
         
         private static RebootSettings FindSettingsInPreloadedAssets()
         {
+#if UNITY_EDITOR
             var preloadedAssets = PlayerSettings.GetPreloadedAssets();
             foreach (var asset in preloadedAssets)
             {
@@ -96,6 +97,12 @@ namespace CorePublic.ScriptableObjects
                 }
             }
             return null;
+#else
+            // In runtime builds, preloaded assets are automatically loaded at startup
+            // We can find them using FindObjectsOfTypeAll since they're already loaded
+            var allSettings = Resources.FindObjectsOfTypeAll<RebootSettings>();
+            return allSettings.Length > 0 ? allSettings[0] : null;
+#endif
         }
 
         public string gameName;

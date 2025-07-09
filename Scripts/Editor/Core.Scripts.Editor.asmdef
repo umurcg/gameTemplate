@@ -2,7 +2,13 @@
     "name": "Core.Scripts.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:d8f95919f306b47618a46256475c388b"
+        "GUID:d8f95919f306b47618a46256475c388b",
+        "GUID:7793e5cd8d2e94e21b56de41db6606bb",
+        "GUID:637dfb2b87b2cf0499a8da5b0b91da54",
+        "GUID:82c7e6eac44d7e048b22ad98800dcfc7",
+        "GUID:174bc9f391f1b7f4292b3824c5019a21",
+        "GUID:688cfbbe2a536604ab4aa06ececa1da3",
+        "GUID:cf414061cae3a954baf92763590f3127"
     ],
     "includePlatforms": [
         "Editor"
