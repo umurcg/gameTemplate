@@ -25,6 +25,7 @@ namespace CorePublic.UI
 
         public static StatsCanvas Instance => _instance;
         public float panelWidth = 100;
+        public Color textColor = Color.white;
 
         /// <summary>
         /// Register a stats object. Call this when your object becomes active or in Start/Awake.
@@ -101,7 +102,7 @@ namespace CorePublic.UI
 
                 _text = textRectTransform.gameObject.AddComponent<Text>();
                 _text.alignment = TextAnchor.LowerRight;
-      
+                _text.color = textColor;
                 _text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
                 _text.fontSize = 20;
                 _text.raycastTarget = false;
