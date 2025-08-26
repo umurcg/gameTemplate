@@ -21,7 +21,7 @@ namespace CorePublic.Editor
             EditorGUI.BeginChangeCheck();
 
             gridLayout.cellSize = EditorGUILayout.Vector3Field("Cell Size", gridLayout.cellSize);
-            gridLayout.cellSize = EditorGUILayout.Vector3Field("Spacing", gridLayout.spacing);
+            gridLayout.spacing = EditorGUILayout.Vector3Field("Spacing", gridLayout.spacing);
 
             // Constraints
             EditorGUILayout.LabelField("Constraints");
