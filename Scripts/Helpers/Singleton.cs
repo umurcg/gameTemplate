@@ -72,6 +72,20 @@ namespace CorePublic.Helpers
             return _instance;
         }
 
+        public static void ReleaseInstance()
+        {
+            if (_instance != null)
+            {                
+                _instance = null;
+            }
+        }
+
+        [ContextMenu("Release Instance")]
+        public void OnDestroy()
+        {
+            ReleaseInstance();
+        }
+
         #endregion
     }
 }
