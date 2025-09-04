@@ -354,6 +354,10 @@ namespace CorePublic.Managers
             return currencyData.currencies[0];
         }
 
+        [ContextMenu("Release Instance")]
+        public new void ReleaseInstance(){
+            base.ReleaseInstance();
+        }
 
         public string GetStats()
         {

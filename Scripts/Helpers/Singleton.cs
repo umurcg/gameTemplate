@@ -73,12 +73,22 @@ namespace CorePublic.Helpers
             return _instance;
         }
 
-        [ContextMenu("Release Instance")]
-        public static void ReleaseInstance()
+        public bool IsInstace(){
+            Debug.Log($"IsInstace: {_instance == this}");
+            return _instance == this;
+        }
+
+        public void ReleaseInstance()
         {
-            if (_instance != null)
+            if(_instance == null){
+                Debug.LogWarning($"Instance of {typeof(T).Name} is null");
+                return;
+            }
+            if (_instance == this)
             {
                 _instance = null;
+            }else{
+                Debug.LogWarning($"Trying to release instance of {typeof(T).Name} but it is not the instance");
             }
         }
 
