@@ -41,7 +41,8 @@ namespace CorePublic.Helpers
         /// </summary>
         protected virtual void Awake()
         {
-            if (_instance == null){
+            if (_instance == null)
+            {
                 _instance = this as T;
                 if (dontDestroyOnLoad) DontDestroyOnLoad(gameObject);
             }
@@ -72,15 +73,16 @@ namespace CorePublic.Helpers
             return _instance;
         }
 
+        [ContextMenu("Release Instance")]
         public static void ReleaseInstance()
         {
             if (_instance != null)
-            {                
+            {
                 _instance = null;
             }
         }
 
-        [ContextMenu("Release Instance")]
+
         public void OnDestroy()
         {
             ReleaseInstance();
