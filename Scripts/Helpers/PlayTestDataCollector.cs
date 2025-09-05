@@ -35,13 +35,9 @@ public class PlayTestDataCollector : Singleton<PlayTestDataCollector>
         GlobalActions.OnGameRevived += OnGameRevived;
     }
 
-    private void OnDestroy()
+    private new void OnDestroy()
     {
-        if (enablePersistence)
-        {
-            SaveData();
-        }
-
+        base.OnDestroy();
         GlobalActions.OnGameStarted -= OnGameStarted;
         GlobalActions.OnGameLost -= OnGameLost;
         GlobalActions.OnGameWin -= OnGameWin;
@@ -57,6 +53,7 @@ public class PlayTestDataCollector : Singleton<PlayTestDataCollector>
                                                 LevelManager.Instance.ActiveLevelObject?.name ??
                                                 "Unknown";
         _currentLevelStartTime = Time.time;
+        SaveData();
     }
 
     private void OnGameWin()
@@ -65,6 +62,7 @@ public class PlayTestDataCollector : Singleton<PlayTestDataCollector>
         EnsureLevelDataExists(levelIndex);
         _levelPlayDatas[levelIndex].isWin = true;
         _levelPlayDatas[levelIndex].winDuration = Time.time - _currentLevelStartTime;
+        SaveData();
     }
 
     private void OnGameRevived()
@@ -72,6 +70,7 @@ public class PlayTestDataCollector : Singleton<PlayTestDataCollector>
         int levelIndex = CoreManager.Instance.Level;
         EnsureLevelDataExists(levelIndex);
         _levelPlayDatas[levelIndex].reviveCount++;
+        SaveData();
     }
 
     private void OnGameLost()
@@ -80,6 +79,7 @@ public class PlayTestDataCollector : Singleton<PlayTestDataCollector>
         EnsureLevelDataExists(levelIndex);
         _levelPlayDatas[levelIndex].levelLoseCount++;
         _levelPlayDatas[levelIndex].loseDurations.Add(Time.time - _currentLevelStartTime);
+        SaveData();
     }
 
     private void EnsureLevelDataExists(int levelIndex)
@@ -155,6 +155,7 @@ public class PlayTestDataCollector : Singleton<PlayTestDataCollector>
 
     private void SaveData()
     {
+        if(enablePersistence==false) return;
         string jsonData = JsonConvert.SerializeObject(_levelPlayDatas);
         PlayerPrefs.SetString(_playerPrefsKey, jsonData);
         PlayerPrefs.Save();
