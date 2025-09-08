@@ -20,47 +20,123 @@ namespace CorePublic.Editor
             GridLayout3D gridLayout = (GridLayout3D)target;
             EditorGUI.BeginChangeCheck();
 
-            gridLayout.cellSize = EditorGUILayout.Vector3Field("Cell Size", gridLayout.cellSize);
-            gridLayout.spacing = EditorGUILayout.Vector3Field("Spacing", gridLayout.spacing);
+            var cellSize = EditorGUILayout.Vector3Field("Cell Size", gridLayout.cellSize);
+            if (cellSize != gridLayout.cellSize)
+            {
+                gridLayout.cellSize = cellSize;
+                SetDirty(gridLayout);
+            }
+
+            var spacing = EditorGUILayout.Vector3Field("Spacing", gridLayout.spacing);
+            if (spacing != gridLayout.spacing)
+            {
+                gridLayout.spacing = spacing;
+                SetDirty(gridLayout);
+            }
 
             // Constraints
             EditorGUILayout.LabelField("Constraints");
             EditorGUI.indentLevel++;
 
             EditorGUI.BeginDisabledGroup(gridLayout.fixedRow && gridLayout.fixedLayer);
-            gridLayout.fixedColumn = EditorGUILayout.Toggle("Fixed Column", gridLayout.fixedColumn);
+            var fixedColumn = EditorGUILayout.Toggle("Fixed Column", gridLayout.fixedColumn);
+            if (fixedColumn != gridLayout.fixedColumn)
+            {
+                gridLayout.fixedColumn = fixedColumn;
+                SetDirty(gridLayout);
+            }
             if (gridLayout.fixedColumn)
             {
-                gridLayout.columnCount = EditorGUILayout.IntField("Column Count", gridLayout.columnCount);
+                var columnCount = EditorGUILayout.IntField("Column Count", gridLayout.columnCount);
+                if (columnCount != gridLayout.columnCount)
+                {
+                    gridLayout.columnCount = columnCount;
+                    SetDirty(gridLayout);
+                }
             }
             EditorGUI.EndDisabledGroup();
 
             EditorGUI.BeginDisabledGroup(gridLayout.fixedColumn && gridLayout.fixedLayer);
-            gridLayout.fixedRow = EditorGUILayout.Toggle("Fixed Row", gridLayout.fixedRow);
+            var fixedRow = EditorGUILayout.Toggle("Fixed Row", gridLayout.fixedRow);
+            if (fixedRow != gridLayout.fixedRow)
+            {
+                gridLayout.fixedRow = fixedRow;
+                SetDirty(gridLayout);
+            }
             if (gridLayout.fixedRow)
             {
-                gridLayout.rowCount = EditorGUILayout.IntField("Row Count", gridLayout.rowCount);
+                var rowCount = EditorGUILayout.IntField("Row Count", gridLayout.rowCount);
+                if (rowCount != gridLayout.rowCount)
+                {
+                    gridLayout.rowCount = rowCount;
+                    SetDirty(gridLayout);
+                }
             }
             EditorGUI.EndDisabledGroup();
 
             EditorGUI.BeginDisabledGroup(gridLayout.fixedColumn && gridLayout.fixedRow);
-            gridLayout.fixedLayer = EditorGUILayout.Toggle("Fixed Layer", gridLayout.fixedLayer);
+            var fixedLayer = EditorGUILayout.Toggle("Fixed Layer", gridLayout.fixedLayer);
+            if (fixedLayer != gridLayout.fixedLayer)
+            {
+                gridLayout.fixedLayer = fixedLayer;
+                SetDirty(gridLayout);
+            }
             if (gridLayout.fixedLayer)
             {
-                gridLayout.layerCount = EditorGUILayout.IntField("Layer Count", gridLayout.layerCount);
+                var layerCount = EditorGUILayout.IntField("Layer Count", gridLayout.layerCount);
+                if (layerCount != gridLayout.layerCount)
+                {
+                    gridLayout.layerCount = layerCount;
+                    SetDirty(gridLayout);
+                }
             }
             EditorGUI.EndDisabledGroup();
 
             EditorGUI.indentLevel--;
             
-            gridLayout.runtimeUpdateMode = (LayoutController.RuntimeUpdateMode)EditorGUILayout.EnumPopup("Runtime Update Mode", gridLayout.runtimeUpdateMode);
+            var runtimeUpdateMode = (LayoutController.RuntimeUpdateMode)EditorGUILayout.EnumPopup("Runtime Update Mode", gridLayout.runtimeUpdateMode);
+            if (runtimeUpdateMode != gridLayout.runtimeUpdateMode)
+            {
+                gridLayout.runtimeUpdateMode = runtimeUpdateMode;
+                SetDirty(gridLayout);
+            }
 
-            gridLayout.gizmoColor = EditorGUILayout.ColorField("Gizmo Color", gridLayout.gizmoColor);
-            gridLayout.showGizmos = EditorGUILayout.Toggle("Show Gizmos", gridLayout.showGizmos);
-            gridLayout.updateOnAwake = EditorGUILayout.Toggle("Update On Awake", gridLayout.updateOnAwake);
-            gridLayout.updateOnStart = EditorGUILayout.Toggle("Update On Start", gridLayout.updateOnStart);
-            gridLayout.updateOnValidate = EditorGUILayout.Toggle("Update On Validate", gridLayout.updateOnValidate);
-            gridLayout.destroyOnPlay = EditorGUILayout.Toggle("Destroy On Play", gridLayout.destroyOnPlay);
+            var gizmoColor = EditorGUILayout.ColorField("Gizmo Color", gridLayout.gizmoColor);
+            if (gizmoColor != gridLayout.gizmoColor)
+            {
+                gridLayout.gizmoColor = gizmoColor;
+                SetDirty(gridLayout);
+            }
+            var showGizmos = EditorGUILayout.Toggle("Show Gizmos", gridLayout.showGizmos);
+            if (showGizmos != gridLayout.showGizmos)
+            {
+                gridLayout.showGizmos = showGizmos;
+                SetDirty(gridLayout);
+            }
+            var updateOnAwake = EditorGUILayout.Toggle("Update On Awake", gridLayout.updateOnAwake);
+            if (updateOnAwake != gridLayout.updateOnAwake)
+            {
+                gridLayout.updateOnAwake = updateOnAwake;
+                SetDirty(gridLayout);
+            }
+            var updateOnStart = EditorGUILayout.Toggle("Update On Start", gridLayout.updateOnStart);
+            if (updateOnStart != gridLayout.updateOnStart)
+            {
+                gridLayout.updateOnStart = updateOnStart;
+                SetDirty(gridLayout);
+            }
+            var updateOnValidate = EditorGUILayout.Toggle("Update On Validate", gridLayout.updateOnValidate);
+            if (updateOnValidate != gridLayout.updateOnValidate)
+            {
+                gridLayout.updateOnValidate = updateOnValidate;
+                SetDirty(gridLayout);
+            }
+            var destroyOnPlay = EditorGUILayout.Toggle("Destroy On Play", gridLayout.destroyOnPlay);
+            if (destroyOnPlay != gridLayout.destroyOnPlay)
+            {
+                gridLayout.destroyOnPlay = destroyOnPlay;
+                SetDirty(gridLayout);
+            }
             
             
 
@@ -82,6 +158,11 @@ namespace CorePublic.Editor
             {
                 gridLayout.UpdateChildrenPosition();
             }
+        }
+
+        private void SetDirty(GridLayout3D gridLayout)
+        {
+            EditorUtility.SetDirty(gridLayout);
         }
     }
 }
