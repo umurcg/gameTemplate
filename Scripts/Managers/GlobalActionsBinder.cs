@@ -42,6 +42,18 @@ namespace CorePublic.Managers
             
             var gameRevivedEvent=FindGameEvent("OnGameRevived");
             GlobalActions.OnGameRevived += gameRevivedEvent.Invoke;
+
+            var gamePausedEvent=FindGameEvent("OnGamePaused");
+            GlobalActions.OnGamePaused += gamePausedEvent.Invoke;
+
+            var gameResumedEvent=FindGameEvent("OnGameResumed");
+            GlobalActions.OnGameResumed += gameResumedEvent.Invoke;
+
+            var gameCurrencySpendEvent=FindGameEvent("OnGameCurrencySpend");
+            GlobalActions.OnGameCurrencySpend += (_, _) => gameCurrencySpendEvent.Invoke();
+
+            var gameCurrencyEarnEvent=FindGameEvent("OnGameCurrencyEarn");
+            GlobalActions.OnGameCurrencyEarn += (_, _) => gameCurrencyEarnEvent.Invoke();
         }
 
 
