@@ -86,13 +86,14 @@ namespace CorePublic.UI
                 moneyToSet = LevelMoneyManager.Instance.LevelMoney + CoreManager.Instance.GameMoney + offset;
             }
 
+            textController.SetText(moneyToSet);
+
             if (ignoreChangeEvents)
             {
                 _lastSetMoney = moneyToSet;
                 return;
             }
 
-            textController.SetText(moneyToSet);
             if (moneyToSet > _lastSetMoney)
             {
                 OnVisibleMoneyIncreased?.Invoke();
