@@ -25,7 +25,7 @@ namespace CorePublic.UI
         public UnityEvent OnVisibleMoneyIncreased;
         public UnityEvent OnVisibleMoneyDecreased;
 
-        protected void Start()
+        protected void OnEnable()
         {
             if (type == Types.GameMoney)
             {
@@ -42,7 +42,24 @@ namespace CorePublic.UI
                 GlobalActions.OnGameMoneyChanged += OnMoneyChanged;
             }
 
-            UpdateMoneyText();
+            UpdateMoneyText(true);
+        }
+
+        protected void OnDisable()
+        {
+            if (type == Types.GameMoney)
+            {
+                GlobalActions.OnGameMoneyChanged -= OnMoneyChanged;
+            }
+            else if (type == Types.LevelMoney && LevelMoneyManager.Instance != null)
+            {
+                GlobalActions.OnLevelMoneyChanged -= OnMoneyChanged;
+            }
+            else if (type == Types.TotalMoney && LevelMoneyManager.Instance != null)
+            {
+                GlobalActions.OnLevelMoneyChanged -= OnMoneyChanged;
+                GlobalActions.OnGameMoneyChanged -= OnMoneyChanged;
+            }
         }
 
 
@@ -52,7 +69,7 @@ namespace CorePublic.UI
             UpdateMoneyText();
         }
 
-        public virtual void UpdateMoneyText()
+        public virtual void UpdateMoneyText(bool ignoreChangeEvents = false)
         {
             float moneyToSet = 0;
             if (type == Types.GameMoney)
@@ -67,6 +84,12 @@ namespace CorePublic.UI
             else if (type == Types.TotalMoney && LevelMoneyManager.Instance != null)
             {
                 moneyToSet = LevelMoneyManager.Instance.LevelMoney + CoreManager.Instance.GameMoney + offset;
+            }
+
+            if (ignoreChangeEvents)
+            {
+                _lastSetMoney = moneyToSet;
+                return;
             }
 
             textController.SetText(moneyToSet);
