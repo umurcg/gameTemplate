@@ -300,8 +300,14 @@ namespace CorePublic.Managers
             Instantiate(levelPrefab, transform);
         }
 
-        private void OnDestroy()
+        public bool IsRepeatingLevels(){
+            int numberOfLevels = NumberOfTotalLevels;
+            return CoreManager.Level >= numberOfLevels;
+        }
+
+        private new void OnDestroy()
         {
+            base.OnDestroy();
             if (autoLoad)
             {
                 GlobalActions.OnLevelChanged -= OnLevelChanged;
