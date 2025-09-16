@@ -6,12 +6,19 @@ namespace CorePublic.Helpers
     {
         public void PauseGame()
         {
-            CoreManager.Instance.PauseGame();
+            if(CoreManager.Instance.GameState == GameStates.InGame)
+            {
+                CoreManager.Instance.PauseGame();
+            }
+            
         }
 
         public void ResumeGame()
         {
-            CoreManager.Instance.ResumeGame();
+            if(CoreManager.Instance.GameState == GameStates.Pause)
+            {
+                CoreManager.Instance.ResumeGame();
+            }
         }
     }
 }
