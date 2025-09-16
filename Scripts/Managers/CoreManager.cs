@@ -81,7 +81,10 @@ namespace CorePublic.Managers
         /// <summary>
         /// The number of times the game has been lost in current level.
         /// </summary>
-        public int LostCounter { get; private set; }
+        public int LostCounter {
+            get => PlayerPrefs.GetInt("LostCounter", 0);
+            private set => PlayerPrefs.SetInt("LostCounter", value);
+        }
 
         protected override void Awake()
         {
@@ -110,8 +113,9 @@ namespace CorePublic.Managers
         }
 
 
-        public void OnDestroy()
+        public new void OnDestroy()
         {
+            base.OnDestroy();
             if (!saveEnabled)
                 PlayerPrefs.DeleteAll();
 
@@ -140,7 +144,7 @@ namespace CorePublic.Managers
                 return;
             }
 
-            LostCounter = 0;
+            
             GameState = GameStates.InGame;
             LastSavedGameState = GameState;
             GlobalActions.OnGameStarted?.Invoke();
@@ -170,6 +174,7 @@ namespace CorePublic.Managers
                 return;
             }
 
+            LostCounter = 0;
             GameState = GameStates.Win;
             LastSavedGameState = GameState;
             GlobalActions.OnGameWin?.Invoke();
