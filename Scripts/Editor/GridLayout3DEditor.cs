@@ -20,6 +20,35 @@ namespace CorePublic.Editor
             GridLayout3D gridLayout = (GridLayout3D)target;
             EditorGUI.BeginChangeCheck();
 
+            var pivotMode = (GridLayout3D.PivotMode)EditorGUILayout.EnumPopup("Pivot Mode", gridLayout.pivotMode);
+            if (pivotMode != gridLayout.pivotMode)
+            {
+                gridLayout.pivotMode = pivotMode;
+                SetDirty(gridLayout);
+            }
+
+            EditorGUILayout.LabelField("Axis Directions");
+            EditorGUI.indentLevel++;
+            var xDir = (GridLayout3D.AxisDirection)EditorGUILayout.EnumPopup("X Direction", gridLayout.xDirection);
+            if (xDir != gridLayout.xDirection)
+            {
+                gridLayout.xDirection = xDir;
+                SetDirty(gridLayout);
+            }
+            var yDir = (GridLayout3D.AxisDirection)EditorGUILayout.EnumPopup("Y Direction", gridLayout.yDirection);
+            if (yDir != gridLayout.yDirection)
+            {
+                gridLayout.yDirection = yDir;
+                SetDirty(gridLayout);
+            }
+            var zDir = (GridLayout3D.AxisDirection)EditorGUILayout.EnumPopup("Z Direction", gridLayout.zDirection);
+            if (zDir != gridLayout.zDirection)
+            {
+                gridLayout.zDirection = zDir;
+                SetDirty(gridLayout);
+            }
+            EditorGUI.indentLevel--;
+
             var cellSize = EditorGUILayout.Vector3Field("Cell Size", gridLayout.cellSize);
             if (cellSize != gridLayout.cellSize)
             {
@@ -93,7 +122,7 @@ namespace CorePublic.Editor
             EditorGUI.EndDisabledGroup();
 
             EditorGUI.indentLevel--;
-            
+
             var runtimeUpdateMode = (LayoutController.RuntimeUpdateMode)EditorGUILayout.EnumPopup("Runtime Update Mode", gridLayout.runtimeUpdateMode);
             if (runtimeUpdateMode != gridLayout.runtimeUpdateMode)
             {
@@ -101,18 +130,31 @@ namespace CorePublic.Editor
                 SetDirty(gridLayout);
             }
 
-            var gizmoColor = EditorGUILayout.ColorField("Gizmo Color", gridLayout.gizmoColor);
-            if (gizmoColor != gridLayout.gizmoColor)
-            {
-                gridLayout.gizmoColor = gizmoColor;
-                SetDirty(gridLayout);
-            }
+
             var showGizmos = EditorGUILayout.Toggle("Show Gizmos", gridLayout.showGizmos);
             if (showGizmos != gridLayout.showGizmos)
             {
                 gridLayout.showGizmos = showGizmos;
                 SetDirty(gridLayout);
             }
+
+            if (showGizmos)
+            {
+                var gizmoColor = EditorGUILayout.ColorField("Gizmo Color", gridLayout.gizmoColor);
+                if (gizmoColor != gridLayout.gizmoColor)
+                {
+                    gridLayout.gizmoColor = gizmoColor;
+                    SetDirty(gridLayout);
+                }
+
+                var gizmoCount = EditorGUILayout.IntField("Gizmo Count", gridLayout.gizmoCount);
+                if (gizmoCount != gridLayout.gizmoCount)
+                {
+                    gridLayout.gizmoCount = gizmoCount;
+                    SetDirty(gridLayout);
+                }
+            }
+
             var updateOnAwake = EditorGUILayout.Toggle("Update On Awake", gridLayout.updateOnAwake);
             if (updateOnAwake != gridLayout.updateOnAwake)
             {
@@ -137,8 +179,8 @@ namespace CorePublic.Editor
                 gridLayout.destroyOnPlay = destroyOnPlay;
                 SetDirty(gridLayout);
             }
-            
-            
+
+
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -153,7 +195,7 @@ namespace CorePublic.Editor
                 _previousChildCount = currentChildCount;
                 gridLayout.UpdateChildrenPosition();
             }
-        
+
             if (GUILayout.Button("Update Grid"))
             {
                 gridLayout.UpdateChildrenPosition();
