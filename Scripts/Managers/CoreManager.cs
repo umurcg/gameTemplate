@@ -86,6 +86,8 @@ namespace CorePublic.Managers
             private set => PlayerPrefs.SetInt("LostCounter", value);
         }
 
+        public int ReviveCounter {get; private set;}
+
         protected override void Awake()
         {
             base.Awake();
@@ -144,7 +146,7 @@ namespace CorePublic.Managers
                 return;
             }
 
-            
+            ReviveCounter = 0;
             GameState = GameStates.InGame;
             LastSavedGameState = GameState;
             GlobalActions.OnGameStarted?.Invoke();
@@ -341,6 +343,7 @@ namespace CorePublic.Managers
 
             GameState = GameStates.InGame;
             LastSavedGameState = GameState;
+            ReviveCounter++;
             GlobalActions.OnGameRevived?.Invoke();
         }
 
