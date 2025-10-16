@@ -31,7 +31,7 @@ public class PlayTestDataCollector : Singleton<PlayTestDataCollector>
 
         GlobalActions.OnGameStarted += OnGameStarted;
         GlobalActions.OnGameLost += OnGameLost;
-        GlobalActions.OnGameWin += OnGameWin;
+        GlobalActions.OnPreLevelIncrease += OnPreLevelIncrease;
         GlobalActions.OnGameRevived += OnGameRevived;
     }
 
@@ -40,7 +40,7 @@ public class PlayTestDataCollector : Singleton<PlayTestDataCollector>
         base.OnDestroy();
         GlobalActions.OnGameStarted -= OnGameStarted;
         GlobalActions.OnGameLost -= OnGameLost;
-        GlobalActions.OnGameWin -= OnGameWin;
+        GlobalActions.OnPreLevelIncrease -= OnPreLevelIncrease;
         GlobalActions.OnGameRevived -= OnGameRevived;
     }
 
@@ -56,7 +56,7 @@ public class PlayTestDataCollector : Singleton<PlayTestDataCollector>
         SaveData();
     }
 
-    private void OnGameWin()
+    private void OnPreLevelIncrease()
     {
         int levelIndex = CoreManager.Instance.Level;
         EnsureLevelDataExists(levelIndex);
